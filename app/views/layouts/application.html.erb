@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>EnjoyPainting</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+      <!-- FontAwesomeの記述 -->
+    <script src="https://kit.fontawesome.com/5e22f18747.js" crossorigin="anonymous"></script>
+      <!-- 変更済み -->
+    <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+  
+  
+  
+  <body>
+    <header>
+      
+      
+    </header>
+    
+    
+      <!-- main上部にmarginを適応 -->
+    <main style="margin-top: 50px;">
+      <div class="container">
+          <!-- bodyがここに入る -->
+        <%= yield %>
+        
+      </div>
+    </main>
+    
+  </body>
+</html>
+
