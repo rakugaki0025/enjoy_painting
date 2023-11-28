@@ -1,3 +1,5 @@
+## enjoy_controllers_admin_registration_管理者新規登録
+
 # frozen_string_literal: true
 
 class Admin::RegistrationsController < Devise::RegistrationsController
