@@ -1,0 +1,97 @@
+<!-- enjoy_view_pablic_customers_show -->
+  
+  
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      
+      <!-- 色指定のスタイル -->
+      <style>
+       .example {
+        background-color: #F0F0F0;
+        width:160px;
+        height:30px;
+       }
+      </style>
+      
+      <h4 class="example" align="center">マイページ</h4>
+      
+      <br />
+      
+        <!-- 登録情報編集へ遷移△ -->
+      <table>
+        <tr>
+          <th>
+              登録情報
+            <% if @customer == current_customer %>
+              <%= link_to "編集する", information_edit_path, class:"btn btn-success" %>
+            <% end %> 
+          </th>
+        </tr>
+        
+      </table>
+      
+      <table border="1" width="500"  height="250">
+          <!-- 顧客情報欄 -->
+        <tbody>
+            <!-- 氏名 -->
+          <tr>
+            <td>氏名</td>
+              <td>
+                <%= @customer.first_name %>
+                <%= @customer.last_name %>
+       　　     </td>
+          </tr>
+            <!-- カナ -->
+          <tr>
+     　　     <td>カナ</td>
+              <td>
+                <%= @customer.first_name_kana %>
+                <%= @customer.last_name_kana %>
+       　　     </td>
+          </tr>
+            <!-- 郵便番号 -->
+          <tr>
+            <td>郵便番号</td>
+              <td>
+                <%= @customer.postal_code %>
+              </td>
+          </tr>
+            <!-- 住所 -->
+          <tr>
+            <td>住所</td>
+              <td>
+                <%= @customer.address %>
+              </td>
+          </tr>
+            <!-- 電話番号 -->
+          <tr>
+            <td>電話番号</td>
+              <td>
+                <%= @customer.telephone_number %>
+              </td>
+          </tr>
+            <!-- メールアドレス -->
+          <tr>
+            <td>メールアドレス</td>
+              <td>
+                <%= @customer.email %>
+              </td>
+          </tr>
+            
+        </tbody>
+          
+      </table>
+      
+          <!-- 注文履歴一覧△ -->
+      <table>
+        <tr style="height: 100px;">
+          <th>注文履歴</th>
+            <td>
+              <%= link_to "一覧を見る", root_path, class:"btn btn-primary" %>
+            </td>
+        </tr>
+      </table>
+      
+    </div>
+  </div>
+  

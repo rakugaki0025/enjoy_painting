@@ -4,7 +4,7 @@
 
 class Public::SessionsController < Devise::SessionsController
   
-    
+  
           ## sign_in と sign_up 注意
           ## ログイン後に遷移する場所
           ## ここでのresource はログイン,ログアウト時でしか使われない

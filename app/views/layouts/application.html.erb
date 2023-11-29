@@ -19,6 +19,11 @@
       <p id="notice"></p>
         <!-- ヘッダーデザインまとめ -->
       <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
         <div class="container">
             <!-- ロゴアドレス -->
           <a class="navbar-brand" href="/">EnjoyPainting</a>
@@ -29,66 +34,72 @@
                   <!-- customer_ログイン△ -->
               <% if customer_signed_in? %>
                 <ul class="navbar-nav ml-auto">
-                      <!-- マイページ_pablic△ -->
-                    <li class="nav-item">
-                      <%= link_to "マイページ", new_customer_session_path, class: "nav-link text-light" %>
-                    </li>
-                      <!-- 商品一覧_pablic△ -->
-                    <li class="nav-item">
-                      <%= link_to "投稿一覧", new_customer_session_path, class: "nav-link text-light" %>
-                    </li>
-                      <!-- カート_pablic△ -->
-                    <li class="nav-item">
-                      <%= link_to "ブックマーク", new_customer_session_path, class: "nav-link text-light" %>
-                    </li>
-                      <!-- ログアウトボタン_pablic〇 -->
-                    <li class="nav-item">
-                      <%= link_to 'cuログアウト', destroy_customer_session_path, method: :delete, class: "nav-link text-light" %>
-                    </li>
-                  </ul>
+                    <!-- アイコン_pablic△ -->
+                  <li class="nav-item">
+                    <%= link_to "アイコン", new_customer_session_path, class: "nav-link text-light" %>
+                  </li>
+                    <!-- マイページ_pablic〇 -->
+                  <li class="nav-item">
+                    <%= link_to "マイページ", customers_my_page_path, class: "nav-link text-light" %>
+                  </li>
+                    <!-- 投稿一覧_pablic△ -->
+                  <li class="nav-item">
+                    <%= link_to "投稿一覧", new_customer_session_path, class: "nav-link text-light" %>
+                  </li>
+                    <!-- ブックマーク_pablic△ -->
+                  <li class="nav-item">
+                    <%= link_to "ブックマーク", new_customer_session_path, class: "nav-link text-light" %>
+                  </li>
+                    <!-- ログアウトボタン_pablic〇 -->
+                  <li class="nav-item">
+                    <%= link_to 'cuログアウト', destroy_customer_session_path, method: :delete, class: "nav-link text-light" %>
+                  </li>
+                </ul>
                   <!-- admin_ログイン△ -->
               <% elsif admin_signed_in? %>
                 <ul class="navbar-nav ml-auto">
-                      <!-- 商品一覧_admin〇 -->
-                    <li class="nav-item">
-                      <%= link_to "投稿一覧", new_customer_session_path, class: "nav-link text-light" %>
+                    <!-- 管理者投稿一覧_admin△ -->
+                  <li class="nav-item">
+                      <%= link_to "管理者投稿一覧", new_customer_session_path, class: "nav-link text-light" %>
                     </li>
-                      <!-- 会員一覧_admin〇 -->
-                    <li class="nav-item">
+                    <!-- 会員一覧_admin△ -->
+                  <li class="nav-item">
+                      <%= link_to "会員投稿一覧", new_customer_session_path, class: "nav-link text-light" %>
+                    </li>
+                    <!-- 会員一覧_admin△ -->
+                  <li class="nav-item">
                       <%= link_to "会員一覧", new_customer_session_path, class: "nav-link text-light" %>
                     </li>
-                      <!-- ログアウトボタン_admin〇 -->
-                    <li class="nav-item">
+                    <!-- ログアウトボタン_admin△ -->
+                  <li class="nav-item">
                       <%= link_to 'adログアウト', destroy_admin_session_path, method: :delete, class: "nav-link text-light" %>
                     </li>
-                  </ul>
+                </ul>
                   <!-- ログアウト_customer△ -->
               <% else %>
                 <ul class="navbar-nav ml-auto">
-                      <!-- About_pablic△ -->
-                    <li class="nav-item">
-                      <%= link_to "About", new_customer_session_path, class: "nav-link text-light" %>
-                    </li>
-                      <!-- 商品一覧_pablic△ -->
-                    <li class="nav-item">
-                      <%= link_to "ゲストログイン", new_customer_session_path, class: "nav-link text-light" %>
-                    </li>
-                      <!-- 新規登録_pablic△ -->
-                    <li class="nav-item">
-                      <%= link_to "新規登録", new_customer_registration_path, class: "nav-link text-light" %>
-                    </li>
-                      <!-- ログインボタン_admin〇 -->
-                    <li class="nav-item">
-                      <%= link_to "ログイン", new_customer_session_path, class: "nav-link text-light" %>
-                    </li>
-                  </ul>
-                  
+                    <!-- About_pablic〇 -->
+                  <li class="nav-item">
+                    <%= link_to "About", about_path, class: "nav-link text-light" %>
+                  </li>
+                    <!-- 商品一覧_pablic△ -->
+                  <li class="nav-item">
+                    <%= link_to "ゲストログイン", new_customer_session_path, class: "nav-link text-light" %>
+                  </li>
+                    <!-- 新規登録_pablic△ -->
+                  <li class="nav-item">
+                    <%= link_to "新規登録", new_customer_registration_path, class: "nav-link text-light" %>
+                  </li>
+                    <!-- ログインボタン_admin〇 -->
+                  <li class="nav-item">
+                    <%= link_to "ログイン", new_customer_session_path, class: "nav-link text-light" %>
+                  </li>
+                </ul>
+                
               <% end %>
               
             </div>
           </ul>
-          
-          
           
         </div>
       </nav>

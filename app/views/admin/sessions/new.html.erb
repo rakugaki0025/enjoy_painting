@@ -4,7 +4,8 @@
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
       
       <h2>管理者ログイン画面</h2>
-      
+        
+        <!-- @admin,は書き込みはしておらずそのまま呼び出している -->
       <%= form_with model: @admin, url: admin_session_path do |f| %>
         <div class="field">
           <%= f.label :email %><br />

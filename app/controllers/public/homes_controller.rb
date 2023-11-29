@@ -1,9 +1,15 @@
 class Public::HomesController < ApplicationController
-    ## enjoy_homes_controller_pablic
+  ## enjoy_homes_controller_pablic
   
-    ## root_path
+    ## 顧客_トップページ_root_path
   def top
       
+  end
+  
+  
+    ## 顧客_アバウトページ_about_path
+  def about
+  
   end
   
   

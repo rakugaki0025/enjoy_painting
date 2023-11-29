@@ -1,0 +1,37 @@
+<!-- enjoy_view_pablic_customers_confirm -->
+
+
+  <div class="row">
+    <div class="mx-auto auto col-11">
+      
+      <table width="600"  height="200">
+          <!-- 退会を承諾〇 -->
+        <thead>
+            <!-- 退会文 -->
+          <tr>
+            <h3 style="text-align: center;">本当に退会しますか</h3>
+          </tr>
+            <!-- 退会文 -->
+          <tr>
+            <h4 style="text-align: center;">
+              退会すると、会員情報や<br />
+              これまでの購入履歴が閲覧できなくなります。<br />
+              退会する場合、「退会する」をクリックしてください。
+            </h4>
+          </tr>
+            <!-- 退会する,退会しない〇△ -->
+          <tr style="margin: 50px;">
+            <h4 style="text-align: center;">
+                <!-- 退会しない〇 -->
+              <%= link_to "退会しない", customers_my_page_path, class:"btn btn-primary" %>
+                <!-- 退会する△ -->
+              <%= link_to "退会する", withdrow_path, class:"btn btn-danger", method: :patch, data: { confirm: "本当に退会しますか？" } %>
+            </h4>
+          </tr>
+          
+        </thead>
+        
+      </table>
+    </div>
+  </div>
+  

@@ -1,0 +1,96 @@
+<!-- enjoy_view_pablic_customers_information_edit -->
+
+
+  <div class="row">
+    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+      
+      <!-- 色指定のスタイル -->
+    <style>
+     .example {
+      background-color: #F0F0F0;
+      width:180px;
+      height:30px;
+     }
+    </style>
+               <!-- form_with model: @コントローラーeditの情報, url: 遷移先のルーティング_path, method: :ルーティングのメソッド -->
+    <%= form_with model: @customer, url: information_update_path, method: :patch do |f| %>
+      <table width="500"  height="60">
+        
+        <h4 class="example" align="center">会員情報編集</h4>
+            <!-- 氏名〇 -->
+          <tr>
+            <th>
+              <label for="customer_name">氏名</label>
+                <th>
+                  <%= f.text_field :first_name %>
+                </th>
+                <th>
+                  <%= f.text_field :last_name %>
+                </th>
+            </th>
+          </tr>
+            <!-- フリガナ〇 -->
+          <tr>
+            <th>
+              <label for="customer_name">フリガナ</label>
+                <th>
+                  <%= f.text_field :first_name_kana %>
+                </th>
+                <th>
+                  <%= f.text_field :last_name_kana %>
+                </th>
+            </th>
+          </tr>
+            <!-- 郵便番号〇 -->
+          <tr>
+            <th>
+              <label for="customer_postal_code">郵便番号</label>
+                <th>
+                  <%= f.text_field :postal_code %>
+                </th>
+            </th>
+          </tr>
+            <!-- 住所〇 -->
+          <tr>
+            <th>
+              <label for="customer_address">住所</label>
+                <th>
+                  <%= f.text_field :address %>
+                </th>
+            </th>
+          </tr>
+            <!-- 電話番号〇 -->
+          <tr>
+            <th>
+              <label for="customer_telephone_number">電話番号</label>
+                <th>
+                  <%= f.text_field :telephone_number %>
+                </th>
+            </th>
+          </tr>
+            <!-- メールアドレス〇 -->
+          <tr>
+            <th>
+              <label for="customer_email">メールアドレス</label>
+                <th>
+                  <%= f.text_field :email %>
+                </th>
+            </th>
+          </tr>
+            <!-- 編集内容を保存する〇 -->
+          <tr>
+            <th>
+              <%= f.submit '編集内容を保存する', class:"btn btn-success" %>
+            </th>
+              <!-- 退会する〇-->
+            <th>
+              <%= link_to "退会する", confirm_path, class:"btn btn-danger" %>
+            </th>
+        　</tr>
+          　
+      </table>
+            
+    <% end %>
+        
+    </div>
+  </div>
