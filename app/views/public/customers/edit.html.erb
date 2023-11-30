@@ -14,66 +14,59 @@
     </style>
                <!-- form_with model: @コントローラーeditの情報, url: 遷移先のルーティング_path, method: :ルーティングのメソッド -->
     <%= form_with model: @customer, url: information_update_path, method: :patch do |f| %>
+      
+        <!-- 会員情報編集〇 -->
       <table width="500"  height="60">
         
         <h4 class="example" align="center">会員情報編集</h4>
-            <!-- 氏名〇 -->
+            <!-- ニックネーム -->
           <tr>
             <th>
-              <label for="customer_name">氏名</label>
+              <label for="customer_nickname">ニックネーム</label>
                 <th>
-                  <%= f.text_field :first_name %>
-                </th>
-                <th>
-                  <%= f.text_field :last_name %>
+                  <%= f.text_field :nickname %>
                 </th>
             </th>
           </tr>
-            <!-- フリガナ〇 -->
-          <tr>
-            <th>
-              <label for="customer_name">フリガナ</label>
-                <th>
-                  <%= f.text_field :first_name_kana %>
-                </th>
-                <th>
-                  <%= f.text_field :last_name_kana %>
-                </th>
-            </th>
-          </tr>
-            <!-- 郵便番号〇 -->
-          <tr>
-            <th>
-              <label for="customer_postal_code">郵便番号</label>
-                <th>
-                  <%= f.text_field :postal_code %>
-                </th>
-            </th>
-          </tr>
-            <!-- 住所〇 -->
-          <tr>
-            <th>
-              <label for="customer_address">住所</label>
-                <th>
-                  <%= f.text_field :address %>
-                </th>
-            </th>
-          </tr>
-            <!-- 電話番号〇 -->
-          <tr>
-            <th>
-              <label for="customer_telephone_number">電話番号</label>
-                <th>
-                  <%= f.text_field :telephone_number %>
-                </th>
-            </th>
-          </tr>
-            <!-- メールアドレス〇 -->
+            <!-- メールアドレス -->
           <tr>
             <th>
               <label for="customer_email">メールアドレス</label>
                 <th>
                   <%= f.text_field :email %>
+                </th>
+            </th>
+          </tr>
+            <!-- 氏名 -->
+          <tr>
+            <th>
+              <label for="customer_name">氏名</label>
+                <th>
+                  <%= f.text_field :last_name %>
+                </th>
+                <th>
+                  <%= f.text_field :first_name %>
+                </th>
+            </th>
+          </tr>
+            <!-- フリガナ -->
+          <tr>
+            <th>
+              <label for="customer_name">フリガナ</label>
+                <th>
+                  <%= f.text_field :last_name_kana %>
+                </th>
+                <th>
+                  <%= f.text_field :first_name_kana %>
+                </th>
+            </th>
+          </tr>
+            <!-- 誕生日 -->
+          <tr>
+            <th>
+              <label for="customer_birth_day">誕生日</label>
+                <th>
+                  <%= f.text_field :birth_day %>
                 </th>
             </th>
           </tr>

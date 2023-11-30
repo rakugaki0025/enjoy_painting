@@ -40,7 +40,7 @@ class Public::RegistrationsController < Devise::RegistrationsController
           # ストリングパラメータと同様の機能
     devise_parameter_sanitizer.permit(:sign_up, keys: 
     [:email, :last_name, :first_name, :last_name_kana, 
-    :first_name_kana, :postal_code, :address, :telephone_number])
+    :first_name_kana, :nickname, :birth_day ])
     
   end
   

@@ -1,4 +1,4 @@
-## enjoy_db_migrate_admin
+## enjoy_db_migrate_admins
 
 # frozen_string_literal: true
 

@@ -58,22 +58,26 @@
                   <!-- admin_ログイン△ -->
               <% elsif admin_signed_in? %>
                 <ul class="navbar-nav ml-auto">
+                  <!-- 管理者投稿一覧_admin△ -->
+                  <li class="nav-item">
+                    <%= link_to "リクエスト", new_customer_session_path, class: "nav-link text-light" %>
+                  </li>
                     <!-- 管理者投稿一覧_admin△ -->
                   <li class="nav-item">
-                      <%= link_to "管理者投稿一覧", new_customer_session_path, class: "nav-link text-light" %>
-                    </li>
+                    <%= link_to "管理者投稿一覧", new_customer_session_path, class: "nav-link text-light" %>
+                  </li>
+                    <!-- 会員投稿一覧_admin△ -->
+                  <li class="nav-item">
+                    <%= link_to "会員投稿一覧", new_customer_session_path, class: "nav-link text-light" %>
+                  </li>
                     <!-- 会員一覧_admin△ -->
                   <li class="nav-item">
-                      <%= link_to "会員投稿一覧", new_customer_session_path, class: "nav-link text-light" %>
-                    </li>
-                    <!-- 会員一覧_admin△ -->
-                  <li class="nav-item">
-                      <%= link_to "会員一覧", new_customer_session_path, class: "nav-link text-light" %>
-                    </li>
+                    <%= link_to "会員一覧", admin_customers_path, class: "nav-link text-light" %>
+                  </li>
                     <!-- ログアウトボタン_admin△ -->
                   <li class="nav-item">
-                      <%= link_to 'adログアウト', destroy_admin_session_path, method: :delete, class: "nav-link text-light" %>
-                    </li>
+                    <%= link_to 'adログアウト', destroy_admin_session_path, method: :delete, class: "nav-link text-light" %>
+                  </li>
                 </ul>
                   <!-- ログアウト_customer△ -->
               <% else %>

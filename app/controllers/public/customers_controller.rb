@@ -111,7 +111,7 @@ class Public::CustomersController < ApplicationController
         ## params  formから送られてくるデータはparamsの中
         ## require 送信データからモデル名(ここでは:customer)を指定し、データを絞り込み
         ## permit  requireで絞り込んだデータの中から、保存を許可するカラムを指定
-      params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :postal_code, :address, :telephone_number, :email )
+      params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :nickname, :birth_day, :email )
   end
   
 end

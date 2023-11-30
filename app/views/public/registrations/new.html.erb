@@ -47,36 +47,28 @@
                 <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
               </th>
           </tr>
-            <!-- postal_code_box -->
+            <!-- nickname_box -->
           <tr>
-            <th><%= f.label :郵便番号 %></th>
+            <th><%= f.label :ニックネーム %></th>
               <th>
-                <%= f.text_field :postal_code, autofocus: true %>
+                <%= f.text_field :nickname, autofocus: true %>
               </th>
           </tr>
-            <!-- address_box -->
+            <!-- birth_day_box -->
           <tr>
-            <th><%= f.label :住所 %></th>
+            <th><%= f.label :誕生日 %></th>
               <th>
-                <%= f.text_field :address, autofocus: true %>
-              </th>
-          </tr>
-            <!-- telephone_number_box -->
-          <tr>
-            <th><%= f.label :電話番号 %></th>
-              <th>
-                <%= f.text_field :telephone_number, autofocus: true %>
+                <%= f.text_field :birth_day, autofocus: true %>
               </th>
           </tr>
             <!-- password_box -->
           <tr>
             <th>
               <%= f.label :パスワード %>
-              <% if @minimum_password_length %>
-                <em>(<%= @minimum_password_length %> 文字以上)</em>
-              <% end %><br />
-            </th>  
-            
+                <% if @minimum_password_length %>
+                  <em>(<%= @minimum_password_length %> 文字以上)</em>
+                <% end %><br />
+            </th>
             <th>  
               <%= f.password_field :password, autocomplete: "new-password" %>
             </th>

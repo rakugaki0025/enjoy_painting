@@ -1,0 +1,105 @@
+<!-- enjoy_view_admin_customers_show_top -->
+
+
+  <!-- フラッシュメッセージ投稿成功時 -->
+  <div>
+    <%= flash[:notice] %>
+  </div>
+
+  <div class="row">
+    <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-6">
+        <!-- 色指定のスタイル -->
+      <style>
+       .example {
+        background-color: #F0F0F0;
+        width:420px;
+        height:30px;
+       }
+      </style>
+      
+        <!-- 会員詳細 -->
+      <th>
+        <h4 class="example" align="center">
+          <%= @customer.last_name %>
+          <%= @customer.first_name %>
+          さんの会員詳細
+        </h4>
+      </th>
+      
+        <!-- 会員情報詳細 -->
+      <table width="550"  height="350">
+          
+          <!-- 会員情報一覧 -->
+        <tbody>
+              <!-- 顧客ナンバー〇 -->
+            <tr>
+              <th>会員ID</th>
+                <td>
+                  <%= @customer.id %>
+                </td>
+              <th></th>
+            </tr>
+              <!-- ニックネーム〇 -->
+            <tr>
+              <th>ニックネーム</th>
+                <td>
+                  <%= @customer.nickname %>
+                </td>
+            </tr>
+              <!-- メールアドレス〇 -->
+            <tr>
+              <th>メールアドレス</th>
+                <td>
+                  <%= @customer.email %>
+                </td>
+            </tr>
+              <!-- 氏名〇 -->
+            <tr>
+              <th>氏名</th>
+                <td>
+                  <%= @customer.last_name %>
+                  <%= @customer.first_name %>
+                </td>
+            </tr>
+              <!-- 氏名kana〇 -->
+            <tr>
+              <th>フリガナ</th>
+                <td>
+                  <%= @customer.last_name_kana %>
+                  <%= @customer.first_name_kana %>
+                </td>
+            </tr>
+              <!-- 誕生日〇 -->
+            <tr>
+              <th>誕生日</th>
+                <td>
+                  <%= @customer.birth_day %>
+                </td>
+            </tr>
+              <!-- 会員ステータス〇-->
+            <tr>
+              <th>会員ステータス</th>
+                <td>
+                  <% if @customer.is_active %>
+                    <span style="color: green;">有効</span>
+                  <% else %>
+                    <span style="color: lightgray;">退会</span>
+                  <% end %>
+                </td>
+            </tr>
+              <!-- 編集する -->
+            <td>
+              <%= link_to "編集する", admin_customers_edit_path, class:"btn btn-success" %>
+            </td>
+              <!-- 管理者トップへ〇 -->
+            <td>
+              <%= link_to "管理者トップへ", admin_root_path, class:"btn btn-primary" %>  
+            </td>
+            
+        </tbody>
+        
+      </table>
+      
+    </div>
+  </div>
+

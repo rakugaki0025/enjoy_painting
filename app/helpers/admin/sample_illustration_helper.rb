@@ -1,0 +1,2 @@
+module Admin::SampleIllustrationHelper
+end
