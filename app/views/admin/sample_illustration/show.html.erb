@@ -1,0 +1,66 @@
+<!-- Enjoy_view_admin_sample_illustration_show -->
+<h1>Enjoy_view_admin_sample_illustration_show</h1>
+  
+  
+  <!-- フラッシュメッセージ投稿成功時 -->
+  <div>
+    <%= flash[:notice] %>
+  </div>
+  
+    <!-- 商品画像,商品名,商品説明,税込価格 -->
+  <div class="row">
+    <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-5">
+      
+        <!-- 色指定のスタイル -->
+      <style>
+       .example {
+        background-color: #F0F0F0;
+        width:200px;
+        height:30px;
+       }
+      </style>
+      
+        <!-- サンプル画像,サンプル名,説明文,ジャンル -->
+      <table width="450"  height="80">
+        
+        <h4 class="example" align="center">サンプル画像詳細</h4>
+          <!-- サンプル詳細 -->
+        <tbody>
+            <!-- サンプル画像_(別型表示記載) -->
+          <tr>
+            <%= image_tag @sample_illustration.get_image, size: "360x300" %>
+              <!--%= image_tag @item.get_image %-->
+          </tr>
+            <!-- サンプル名 -->
+          <tr>
+            <th>サンプル名</th>
+              <td>
+                <%= @sample_illustration.name %>
+              </td>
+          </tr><br />
+            <!-- 説明文 -->
+          <tr>
+            <th>説明文</th>
+              <td>
+                <%= @sample_illustration.introduction %>
+              </td>
+          </tr><br />
+            <!-- ジャンル -->
+          <tr>
+            <th>ジャンル</th>
+              <td>
+                <%= @sample_illustration.genre_id %>
+              </td>
+          </tr><br />
+          
+        </tbody>
+            
+      </table>
+          
+        <!-- 編集する -->
+      <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-4">
+        <%= link_to "編集する", edit_admin_sample_illustration_path, class:"btn btn-success" %>
+      </div>
+          
+    </div>
+  </div>

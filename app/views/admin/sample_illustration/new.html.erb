@@ -1,0 +1,59 @@
+<!-- Enjoy_view_admin_sample_illustration_new -->
+
+<div class="row">
+    <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-5">
+            
+      <!-- 色指定のスタイル -->
+    <style>
+     .example {
+      background-color: #F0F0F0;
+      width:300px;
+      height:30px;
+     }
+    </style>
+            
+    <h4 class="example" align="center">サンプル画像新規登録画面</h4>
+    
+    <%= form_with model: @sample_illustration, url: admin_sample_illustration_index_path, method: :post do |f| %>
+        <!-- サンプル画像新規登録画面 -->
+      <table width="400"  height="300">
+          <!-- タイトル〇 -->
+        <tr>
+          <th>タイトル</th>
+            <td>
+              <%= f.text_field :name %>
+            </td>
+        </tr>
+          <!-- サンプル画像〇 -->
+        <tr>
+          <th>サンプル画像</th>
+            <td>
+              <%= f.file_field :image, accept: "image/*" %>
+            </td>
+        </tr>
+          <!-- 説明文〇 -->
+        <tr>
+          <th>サンプル説明</th>
+            <td>
+              <%= f.text_field :introduction %>
+            </td>
+        </tr>
+          <!-- ジャンル△ -->
+        <tr>
+          <th>ジャンル</th>
+            <td>
+              <%= f.text_field :genre_id %>
+            </td>
+        </tr>
+          <!-- 新規登録〇 -->
+        <tr>
+          <td>
+            <%= f.submit '新規登録', class:"btn btn-success" %>
+          </td>
+        </tr>
+                  
+      </table>
+    <% end %>
+          
+    </div>
+  </div>

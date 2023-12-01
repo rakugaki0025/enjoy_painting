@@ -1,0 +1,71 @@
+<!-- Enjoy_view_admin_sample_illustration_index -->
+<h1>Enjoy_view_admin_sample_illustration_index</h1>
+  
+  
+  <div class="row">
+        <!-- 色指定のスタイル -->
+      <style>
+       .example {
+        background-color: #F0F0F0;
+        width:200px;
+        height:30px;
+       }
+      </style>
+      
+        <!-- 投稿画像一覧,アイコン -->
+      <table width="950"  height="50">
+        <tr>
+            <!-- 投稿画像一覧 -->
+          <td>
+            <h4 class="example" align="center">投稿画像一覧</h4>
+          </td>
+            <!-- ジャンル新規登録画面へ,アイコン済△ -->
+          <td align="right">
+            <%= link_to admin_genre_index_path, class: 'nav-link text-black' do %>
+              <i class="fas fa-plus-circle" aria-hidden="true"></i>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+      
+    <div class="mx-auto auto col-11">
+      
+        <!-- サンプルID,サンプル名,説明文,ジャンル -->
+      <table border="1" width="900"  height="500">
+              <!-- サンプルID,サンプル名,説明文,ジャンル -->
+        <thead class="example">
+          <tr>
+            <th>サンプルID</th>
+            <th>サンプルタイトル</th>
+            <th>説明文</th>
+            <th>ジャンル</th>
+          </tr>
+        </thead>
+              <!-- サンプル一覧表示〇 -->
+        <% @sample_illustration.each do |sample_illustration| %>
+              <!-- サンプルID,サンプル名,価格_投稿内容△ -->
+        <tbody>
+          <tr>
+              <!-- サンプルナンバー△ -->
+            <td>
+              <%= sample_illustration.id %>
+            </td>
+              <!-- サンプル名△ -->
+            <td>
+              <%= link_to admin_sample_illustration_path(sample_illustration.id) do %>
+                <%= sample_illustration.name %>
+              <% end %>
+            </td>
+              <!-- ジャンル△ -->
+            <td>
+              <%= sample_illustration.genre_id %>
+            </td>
+          </tr>
+        </tbody>
+            
+        <% end %>
+        
+      </table>
+          
+    </div>
+  </div>
