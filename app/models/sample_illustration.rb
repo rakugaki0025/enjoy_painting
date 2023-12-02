@@ -3,7 +3,13 @@ class SampleIllustration < ApplicationRecord
     
     ## 表示,削除,アップロードするメソッドを生成
   has_one_attached :image
-  
+    
+    ## ユーザーに:～属する 1:N の関係 [N]側 受け
+    ## sample_illustration は :admin 1:Nの N 側に当たる
+    ## sample_illustration は :genre 1:Nの N 側に当たる
+  belongs_to :admin
+  belongs_to :genre
+    
   
   
     ## ActiveStorageに格納したno_image画像(D)を表示する

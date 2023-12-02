@@ -14,41 +14,41 @@
             
     <h4 class="example" align="center">サンプル画像新規登録画面</h4>
     
-    <%= form_with model: @sample_illustration, url: admin_sample_illustration_index_path, method: :post do |f| %>
+    <%= form_with model: @sample_illustration, url: admin_sample_illustration_index_path, method: :post do |sample_illustration| %>
         <!-- サンプル画像新規登録画面 -->
       <table width="400"  height="300">
           <!-- タイトル〇 -->
         <tr>
           <th>タイトル</th>
             <td>
-              <%= f.text_field :name %>
+              <%= sample_illustration.text_field :name %>
             </td>
         </tr>
           <!-- サンプル画像〇 -->
         <tr>
           <th>サンプル画像</th>
             <td>
-              <%= f.file_field :image, accept: "image/*" %>
+              <%= sample_illustration.file_field :image, accept: "image/*" %>
             </td>
         </tr>
           <!-- 説明文〇 -->
         <tr>
           <th>サンプル説明</th>
             <td>
-              <%= f.text_field :introduction %>
+              <%= sample_illustration.text_field :introduction %>
             </td>
         </tr>
           <!-- ジャンル△ -->
         <tr>
           <th>ジャンル</th>
             <td>
-              <%= f.text_field :genre_id %>
+              <%= sample_illustration.collection_select :genre_id, Genre.all, :id, :name %>
             </td>
         </tr>
           <!-- 新規登録〇 -->
         <tr>
           <td>
-            <%= f.submit '新規登録', class:"btn btn-success" %>
+            <%= sample_illustration.submit '新規登録', class:"btn btn-success" %>
           </td>
         </tr>
                   

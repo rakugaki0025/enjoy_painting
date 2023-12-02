@@ -13,5 +13,8 @@ class Genre < ApplicationRecord
     ## ユーザーに:～属する 1:N の関係 [N]側 受け
     ## genre は :admin__の 1:Nの N 側に当たる
   ## belongs_to :admin
-    
+  
+  
+  
+  
 end

@@ -1,5 +1,5 @@
 <!-- Enjoy_view_admin_sample_illustration_edit -->
-<h1>Enjoy_view_admin_sample_illustration_edit</h1>
+
 
 <!-- エラーメッセージ -->
   <% if @sample_illustration.errors.any? %>
@@ -28,44 +28,43 @@
        }
       </style>
       
-    <%= form_with model: @sample_illustration, url: admin_sample_illustration_path(@sample_illustration[:id]), method: :patch do |f| %>
+    <%= form_with model: @sample_illustration, url: admin_sample_illustration_path(@sample_illustration[:id]), method: :patch do |sample_illustration| %>
       
       <table width="400"  height="300">
             
         <h4 class="example" align="center">サンプル編集</h4>
-        
           <!-- サンプル画像 -->
         <tr>
           <th>サンプル画像</th>
             <td>
-              <%= f.file_field :image, accept: "image/*" %>
+              <%= sample_illustration.file_field :image, accept: "image/*" %>
             </td>
         </tr>
           <!-- サンプル名 -->
         <tr>
           <th>商品名</th>
             <td>
-              <%= f.text_field :name %>
+              <%= sample_illustration.text_field :name %>
             </td>
         </tr>
           <!-- 説明文 -->
         <tr>
           <th>説明文</th>
             <td>
-              <%= f.text_field :introduction %>
+              <%= sample_illustration.text_field :introduction %>
             </td>
         </tr>
           <!-- ジャンル -->
         <tr>
           <th>ジャンル</th>
             <td>
-              <%= f.text_field :genre_id %>
+              <%= sample_illustration.text_field :genre_id, value: @sample_illustration.genre.name %>
             </td>
         </tr>
           <!-- 新規登録△ -->
         <tr>
           <td>
-            <%= f.submit '変更を保存', class:"btn btn-success" %>
+            <%= sample_illustration.submit '変更を保存', class:"btn btn-success" %>
           </td>
         </tr>
                   

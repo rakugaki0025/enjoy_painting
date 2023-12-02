@@ -96,10 +96,10 @@ Rails.application.routes.draw do
     
 ### admin_genre
       
-      ## new     : 管理者_ジャンル_新規登録画面
+      ## new     : 
       ## create  : 管理者_ジャンル_新規登録する
-      ## index   : 管理者_ジャンル_一覧画面
-      ## edit    : 管理者_ジャンル_編集画面
+      ## index   : 管理者_ジャンル_一覧画面,新規登録機能,編集機能
+      ## edit    : 
       ## update  : 管理者_ジャンル_更新する
       ## destroy : 管理者_ジャンル_削除する(単体)
       ## customer ディレクトリ ルーティング自動生成 onlyで(限定生成)

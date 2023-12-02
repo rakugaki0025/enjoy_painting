@@ -4,6 +4,7 @@
 
 class Public::SessionsController < Devise::SessionsController
   
+  before_action :customer_state, only: [:create]
   
           ## sign_in と sign_up 注意
           ## ログイン後に遷移する場所
@@ -32,7 +33,6 @@ class Public::SessionsController < Devise::SessionsController
   
       # アクティブであるかを判断するメソッド
   def customer_state
-    
       #【処理内容1】 入力されたemailからアカウントを1件取得
     @customer = Customer.find_by(email: params[:customer][:email])
     

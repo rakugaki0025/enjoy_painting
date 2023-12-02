@@ -1,5 +1,4 @@
 <!-- Enjoy_view_admin_sample_illustration_show -->
-<h1>Enjoy_view_admin_sample_illustration_show</h1>
   
   
   <!-- フラッシュメッセージ投稿成功時 -->
@@ -28,7 +27,7 @@
         <tbody>
             <!-- サンプル画像_(別型表示記載) -->
           <tr>
-            <%= image_tag @sample_illustration.get_image, size: "360x300" %>
+            <%= image_tag @sample_illustration.get_image, size: "400x500" %>
               <!--%= image_tag @item.get_image %-->
           </tr>
             <!-- サンプル名 -->
@@ -49,7 +48,7 @@
           <tr>
             <th>ジャンル</th>
               <td>
-                <%= @sample_illustration.genre_id %>
+                <%= @sample_illustration.genre.name %>
               </td>
           </tr><br />
           

@@ -9,7 +9,7 @@ class Admin::SampleIllustrationController < ApplicationController
         ## 左の箱に右を格納
         ## インスタンス名はなんでもいい,空のオブジェクトもなんでもいい
       @sample_illustration = SampleIllustration.new
-     
+      
   end
   
     ## 管理者_投稿_新規情報登録する admin_sample_illustration_index_path
@@ -17,7 +17,10 @@ class Admin::SampleIllustrationController < ApplicationController
       
           ## genre_id, name, introduction, image 格納
       @sample_illustration = SampleIllustration.new(sample_illustration_params)
-        
+      
+          ## adminを呼び出す記述
+      @sample_illustration.admin = current_admin
+      
           ## 記録保存が成功すれば投稿一覧へ
      if @sample_illustration.save
          #p "00000000000000"
@@ -37,9 +40,9 @@ class Admin::SampleIllustrationController < ApplicationController
     ## 管理者_投稿_一覧画面 admin_sample_illustration_path
   def index
       
-        ## 全サンプルデータ取得
+        ## 全サンプルイラストデータ取得
       @sample_illustration = SampleIllustration.all
-     
+      
   end
   
   
@@ -70,7 +73,7 @@ class Admin::SampleIllustrationController < ApplicationController
         ## レコードを一つ取得？
     @sample_illustration = SampleIllustration.find(params[:id])
               
-        ## 商品情報 アップデート
+        ## サンプル情報 アップデート
     if  @sample_illustration.update(sample_illustration_params)
               
         ## flash[:notice] は 投稿が成功した時だけ表示
@@ -90,10 +93,25 @@ class Admin::SampleIllustrationController < ApplicationController
   end
   
   
+    ## 管理者_画像_削除する(単体) admin/sample_illustration/:id
+  def destroy
+      
+        ## データ(レコード)を一件取得
+      @sample_illustration = SampleIllustration.find(params[:id])
+        
+        ## データ（レコード）を削除
+      @sample_illustration.destroy
+      
+        ## サンプル一覧画面へリダイレクト
+      redirect_to '/admin/sample_illustration'
+        
+  end
+  
+  
   
   private
   
-        ## 商品登録情報編集画面等で使用…
+        ## サンプル登録情報編集画面等で使用…
   def sample_illustration_params
         
         ## params  formから送られてくるデータはparamsの中
