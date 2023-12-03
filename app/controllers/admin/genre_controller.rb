@@ -1,8 +1,6 @@
 class Admin::GenreController < ApplicationController
   ## Enjoy_cntroller_admin_genre
   
-  
-  
     ## 管理者_ジャンル_新規登録画面
   def new
       
@@ -99,7 +97,7 @@ class Admin::GenreController < ApplicationController
       @genre.destroy
       
         ## カート内商品一覧画面へリダイレクト
-      redirect_to '/admin/genre'
+      redirect_to '/admin/genre/index'
         
   end
   

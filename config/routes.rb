@@ -47,10 +47,15 @@ Rails.application.routes.draw do
     
     
 ### public_illustration
-
+    resources :illustrations, only: [:show, :new, :create, :edit, :update, :destroy]
+    
     ## resources :orders, only: [:new, :index, :show, :create, :edit, :update, :destroy]
-
-
+    
+    
+### public_search    
+    
+    get '/search' => "search#search", as: 'search'
+    
   end
 
 
@@ -101,12 +106,9 @@ Rails.application.routes.draw do
       ## index   : 管理者_ジャンル_一覧画面,新規登録機能,編集機能
       ## edit    : 
       ## update  : 管理者_ジャンル_更新する
-      ## destroy : 管理者_ジャンル_削除する(単体)
+      ## destroy : 
       ## customer ディレクトリ ルーティング自動生成 onlyで(限定生成)
-    resources :genre, only: [:new, :create, :index, :edit, :update, :destroy]
-    
-    
-    
+    resources :genre, only: [:new, :create, :index, :edit, :update]
   end
   
   

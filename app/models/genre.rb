@@ -7,8 +7,8 @@ class Genre < ApplicationRecord
     ## genre は illustration________に 対して 1:多 の関係である
     ## 削除機能
     ## たくさん持っている:モデルが 1:N になるよう関連付け:削除
-  has_many :sumple_illustration, dependent: :destroy
-  has_many :illustration, dependent: :destroy  
+  has_many :sample_illustration, dependent: :destroy
+  has_many :illustration, dependent: :destroy
     
     ## ユーザーに:～属する 1:N の関係 [N]側 受け
     ## genre は :admin__の 1:Nの N 側に当たる

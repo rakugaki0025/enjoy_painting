@@ -1,0 +1,15 @@
+<!-- Enjoy_view_public_search_index -->
+<h1>Enjoy_view_public_search_index</h1>
+
+<% if @results.present? %>
+  <h2>検索結果</h2>
+  <ul>
+    <% @results.each do |result| %>
+      <li><%= result.title %></li>
+      <li><%= result.content %></li>
+      <!-- 他の属性も表示する場合はここに追加する -->
+    <% end %>
+  </ul>
+<% else %>
+  <p>該当する投稿は見つかりませんでした。</p>
+<% end %>

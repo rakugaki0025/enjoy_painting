@@ -80,7 +80,7 @@
             </td>
               <!-- 削除ボタン△ -->
             <td>
-              <%= link_to "削除", admin_sample_illustration_path(sample_illustration.id), class:"btn btn-danger", method: :patch, data: { confirm: "本当に削除しますか？" } %>
+              <%= link_to "削除", admin_sample_illustration_path(sample_illustration), class:"btn btn-danger", method: :delete, data: { confirm: "本当に削除しますか？" } %>
             </td>
           </tr>
         </tbody>

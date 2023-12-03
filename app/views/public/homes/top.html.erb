@@ -1,44 +1,91 @@
   <!-- enjoy_view_public_homes_top -->
-  
-    <!-- フラッシュメッセージ投稿成功時 -->
-  <div>
-    <%= flash[:notice] %>
-  </div>
- 
-  <div class="row">
-    <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-9">
-          
-        <!-- 色指定のスタイル -->
-      <style>
-       .example {
-        background-color: #F0F0F0;
-        width:380px;
-        height:30px;
-       }
-      </style>
+  <!-- フラッシュメッセージ投稿成功時 -->
+<div>
+  <%= flash[:notice] %>
+</div>
+
+<div class="row">
+  <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-9">
+      <!-- 色指定のスタイル -->
+    <style>
+     .example {
+      background-color: #F0F0F0;
+      width:380px;
+      height:30px;
+     }
+    </style>
+      <!-- -->
+    <table border="1" width="800"  height="50">
+
+      <h4 class="example" align="center">顧客_トップ_public_top</h4>
         <!-- -->
-      <table border="1" width="800"  height="50">
-        
-        <h4 class="example" align="center">顧客_トップ_public_top</h4>
-        
-          <!-- -->
-        <thead class="example">
-          <tr>
-            <th>aaaaa</th>
-            <th>bbbbb</th>
-            <th>ccccc</th>
-          </tr>
-        </thead>
-            
-          <!--  -->
-        <tbody>
-        
-        
-        </tbody>
-          
-      </table>
-          
-    </div>
+      <thead class="example">
+        <tr>
+          <th>aaaaa</th>
+          <th>bbbbb</th>
+          <th>ccccc</th>
+        </tr>
+      </thead>
+        <!--  -->
+      <tbody>
+      
+      
+      </tbody>
+    </table>
   </div>
+</div>
+
+<div class="row">
+  <div class="col-md-6">
+    <%= form_with url: root_url, method: :get, local: true do |f| %>
+      <div class="form-group row">
+        <%= f.label :genre_id, "genre_select", class: "col-md-3 col-form-label" %>
+        <div class="col-md-9">
+          <%= f.collection_select :genre_id, Genre.all, :id, :name,
+              { include_blank: "--select--",
+                selected: params[:genre_id] },
+              { class: "form-control" } %>
+        </div>
+      </div>
+      <div class="form-group row">
+        <%= f.label :genre_id, "name_search", class: "col-md-3 col-form-label" %>
+        <div class="col-md-9">
+          <%= f.search_field :name, class: "form-control",
+                                    placeholder: "--name--",
+                                    value: params[:name] %>
+        </div>
+      </div>
+      
+      <%= f.submit "search", class: "btn btn-primary" %>
+    <% end %>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-9">
+    <div class="row">
+      <% @illustrations.each do |illustration| %>
+        <div class="col-sm-6 col-lg-4">
+          <div class="card my-3">
+            <div class="card-img-top">
+              <img src="#" class="img-fluid">
+            </div>
+            <div class="card-body">
+              <h5 class="card-title"><%= illustration.name %></h5>
+              <p class="card-text"><%= illustration.introduction.truncate(15) %></p>
+              <p class="card-test">
+                <span class="badge badge-secondary"><%= illustration.genre.name %></span>
+              </p>
+              <%=link_to "read more", illustration, class: "card-link" %>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <%= paginate @illustrations %>
+  </div>
+</div>
   
   

@@ -45,12 +45,11 @@
       <table border="1" width="600">
               <!-- ナンバー,名前,削除△ -->
         <thead class="example">
-            <th align=”center”>
-              <th>ジャンル名</th>
-              <th>編集</th>
-              <th>削除</th>
-            </th>
-          </thead>
+          <th align=”center”>
+            <th>ジャンル名</th>
+            <th>編集</th>
+          </th>
+        </thead>
               <!-- 各ジャンル表示 -->
         <% @genre.each do |genre| %>
               <!-- ナンバー,名前,削除△ -->
@@ -70,10 +69,6 @@
                    <%= genre.text_field :name %>
                    <%= genre.submit '変更を保存', class:"btn btn-success" %>
                  <% end %>
-              </td>
-                <!-- 削除ボタン△ -->
-              <td align="center">
-                <%= link_to "削除", admin_genre_path(genre), class:"btn btn-danger", method: :delete, data: { confirm: "本当に削除しますか？" } %>
               </td>
             </tr>
           </tbody>
