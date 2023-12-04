@@ -2,13 +2,13 @@
 
 
 <!-- エラーメッセージ -->
-  <% if @sample_illustration.errors.any? %>
+  <% if @illustration.errors.any? %>
       <!-- エラーカウント -->
     <h2>
-      <%= @sample_illustration.errors.count %>errors prohibited this obj from being saved:
+      <%= @illustration.errors.count %>errors prohibited this obj from being saved:
     </h2>
       <ul>
-        <% @sample_illustration.errors.full_messages.each do |message| %>
+        <% @illustration.errors.full_messages.each do |message| %>
           <li>
             <%= message %>
           </li>
@@ -28,44 +28,44 @@
        }
       </style>
       
-    <%= form_with model: @sample_illustration, url: admin_sample_illustration_path(@sample_illustration[:id]), method: :patch do |sample_illustration| %>
+    <%= form_with model: @illustration, url: illustration_path(@illustration[:id]), method: :patch do |illustration| %>
       
       <table width="400"  height="300">
             
-        <h4 class="example" align="center">サンプル編集</h4>
-          <!-- サンプル画像 -->
+        <h4 class="example" align="center">イラスト編集</h4>
+          <!-- イラスト画像 -->
         <tr>
-          <th>サンプル画像</th>
+          <th>イラスト画像</th>
             <td>
-              <%= sample_illustration.file_field :image, accept: "image/*" %>
+              <%= illustration.file_field :image, accept: "image/*" %>
             </td>
         </tr>
-          <!-- サンプル名 -->
+          <!-- タイトル -->
         <tr>
-          <th>商品名</th>
+          <th>タイトル</th>
             <td>
-              <%= sample_illustration.text_field :name %>
+              <%= illustration.text_field :name %>
             </td>
         </tr>
           <!-- 説明文 -->
         <tr>
           <th>説明文</th>
             <td>
-              <%= sample_illustration.text_field :introduction %>
+              <%= illustration.text_field :introduction %>
             </td>
         </tr>
           <!-- ジャンル -->
         <tr>
           <th>ジャンル</th>
             <td>
-              <!--%= sample_illustration.text_field :genre_id, value: @sample_illustration.genre.name %-->
-              <%= sample_illustration.collection_select :genre_id, Genre.all, :id, :name %>
+              <!--%= illustration.text_field :genre_id, value: @illustration.genre.name %-->
+              <%= illustration.collection_select :genre_id, Genre.all, :id, :name %>
             </td>
         </tr>
-          <!-- 新規登録△ -->
+          <!-- 新規登録 -->
         <tr>
           <td>
-            <%= sample_illustration.submit '変更を保存', class:"btn btn-success" %>
+            <%= illustration.submit '変更を保存', class:"btn btn-success" %>
           </td>
         </tr>
                   

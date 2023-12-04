@@ -47,14 +47,17 @@ Rails.application.routes.draw do
     
     
 ### public_illustration
-    resources :illustrations, only: [:show, :new, :create, :edit, :update, :destroy]
+      
+      ## show    : 顧客_投稿_詳細画面
+      ## new     : 顧客_投稿_新規登録画面
+      ## create  : 顧客_投稿_新規情報登録する
+      ## index   : 顧客_投稿_一覧画面
+      ## edit    : 顧客_投稿_編集画面
+      ## update  : 顧客_投稿_情報更新する
+      ## destroy : 顧客_投稿_削除する(単体)
+      ## customer ディレクトリ ルーティング自動生成 onlyで(限定生成)
+    resources :illustrations, only: [:show, :new, :index, :create, :edit, :update, :destroy]
     
-    ## resources :orders, only: [:new, :index, :show, :create, :edit, :update, :destroy]
-    
-    
-### public_search    
-    
-    get '/search' => "search#search", as: 'search'
     
   end
 

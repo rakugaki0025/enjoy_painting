@@ -1,4 +1,4 @@
-<!-- Enjoy_view_admin_sample_illustration_new -->
+<!-- Enjoy_view_admin_illustration_new -->
 
 <div class="row">
     <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-5">
@@ -12,43 +12,43 @@
      }
     </style>
             
-    <h4 class="example" align="center">サンプル画像新規登録画面</h4>
+    <h4 class="example" align="center">画像新規登録画面</h4>
     
-    <%= form_with model: @sample_illustration, url: admin_sample_illustration_index_path, method: :post do |sample_illustration| %>
-        <!-- サンプル画像新規登録画面 -->
+    <%= form_with model: @illustration, url: illustrations_path, method: :post do |illustration| %>
+        <!-- イラスト画像新規登録画面 -->
       <table width="400"  height="300">
           <!-- タイトル〇 -->
         <tr>
           <th>タイトル</th>
             <td>
-              <%= sample_illustration.text_field :name %>
+              <%= illustration.text_field :name %>
             </td>
         </tr>
           <!-- サンプル画像〇 -->
         <tr>
-          <th>サンプル画像</th>
+          <th>イラスト画像</th>
             <td>
-              <%= sample_illustration.file_field :image, accept: "image/*" %>
+              <%= illustration.file_field :image, accept: "image/*" %>
             </td>
         </tr>
           <!-- 説明文〇 -->
         <tr>
-          <th>サンプル説明文</th>
+          <th>説明文</th>
             <td>
-              <%= sample_illustration.text_field :introduction %>
+              <%= illustration.text_field :introduction %>
             </td>
         </tr>
-          <!-- ジャンル△ -->
+          <!-- ジャンル〇 -->
         <tr>
           <th>ジャンル</th>
             <td>
-              <%= sample_illustration.collection_select :genre_id, Genre.all, :id, :name %>
+              <%= illustration.collection_select :genre_id, Genre.all, :id, :name %>
             </td>
         </tr>
           <!-- 新規登録〇 -->
         <tr>
           <td>
-            <%= sample_illustration.submit '新規登録', class:"btn btn-success" %>
+            <%= illustration.submit '新規登録', class:"btn btn-success" %>
           </td>
         </tr>
                   
@@ -57,3 +57,5 @@
           
     </div>
   </div>
+  
+  

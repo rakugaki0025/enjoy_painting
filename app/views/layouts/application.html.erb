@@ -83,45 +83,6 @@
                   <!-- customer_ログイン△ -->
               <% if customer_signed_in? %>
                 <ul class="navbar-nav ml-auto">
-                    <!-- 検索窓△  -->
-                  <!--<form class="d-flex" role="search">-->
-                  <!--  <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">-->
-                        <!-- ドロップダウン -->
-                  <!--    <li class="nav-item dropdown">-->
-                  <!--      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">-->
-                  <!--        Dropdown-->
-                  <!--      </a>-->
-                  <!--      <ul class="dropdown-menu">-->
-                  <!--        <li><a class="dropdown-item" href="#">Action</a></li>-->
-                  <!--        <li><a class="dropdown-item" href="#">Another action</a></li>-->
-                  <!--        <li><hr class="dropdown-divider"></li>-->
-                  <!--        <li><a class="dropdown-item" href="#">Something else here</a></li>-->
-                  <!--      </ul>-->
-                  <!--    </li>-->
-                      
-                  <!--  <button class="btn btn-outline-success" type="submit">検索</button>-->
-                  <!--</form>-->
-                  
-                  <%= form_with(url: '/search', method: :get, class: "d-flex", role: "search") do |form| %>
-                    <!--%= form.text_field :search, class: "form-control me-2", placeholder: "Search", aria_label: "Search" %-->
-                    <%= form.text_field :genre, class: "form-control", placeholder: "ジャンルを入力してください" %>
-                      <!-- ドロップダウン -->
-                      <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                          Dropdown
-                        </a>
-                        <ul class="dropdown-menu">
-                          <li><a class="dropdown-item" href="#">Action</a></li>
-                          <li><a class="dropdown-item" href="#">Another action</a></li>
-                          <li><hr class="dropdown-divider"></li>
-                          <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                      </li>
-                    <%= form.button "検索", class: "btn btn-outline-success", type: "submit" %>
-                  <% end %>
-                  
-                  
-                  
                     <!-- アイコン_pablic△ -->
                   <li class="nav-item">
                     <%= link_to "アイコン", new_customer_session_path, class: "nav-link text-light" %>
@@ -132,7 +93,7 @@
                   </li>
                     <!-- 投稿一覧_pablic△ -->
                   <li class="nav-item">
-                    <%= link_to "投稿一覧", new_customer_session_path, class: "nav-link text-light" %>
+                    <%= link_to "投稿一覧", illustrations_path, class: "nav-link text-light" %>
                   </li>
                     <!-- ブックマーク_pablic△ -->
                   <li class="nav-item">
@@ -187,7 +148,6 @@
                     <%= link_to "ログイン", new_customer_session_path, class: "nav-link text-light" %>
                   </li>
                 </ul>
-                
               <% end %>
               
             </div>

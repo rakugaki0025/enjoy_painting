@@ -13,6 +13,7 @@ genres = %w(
     線画
     カラー
     色
+    資料
   )
   
 genres.each do |name|
