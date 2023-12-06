@@ -135,9 +135,13 @@
                   <li class="nav-item">
                     <%= link_to "About", about_path, class: "nav-link text-light" %>
                   </li>
-                    <!-- 商品一覧_pablic△ -->
+                    <!-- ゲストログイン_pablic△ -->
                   <li class="nav-item">
-                    <%= link_to "ゲストログイン", new_customer_session_path, class: "nav-link text-light" %>
+                    <!--%= link_to "ゲストログイン", new_customer_session_path, class: "nav-link text-light" %-->
+                    <%= link_to 'ゲストログイン', users_guest_sign_in_path, class: "nav-link text-light", method: :post %>
+                    <!--%= link_to 'ゲストログイン', end_users_guest_sign_in_path.to_s, method: :post, class: "nav-link text-light" do %-->
+                    <!--%= link_to end_users_guest_sign_in_path.to_s, { method: :post, class: "nav-link text-light" } do %-->
+                    
                   </li>
                     <!-- 新規登録_pablic△ -->
                   <li class="nav-item">

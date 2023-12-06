@@ -2,10 +2,27 @@ class Illustration < ApplicationRecord
   
     ## 表示,削除,アップロードするメソッドを生成
   has_one_attached :image
+    
+    ## ユーザーに:～属する 1:N の関係 [1] 側 送信
+    ## illustration は nice __ に 対して 1:多 の関係である
+    ## illustration は comment に 対して 1:多 の関係である
+    ## 削除機能
+    ## たくさん持っている:モデルが 1:N になるよう関連付け:削除
+  has_many :nice, dependent: :destroy
+  has_many :comment, dependent: :destroy
+    
   
+    ## ユーザーに:～属する 1:N の関係 [N]側 受け
+    ## illustration は :customer 1:Nの N 側に当たる
+    ## illustration は :genre ___1:Nの N 側に当たる
   belongs_to :customer
   belongs_to :genre
   
+    ## いいねする会員がいるか？
+  def nice_by?(customer)
+      
+      nice.exists?(customer_id: customer.id)
+  end
   
   
     ## ActiveStorageに格納したno_image画像(D)を表示する

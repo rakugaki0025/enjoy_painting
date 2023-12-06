@@ -3,7 +3,9 @@
 # frozen_string_literal: true
 
 class Public::SessionsController < Devise::SessionsController
+  ## before_action :authenticate_customer!
   
+    ## これがないと倫理削除に引っかからない
   before_action :customer_state, only: [:create]
   
           ## sign_in と sign_up 注意
@@ -28,7 +30,30 @@ class Public::SessionsController < Devise::SessionsController
   end
   
   
-  ## 退会処理後のログインの規制
+          ## ゲストログインを定義
+  def guest_sign_in
+    
+          ## "email"属性で,"customer"モデルのレコードを検索見つからない場合
+          ## "guest@example.com"で新しいレコードを作成し"user"へ代入する
+      user = Customer.find_or_create_by!(email: 'guest@example.com') do |user|
+          ## ゲストユーザー情報
+        user.password = SecureRandom.urlsafe_base64
+        user.last_name = 'tarou'
+        user.first_name = 'webcamp'
+        user.last_name_kana = 'tarou'
+        user.first_name_kana = 'webcamp'
+        user.birth_day = '0000.00.00.'
+        
+      end
+          ## 作成が成功しサインインする。
+      sign_in user
+          ## 遷移後,メッセージを表示
+      redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
+    
+  end
+  
+  
+    ## 退会処理後のログインの規制
   private
   
       # アクティブであるかを判断するメソッド

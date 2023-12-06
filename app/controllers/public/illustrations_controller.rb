@@ -41,6 +41,9 @@ class Public::IllustrationsController < ApplicationController
         ## 全サンプルイラストデータ取得
       @illustrations = Illustration.all
       
+       ## 作成日時の降順に並び替え,6件ずつ表示
+      @illustrations = @illustrations.order(created_at: :desc).page(params[:page]).per(6)
+      
   end
   
   

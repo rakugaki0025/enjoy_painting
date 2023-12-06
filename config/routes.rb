@@ -1,25 +1,35 @@
 Rails.application.routes.draw do
 ## enjoy_config_routes
   
-  ## 顧客用
-  ## URL /customers/sign_in ...
+    ## 顧客用
+    ## URL /customers/sign_in ...
   devise_for :customers, skip: [:passwords], controllers: {
     registrations: "public/registrations",
-    sessions: 'public/sessions'
+    sessions: 'public/sessions',
   }
+  
+      ## ゲストログイン用  
+  devise_scope :customer do
+    
+      ## ゲストログイン
+    post '/users/guest_sign_in' => 'public/sessions#guest_sign_in'
+    
+  end
     
     ## 管理者用
     ## URL /admin/sign_in ...
-    devise_for :admin, skip: [:registrations, :passwords], controllers: {
+  devise_for :admin, skip: [:registrations, :passwords], controllers: {
     sessions: "admin/sessions"
   }
- 
+  
     ## scopeでは /public とは表示されない 例 /homes
   scope module: :public do
     
       ## root to設定で homes/topページ遷移設定
     root to: 'homes#top'
-
+    
+    
+    
 ### public_customers
     
       ## 取得 '実際の表示アドレス' => "指定のコントローラー#アクション", as: "名前つきルート"
@@ -56,7 +66,17 @@ Rails.application.routes.draw do
       ## update  : 顧客_投稿_情報更新する
       ## destroy : 顧客_投稿_削除する(単体)
       ## customer ディレクトリ ルーティング自動生成 onlyで(限定生成)
-    resources :illustrations, only: [:show, :new, :index, :create, :edit, :update, :destroy]
+    resources :illustrations, only: [:show, :new, :index, :create, :edit, :update, :destroy] do
+      
+    ### public_nice
+        ## いいね機能
+      resource :nice, only: [:create, :destroy]
+    
+    ### public_comment
+        ## コメント機能
+      resources :comment, only: [:create, :destroy]
+      
+    end
     
     
   end
@@ -99,7 +119,7 @@ Rails.application.routes.draw do
       ## edit    : 管理者_投稿_編集画面
       ## update  : 管理者_投稿_情報更新する
       ## destroy : 管理者_投稿_削除する(単体)
-      ## customer ディレクトリ ルーティング自動生成 onlyで(限定生成)
+      ## sample_illustration ディレクトリ ルーティング自動生成 onlyで(限定生成)
     resources :sample_illustration, only: [:new, :index, :show, :create, :edit, :update, :destroy]
     
 ### admin_genre
@@ -110,7 +130,7 @@ Rails.application.routes.draw do
       ## edit    : 
       ## update  : 管理者_ジャンル_更新する
       ## destroy : 
-      ## customer ディレクトリ ルーティング自動生成 onlyで(限定生成)
+      ## genre ディレクトリ ルーティング自動生成 onlyで(限定生成)
     resources :genre, only: [:new, :create, :index, :edit, :update]
   end
   
