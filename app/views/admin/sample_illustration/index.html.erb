@@ -11,10 +11,10 @@
        }
       </style>
       
-        <!-- 投稿画像一覧,アイコン -->
+        <!-- サンプル投稿画像一覧,アイコン -->
       <table width="950"  height="50">
         <tr>
-            <!-- 投稿画像一覧 -->
+            <!-- サンプル投稿画像一覧 -->
           <td>
             <h4 class="example" align="center">管理者投稿画像一覧</h4>
           </td>
@@ -51,34 +51,34 @@
         </thead>
               <!-- サンプル一覧表示〇 -->
         <% @sample_illustration.each do |sample_illustration| %>
-              <!-- ID,画像,名前,説明文,ジャンル,削除△ -->
+              <!-- ID,画像,名前,説明文,ジャンル,削除 -->
         <tbody>
           <tr>
-              <!-- サンプルナンバー〇 -->
+              <!-- サンプルナンバー -->
             <td>
               <%= sample_illustration.id %>
             </td>
-              <!-- サンプル画像〇 -->
+              <!-- サンプル画像 -->
             <td>
               <%= link_to admin_sample_illustration_path(sample_illustration.id) do %>
-                <%= image_tag sample_illustration.get_image, size: "150x180" %>
+                <%= image_tag sample_illustration.get_image, style: "max-width:130px;" %>
               <% end %>
             </td>
-              <!-- サンプル名〇 -->
+              <!-- サンプル名 -->
             <td>
               <%= link_to admin_sample_illustration_path(sample_illustration.id) do %>
                 <%= sample_illustration.name %>
               <% end %>
             </td>
-              <!-- 説明文〇 -->
+              <!-- 説明文 -->
             <td>
               <%= sample_illustration.introduction %>
             </td>
-              <!-- ジャンル〇 -->
+              <!-- ジャンル -->
             <td>
               <%= sample_illustration.genre.name %>
             </td>
-              <!-- 削除ボタン△ -->
+              <!-- 削除ボタン -->
             <td>
               <%= link_to "削除", admin_sample_illustration_path(sample_illustration), class:"btn btn-danger", method: :delete, data: { confirm: "本当に削除しますか？" } %>
             </td>

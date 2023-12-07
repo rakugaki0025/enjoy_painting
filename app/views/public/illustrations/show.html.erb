@@ -69,10 +69,43 @@
                 <% end %>
               </td>
           </tr><br />
-            <!-- コメント -->
+            <!-- コメント△ -->
           <tr>
             <th>コメント</th>
               <td>
+                  <!-- コメント件数 -->
+                <div>
+                  <p>
+                    コメント件数：<%= @illustration.comments.count %>
+                  </p>
+                  <% @illustration.comments.each do |comment| %>
+                      <!-- アイコン -->
+                    <p>
+                      <%= image_tag comment.customer.get_profile_image(100,100) %>
+                    </p>
+                      <!-- 投稿者名 -->
+                    <%= comment.customer.name %>
+                      <!-- 投稿時間 -->
+                    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.content %>
+                      <!-- 削除コメント_コメントした人が同じだった場合表示する記述 -->
+                    <% if comment.customer == current_customer %>
+                      <%= link_to "削除", illustration_comment_path(comment.illustration, comment), method: :delete %>
+                    <% end %>
+                    
+                  <% end %>
+                </div>
+                  <!-- コメント枠,送信ボタン -->
+                <div>
+                    <!--%= form_with model: [@illustration, @comment], url: illustration_comment_index_path(@illustration[:id]), local: true do |f| %-->
+                  <%= form_with model:[@illustration, @comment], url: illustration_comments_path(@illustration[:id]), method: :post do |f| %>
+                    <%= f.text_area :content, rows: '5', placeholder: "コメントをここに" %>
+                    <%= f.submit "送信する" %>
+                  <% end %>
+                </div>
+                  <!-- コメント数 -->
+                <p>
+                  <%= link_to "#{@illustration.comments.count} コメント", illustration_path(@illustration.id) %>
+                </p>
                 
               </td>
           </tr>

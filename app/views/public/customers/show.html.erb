@@ -30,9 +30,18 @@
         
       </table>
       
-      <table border="1" width="500"  height="250">
+      <table border="1" width="400"  height="300">
           <!-- 顧客情報欄〇 -->
         <tbody>
+            <!-- アイコン -->
+          <tr>
+            <th>アイコン</th>
+              <td align="center">
+                <% if @customer.illustration.present? %>
+                  <%= image_tag @customer.illustration.first.get_profile_image(100, 100) %>
+                <% end %>
+              </td>
+          </tr>
             <!-- ニックネーム -->
           <tr>
             <th>ニックネーム</th>

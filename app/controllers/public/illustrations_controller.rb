@@ -38,11 +38,10 @@ class Public::IllustrationsController < ApplicationController
     ## イラスト投稿_一覧画面 illustrations_path
   def index
       
-        ## 全サンプルイラストデータ取得
+        ## 全イラストデータ取得
       @illustrations = Illustration.all
-      
-       ## 作成日時の降順に並び替え,6件ずつ表示
-      @illustrations = @illustrations.order(created_at: :desc).page(params[:page]).per(6)
+        ## アソシエーションを利用して,"customer"を取得_作成日時の降順に並び替え,6件ずつ表示
+      @illustrations = Illustration.includes(:customer).order(created_at: :desc).page(params[:page]).per(6)
       
   end
   
@@ -52,6 +51,8 @@ class Public::IllustrationsController < ApplicationController
       
         ## 投稿した sample_illustoration :id を取得するレコード
       @illustration = Illustration.find(params[:id])
+        ## コメントを定義
+      @comment = Comment.new
       
   end
   

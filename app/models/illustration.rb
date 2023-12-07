@@ -9,7 +9,7 @@ class Illustration < ApplicationRecord
     ## 削除機能
     ## たくさん持っている:モデルが 1:N になるよう関連付け:削除
   has_many :nice, dependent: :destroy
-  has_many :comment, dependent: :destroy
+  has_many :comments, dependent: :destroy
     
   
     ## ユーザーに:～属する 1:N の関係 [N]側 受け
@@ -23,7 +23,6 @@ class Illustration < ApplicationRecord
       
       nice.exists?(customer_id: customer.id)
   end
-  
   
     ## ActiveStorageに格納したno_image画像(D)を表示する
   def get_image
@@ -40,6 +39,26 @@ class Illustration < ApplicationRecord
         ## 記述がないと目的を果たせない(画像)get_image依存
       image
         
+  end
+  
+    ## プロフィール画像を許可
+  has_one_attached :profile_image
+    
+    ## プロフィール画像を取得？
+    ## ActiveStorageに格納したno_image画像(D)を表示する
+  def get_profile_image(width, height)
+    
+      unless profile_image.attached?
+        
+        file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
+      
+        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+      
+      end
+      
+      profile_image.variant(resize_to_limit: [width, height]).processed
+      ## profile_image.variant(resize_to_limit: [100, 100]).processed
+    
   end
   
 end

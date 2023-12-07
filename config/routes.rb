@@ -69,12 +69,18 @@ Rails.application.routes.draw do
     resources :illustrations, only: [:show, :new, :index, :create, :edit, :update, :destroy] do
       
     ### public_nice
+    
+        ## destroy  : 取り消しする
+        ## create   : いいね送信する
         ## いいね機能
       resource :nice, only: [:create, :destroy]
-    
+      
     ### public_comment
+        
+        ## create  : 削除する
+        ## create  : コメントする
         ## コメント機能
-      resources :comment, only: [:create, :destroy]
+      resources :comments, only: [:create, :destroy]
       
     end
     
