@@ -56,7 +56,8 @@ Rails.application.routes.draw do
     patch 'customers/withdrow' => "customers#withdrow", as: 'withdrow'
     
     
-### public_illustration
+    
+### public_illustrations
       
       ## show    : 顧客_投稿_詳細画面
       ## new     : 顧客_投稿_新規登録画面
@@ -83,6 +84,10 @@ Rails.application.routes.draw do
       resources :comments, only: [:create, :destroy]
       
     end
+    
+      ## いいねブックマーク用
+      ## 取得 '実際の表示アドレス' => "指定のコントローラー#アクション", as: "名前つきルート"
+    get '/liked_illust' => "customers#liked_illustrations", as: :liked_illustrations
     
     
   end

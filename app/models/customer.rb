@@ -13,7 +13,9 @@ class Customer < ApplicationRecord
     ## customer は illustration に 対して 1:多 の関係である
     ## 削除機能
     ## たくさん持っている:モデルが 1:N になるよう関連付け:削除
-  has_many :nice, dependent: :destroy
+  has_many :nices, dependent: :destroy
+    ## いいね(ブックマーク)関連付け
+  has_many :nice_illustrations, through: :nices, source: :illustration
   has_many :comments, dependent: :destroy
   has_many :illustration
   

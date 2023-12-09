@@ -16,6 +16,31 @@ class Public::CommentsController < ApplicationController
     
   end
   
+  # def create
+    
+  #     illustration = Illustration.find(params[:illustration_id])
+      
+  #     comment = nil
+    
+  #     if admin.present?
+  #         # adminオブジェクトが存在する場合には、コメントをadminに紐付ける
+  #       comment = admin.comments.new(comment_params)
+    
+  #       comment.illustration_id = illustration.id
+         
+  #       comment.save
+         
+  #     else
+  #       # adminオブジェクトが存在しない場合には、何らかのエラー処理やデフォルトの動作を行う
+  #       # 例: エラーメッセージを表示する、コメント投稿を拒否するなど
+  #       # ここではコメントを作成せず、何らかの処理を記述します
+  #       # 例: エラーメッセージをセットしてリダイレクトするなど
+  #     end
+  # end
+  
+  
+  
+  
     ## コメント削除
   def destroy
             ## コメントデータ取得

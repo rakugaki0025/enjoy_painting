@@ -14,6 +14,6 @@ class Admin < ApplicationRecord
     ## たくさん持っている:モデルが 1:N になるよう関連付け:削除
   has_many :genre, dependent: :destroy
   ## has_many :comment, dependent: :destroy
-  has_many :sample_illustration
+  has_many :sample_illustrations
   
 end

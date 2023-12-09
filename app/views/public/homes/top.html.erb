@@ -50,43 +50,50 @@
 </div>
 
 <div class="row">
-  <div class="col-md-3"></div>
-  <div class="col-md-9">
-      <!-- 画像,タイトル,説明文,ジャンル -->
-    <div class="row">
-      <% @illustrations.each do |illustration| %>
-        <div class="col-sm-6 col-lg-4">
-          <div class="card my-3">
-              <!-- アイコン? -->
-            <div class="card-img-top">
-              <img src="#" class="img-fluid"--></imag>
-            </div>
-              <!-- 画像,タイトル,説明文,ジャンル -->
-            <div class="card-body">
-                <!-- 画像 -->
-              <p class="card-image_top">
-                <%= link_to illustration_path(illustration.id) do %>
-                  <%= image_tag illustration.get_image, style: "max-width:100px;" %>
-                <% end %>
-              </p>
-                <!-- タイトル -->
-              <h5 class="card-title"><%= illustration.name %></h5>
-                <!-- 説明文 -->
-              <p class="card-text"><%= illustration.introduction.truncate(15) %></p>
-                <!-- -->
-              <p class="card-test">
-                <span class="badge badge-secondary"><%= illustration.genre.name %></span>
-              </p>
-              
-              <%=link_to "read more", illustration, class: "card-link" %>
+  <div class="col-md-3">
+    <!-- サンプルイラスト一覧表示 -->
+  </div>
+    <div class="col-md-9">
+      <!--% @sample_illustration.each do |sample_illustration| %-->
+        <!--%= image_tag sample_illustration.get_image, style: "max-width:100px;" %-->
+      <!--% end %-->
+    
+        <!-- 画像,タイトル,説明文,ジャンル -->
+      <div class="row">
+        <% @illustrations.each do |illustration| %>
+          <div class="col-sm-6 col-lg-4">
+            <div class="card my-3">
+                <!-- アイコン? -->
+              <div class="card-img-top">
+                <img src="#" class="img-fluid">
+                  <!--%= image_tag user.get_profile_image(100,100) %-->
+                </imag>
+              </div>
+                <!-- 画像,タイトル,説明文,ジャンル -->
+              <div class="card-body">
+                  <!-- 画像 -->
+                <p class="card-image_top">
+                  <%= link_to illustration_path(illustration.id) do %>
+                    <%= image_tag illustration.get_image, style: "max-width:100px;" %>
+                  <% end %>
+                </p>
+                  <!-- タイトル -->
+                <h5 class="card-title"><%= illustration.name %></h5>
+                  <!-- 説明文 -->
+                <p class="card-text"><%= illustration.introduction.truncate(15) %></p>
+                  <!-- -->
+                <p class="card-test">
+                  <span class="badge badge-secondary"><%= illustration.genre.name %></span>
+                </p>
+                
+                <%=link_to "read more", illustration, class: "card-link" %>
+              </div>
             </div>
           </div>
-        </div>
-      <% end %>
-      <%= paginate @illustrations %>
-    </div>
-    
-  </div>
+        <% end %>
+        <%= paginate @illustrations %>
+      </div>
+    </div>  
 </div>
   
   

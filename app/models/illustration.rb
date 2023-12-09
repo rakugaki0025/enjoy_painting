@@ -20,8 +20,18 @@ class Illustration < ApplicationRecord
   
     ## いいねする会員がいるか？
   def nice_by?(customer)
+      ## 
+    if customer.present?
       
       nice.exists?(customer_id: customer.id)
+      
+    else
+        ## エラー処理やデフォルトの動作を記述します
+        ## 例として、デフォルトでは"いいね"がされていないと判定することにします
+      false
+      
+    end
+    
   end
   
     ## ActiveStorageに格納したno_image画像(D)を表示する
@@ -59,6 +69,17 @@ class Illustration < ApplicationRecord
       profile_image.variant(resize_to_limit: [width, height]).processed
       ## profile_image.variant(resize_to_limit: [100, 100]).processed
     
+  end
+  
+        ## モデル内での操作を開始
+        ## いいねをつけた投稿の取得
+  def self.liked_illustrations(customer, page, per_page)
+        ## :illustration_nice テーブルを結合
+      includes(:illustration_nice)
+        .where(illustration_nice: { customer_id: customer.id }) # 3. ユーザーがいいねしたレコードを絞り込み
+        .order(created_at: :desc) # 4. 投稿を作成日時の降順でソート
+        .page(page)               # 5. ページネーションのため、指定ページに表示するデータを選択
+        .per(per_page)            # 6. ページごとのデータ数を指定
   end
   
 end

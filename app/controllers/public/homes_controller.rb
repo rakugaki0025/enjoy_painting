@@ -3,7 +3,7 @@ class Public::HomesController < ApplicationController
   
     ## 顧客_トップページ_root_path
   def top
-        ## 全データ取得
+        ## 全イラストデータ取得
       @illustrations = Illustration.all
       
         ## "genre_id"が存在_"params:genre_id"と一致,取得__present?が大事
@@ -14,6 +14,21 @@ class Public::HomesController < ApplicationController
       
         ## 作成日時の降順に並び替え,6件ずつ表示
       @illustrations = @illustrations.order(created_at: :desc).page(params[:page]).per(6)
+      
+      
+      # @sample_ilustration = SampleIllustration.new
+      #   ## 全サンプルデータ取得
+      # @sample_ilustration = SampleIllustration.all
+      
+      #   ## "genre_id"が存在_"params:genre_id"と一致,取得__present?が大事
+      # @sample_ilustration = @sample_ilustration.where(genre_id: params[:genre_id]) if params[:genre_id].present?
+      
+      #   ## さらに"name"が存在する場合は,名前"name"に"params:name"を部分一致させるデータのみ取得
+      # @sample_ilustration = @sample_ilustration.where('name LIKE(?)', "%#{params[:name]}%") if params[:name].present?
+      
+      #   ## 作成日時の降順に並び替え,6件ずつ表示
+      # @sample_ilustration = @sample_ilustration.order(created_at: :desc).page(params[:page]).per(6)
+      
   end
   
   

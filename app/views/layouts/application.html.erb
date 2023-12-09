@@ -107,17 +107,9 @@
                   <!-- admin_ログイン△ -->
               <% elsif admin_signed_in? %>
                 <ul class="navbar-nav ml-auto">
-                  <!-- リクエスト一覧_admin△ -->
-                  <li class="nav-item">
-                    <%= link_to "リクエスト", new_customer_session_path, class: "nav-link text-light" %>
-                  </li>
                     <!-- 管理者投稿一覧_admin〇 -->
                   <li class="nav-item">
                     <%= link_to "管理者投稿一覧", admin_sample_illustration_index_path, class: "nav-link text-light" %>
-                  </li>
-                    <!-- 会員投稿一覧_admin△ -->
-                  <li class="nav-item">
-                    <%= link_to "会員投稿一覧", new_customer_session_path, class: "nav-link text-light" %>
                   </li>
                     <!-- 会員一覧_admin〇 -->
                   <li class="nav-item">
@@ -137,11 +129,7 @@
                   </li>
                     <!-- ゲストログイン_pablic△ -->
                   <li class="nav-item">
-                    <!--%= link_to "ゲストログイン", new_customer_session_path, class: "nav-link text-light" %-->
                     <%= link_to 'ゲストログイン', users_guest_sign_in_path, class: "nav-link text-light", method: :post %>
-                    <!--%= link_to 'ゲストログイン', end_users_guest_sign_in_path.to_s, method: :post, class: "nav-link text-light" do %-->
-                    <!--%= link_to end_users_guest_sign_in_path.to_s, { method: :post, class: "nav-link text-light" } do %-->
-                    
                   </li>
                     <!-- 新規登録_pablic△ -->
                   <li class="nav-item">

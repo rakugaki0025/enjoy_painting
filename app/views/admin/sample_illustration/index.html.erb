@@ -21,13 +21,13 @@
             <!-- サンプル新規登録画面へ,アイコン済△ -->
           <td align="right">
             <%= link_to new_admin_sample_illustration_path, class: 'nav-link text-black' do %>
-              <i class="fas fa-pen-nib" aria-hidden="true"></i>
+              <i class="fas fa-pen-nib" aria-hidden="true">サンプル投稿</i>
             <% end %>
           </td>
             <!-- ジャンル新規登録画面へ,アイコン済△ -->
           <td align="right">
             <%= link_to admin_genre_index_path, class: 'nav-link text-black' do %>
-              <i class="fas fa-plus-circle" aria-hidden="true"></i>
+              <i class="fas fa-plus-circle" aria-hidden="true">ジャンル登録</i>
             <% end %>
           </td>
           
@@ -47,6 +47,7 @@
             <th>説明文</th>
             <th>ジャンル</th>
             <th>削除</th>
+            <th>評価</th>
           </tr>
         </thead>
               <!-- サンプル一覧表示〇 -->

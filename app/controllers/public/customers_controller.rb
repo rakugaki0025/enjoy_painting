@@ -1,6 +1,18 @@
 class Public::CustomersController < ApplicationController
   ## enjoy_controllers_public_customers
   
+        ## "edit"と"update"のアクションの実行前に、
+        ## "is_matching_login_user"を実行させる記述
+  ## before_action :is_matching_login_user, only: [:edit, :update]
+  ## いいね(ブックマーク機能)
+  def liked_illustrations
+      #render plain: current_customer.id and return
+        ## いいね呼び出し_customer経由で呼び出し
+      #@liked_illustrations = Illustration.liked_illustrations(current_customer, params[:page], 6)
+      @liked_illustrations = current_customer.nice_illustrations.page(params[:page]).per(10)
+  end
+  
+  
         ## 顧客のマイページ
   def show
       
@@ -102,6 +114,7 @@ class Public::CustomersController < ApplicationController
       end
   end
   
+
   
   private
   
@@ -111,8 +124,30 @@ class Public::CustomersController < ApplicationController
         ## params  formから送られてくるデータはparamsの中
         ## require 送信データからモデル名(ここでは:customer)を指定し、データを絞り込み
         ## permit  requireで絞り込んだデータの中から、保存を許可するカラムを指定
-      params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :nickname, :birth_day, :email )
+      params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :nickname, :birth_day, :email, :profile_image )
   end
+  
+
+  
+  
+  #   ## アクセス制限の記述△
+  # def is_matching_login_user
+  #             # ログインしているユーザーのidとURLに含まれるidを比較し、
+  #             # 一致しなければ投稿画像一覧ページに移動する処理
+          
+  #     user = User.find(params[:id])
+  #             # ローカル変数 = ユーザー_find 探す:単数でどれか一つ
+  #             # URLを参考に特定のidを持ったレコードを取得する
+          
+  #     unless user.id == current_user.id
+  #             # ログイン中,ユーザーid,取得
+          
+  #     redirect_to user_path(current_user)
+  #             # 遷移先 Books#index 投稿画像一覧へ
+          
+  #     end
+  # end
+  
   
 end
 

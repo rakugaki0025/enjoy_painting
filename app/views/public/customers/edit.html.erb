@@ -1,9 +1,22 @@
-<!-- enjoy_view_pablic_customers_information_edit -->
+<!-- enjoy_view_pablic_customers_edit -->
 
 
   <div class="row">
-    <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
+    <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-7">
+    
+      <!-- エラーメッセージ user info -->
+    <% if @customer.errors.any? %>
+      <h2>
+        <%= @customer.errors.count %>error prohibited this obj from being saved:
+      </h2>
       
+      <ul>
+        <% @customer.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul> 
+    <% end %>
+    
       <!-- 色指定のスタイル -->
     <style>
      .example {
@@ -16,9 +29,18 @@
     <%= form_with model: @customer, url: information_update_path, method: :patch do |f| %>
       
         <!-- 会員情報編集〇 -->
-      <table width="500"  height="60">
+      <table width="400"  height="300">
         
         <h4 class="example" align="center">会員情報編集</h4>
+            <!-- アイコン-->
+          <tr>
+            <th>
+              <label for="customer_image">image</label>
+                <th>
+                  <%= f.file_field :profile_image, accept: "image/*" %>
+                </th>
+            </th>
+          </tr>
             <!-- ニックネーム -->
           <tr>
             <th>
