@@ -53,12 +53,12 @@
             </td>
               <!-- 投稿者アイコン -->
             <td>
-              <%= image_tag illustration.customer.get_profile_image(100,100) if illustration.customer.present? %>
+              <%= image_tag illustration.customer.get_profile_image(50,50) if illustration.customer.present? %>
             </td>
               <!-- イラスト画像 -->
             <td>
               <%= link_to illustration_path(illustration.id) do %>
-                <%= image_tag illustration.get_image, style: "max-width:150px;" %>
+                <%= image_tag illustration.get_image, style: "max-width:180px;" %>
               <% end %>
             </td>
               <!-- イラスト名 -->
