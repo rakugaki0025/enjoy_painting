@@ -13,7 +13,6 @@ class Public::CustomersController < ApplicationController
       
   end
   
-  
         ## 顧客のマイページ
   def show
       
@@ -61,7 +60,6 @@ class Public::CustomersController < ApplicationController
     end
     
   end
-  
   
         ## 顧客の退会画面
   def confirm

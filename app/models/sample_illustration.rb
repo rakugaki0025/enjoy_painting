@@ -9,7 +9,7 @@ class SampleIllustration < ApplicationRecord
     ## sample_illustration は :genre 1:Nの N 側に当たる
   belongs_to :admin
   belongs_to :genre
-    
+  
   
   
     ## ActiveStorageに格納したno_image画像(D)を表示する
