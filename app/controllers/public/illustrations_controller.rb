@@ -40,8 +40,9 @@ class Public::IllustrationsController < ApplicationController
       
         ## 全イラストデータ取得
       @illustrations = Illustration.all
+      
         ## アソシエーションを利用して,"customer"を取得_作成日時の降順に並び替え,6件ずつ表示
-      @illustrations = Illustration.includes(:customer).order(created_at: :desc).page(params[:page]).per(6)
+      @illustrations = current_customer.illustration.order(created_at: :desc).page(params[:page]).per(6)
       
   end
   

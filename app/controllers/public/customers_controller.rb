@@ -9,7 +9,7 @@ class Public::CustomersController < ApplicationController
         ## いいね(ブックマーク機能)
   def liked_illustrations
         ## いいね呼び出し_customer経由で呼び出し
-      @liked_illustrations = current_customer.nice_illustrations.page(params[:page]).per(10)
+      @liked_illustrations = current_customer.nice_illustrations.page(params[:page]).per(6)
       
   end
   

@@ -6,7 +6,7 @@ class Public::NicesController < ApplicationController
         ## いいねした画像のIDを取得
       illustration = Illustration.find(params[:illustration_id])
         ## ログインユーザーが,いいねした会員の画像とID特定
-      nice = current_customer.nice.new(illustration_id: illustration.id)
+      nice = current_customer.nices.new(illustration_id: illustration.id)
         ## いいねセーブ
       nice.save
         ## 遷移先 いいねした画像のshowへ
@@ -19,7 +19,7 @@ class Public::NicesController < ApplicationController
         ## いいねした画像のIDを取得
       illustration = Illustration.find(params[:illustration_id])
         ## ログインユーザーが,いいねした会員の画像とID特定
-      nice = current_customer.nice.find_by(illustration_id: illustration.id)
+      nice = current_customer.nices.find_by(illustration_id: illustration.id)
         ## いいね削除
       nice.destroy
         ## 遷移先 いいねした画像のshowへ
