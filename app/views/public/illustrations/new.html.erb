@@ -2,7 +2,20 @@
 
 <div class="row">
     <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-5">
-            
+    
+      <!-- エラーメッセージ -->
+    <div>
+      <% if @illustration.errors.any? %>
+      
+      <%= @illustration.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @illustration.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>  
+    
       <!-- 色指定のスタイル -->
     <style>
      .example {
@@ -17,35 +30,35 @@
     <%= form_with model: @illustration, url: illustrations_path, method: :post do |illustration| %>
         <!-- イラスト画像新規登録画面 -->
       <table width="400"  height="300">
-          <!-- タイトル〇 -->
+          <!-- タイトル -->
         <tr>
           <th>タイトル</th>
             <td>
               <%= illustration.text_field :name %>
             </td>
         </tr>
-          <!-- イラスト画像〇 -->
+          <!-- イラスト画像 -->
         <tr>
           <th>イラスト画像</th>
             <td>
               <%= illustration.file_field :image, accept: "image/*" %>
             </td>
         </tr>
-          <!-- 説明文〇 -->
+          <!-- 説明文 -->
         <tr>
           <th>説明文</th>
             <td>
               <%= illustration.text_field :introduction %>
             </td>
         </tr>
-          <!-- ジャンル〇 -->
+          <!-- ジャンル -->
         <tr>
           <th>ジャンル</th>
             <td>
               <%= illustration.collection_select :genre_id, Genre.all, :id, :name %>
             </td>
         </tr>
-          <!-- 新規登録〇 -->
+          <!-- 新規登録 -->
         <tr>
           <td>
             <%= illustration.submit '新規登録', class:"btn btn-success" %>

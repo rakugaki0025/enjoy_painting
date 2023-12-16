@@ -20,13 +20,13 @@ class Public::HomesController < ApplicationController
       @sample_illustrations = SampleIllustration.all
       
         ## "genre_id"が存在_"params:genre_id"と一致,取得__present?が大事
-      @sample_illustration = @sample_illustration.where(genre_id: params[:genre_id]) if params[:genre_id].present?
+      @sample_illustrations = @sample_illustrations.where(genre_id: params[:genre_id]) if params[:genre_id].present?
       
         ## さらに"name"が存在する場合は,名前"name"に"params:name"を部分一致させるデータのみ取得
-      @sample_illustration = @sample_illustration.where('name LIKE(?)', "%#{params[:name]}%") if params[:name].present?
+      @sample_illustrations = @sample_illustrations.where('name LIKE(?)', "%#{params[:name]}%") if params[:name].present?
       
         ## 作成日時の降順に並び替え,6件ずつ表示
-      ## @sample_illustration = @sample_illustration.order(created_at: :desc).page(params[:page]).per(6)
+      @sample_illustrations = @sample_illustrations.order(created_at: :desc).page(params[:page]).per(6)
       
   end
   

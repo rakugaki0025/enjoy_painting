@@ -1,5 +1,5 @@
 class Public::IllustrationsController < ApplicationController
-      ## Enjoy_cntroller_admin_illustration
+    ## Enjoy_cntroller_admin_illustration
     
     
     ## イラスト投稿_新規登録画面 new_illustration_path
@@ -65,6 +65,7 @@ class Public::IllustrationsController < ApplicationController
       @illustration = Illustration.find(params[:id])
       
   end
+  
   
     ## イラスト_投稿_情報更新する /illustration/:id
   def update

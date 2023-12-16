@@ -33,14 +33,11 @@
       <table border="1" width="400"  height="300">
           <!-- 顧客情報欄〇 -->
         <tbody>
-            <!-- アイコン△ -->
+            <!-- アイコン〇 -->
           <tr>
             <th>アイコン</th>
               <td align="center">
-                <% if @customer.illustration.present? %>
-                  <!--%= image_tag @customer.illustration.first.get_profile_image(100, 100) %-->
-                  <%= image_tag @customer.get_profile_image(100,100) %>
-                <% end %>
+                <%= image_tag @customer.get_profile_image(100,100) %>
               </td>
           </tr>
             <!-- ニックネーム -->
@@ -84,12 +81,12 @@
           
       </table>
       
-          <!-- 注文履歴一覧△ -->
+          <!-- いいね一覧△ -->
       <table>
         <tr style="height: 100px;">
           <th>いいね一覧</th>
             <td>
-              <%= link_to "一覧を見る", root_path, class:"btn btn-primary" %>
+              <%= link_to "ブックマーク", liked_illustrations_path, class:"btn btn-primary" %>
             </td>
         </tr>
       </table>

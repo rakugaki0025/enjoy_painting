@@ -7,11 +7,12 @@
         
         <!-- @admin,は書き込みはしておらずそのまま呼び出している -->
       <%= form_with model: @admin, url: admin_session_path do |f| %>
+          <!-- email -->
         <div class="field">
           <%= f.label :email %><br />
           <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
         </div>
-      
+          <!-- パスワード -->
         <div class="field">
           <%= f.label :password %><br />
           <%= f.password_field :password, autocomplete: "current-password" %>
@@ -23,10 +24,9 @@
             <%= f.label :remember_me %>
           </div>
         <% end %>
-      
-        <div class="actions">
-          <%= f.submit "Log in" %>
-        </div>
+          <div class="actions">
+            <%= f.submit "Log in" %>
+          </div>
       <% end %>
       
       <%= render "admin/shared/links" %>

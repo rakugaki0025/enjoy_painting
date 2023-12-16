@@ -6,11 +6,22 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
   
+    ## 表示,削除,アップロードするメソッドを生成
+  has_one_attached :image
+  
+    ## 必須入力にする設定_text_fild等
+  validates :last_name, presence: true
+  validates :first_name, presence: true
+  validates :nickname, presence: true
+  validates :birth_day, presence: true
+  
+  
   
     ## ユーザーに:～属する 1:N の関係 [1] 側 送信
-    ## customer は nice--- に 対して 1:多 の関係である
-    ## customer は comment に 対して 1:多 の関係である
+    ## customer は nice-------- に 対して 1:多 の関係である
+    ## customer は comment -----に 対して 1:多 の関係である
     ## customer は illustration に 対して 1:多 の関係である
+    ## customer は review------ に 対して 1:多 の関係である
     ## 削除機能
     ## たくさん持っている:モデルが 1:N になるよう関連付け:削除
   has_many :nices, dependent: :destroy
@@ -18,6 +29,7 @@ class Customer < ApplicationRecord
   has_many :nice_illustrations, through: :nices, source: :illustration
   has_many :comments, dependent: :destroy
   has_many :illustration
+  has_many :review, dependent: :destroy
   
     ## コメントnameを定義 <%= comment.customer.name %>
   def name
@@ -33,7 +45,7 @@ class Customer < ApplicationRecord
     
       unless profile_image.attached?
         
-        file_path = Rails.root.join('app/assets/images/sample-author1.jpg')
+        file_path = Rails.root.join('app/assets/images/no_image.jpg')
       
         profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
       

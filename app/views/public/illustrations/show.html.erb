@@ -1,7 +1,7 @@
 <!-- Enjoy_view_public_illustration_show -->
   
   
-  <!-- フラッシュメッセージ投稿成功時 -->
+    <!-- フラッシュメッセージ投稿成功時 -->
   <div>
     <%= flash[:notice] %>
   </div>
@@ -69,20 +69,20 @@
                 <% end %>
               </td>
           </tr><br />
-            <!-- コメント△ -->
+            <!-- コメント -->
           <tr>
             <th>コメント</th>
               <td>
                   <!-- コメント件数 -->
                 <div>
-                   <!-- コメント枠,送信ボタン -->
-                <div>
-                    <!--%= form_with model: [@illustration, @comment], url: illustration_comment_index_path(@illustration[:id]), local: true do |f| %-->
-                  <%= form_with model:[@illustration, @comment], url: illustration_comments_path(@illustration[:id]), method: :post do |f| %>
-                    <%= f.text_area :content, rows: '5', placeholder: "コメントをここに" %>
-                    <%= f.submit "送信する" %>
-                  <% end %>
-                </div>
+                    <!-- コメント枠,送信ボタン -->
+                  <div>
+                      <!--%= form_with model: [@illustration, @comment], url: illustration_comment_index_path(@illustration[:id]), local: true do |f| %-->
+                    <%= form_with model:[@illustration, @comment], url: illustration_comments_path(@illustration[:id]), method: :post do |f| %>
+                      <%= f.text_area :content, rows: '5', placeholder: "コメントをここに" %>
+                      <%= f.submit "送信する" %>
+                    <% end %>
+                  </div>
                   <p>
                     コメント件数：<%= @illustration.comments.count %>
                   </p>
@@ -117,7 +117,7 @@
       <div class="col-8">
         <%= link_to "編集する", edit_illustration_path, class:"btn btn-success" %>
       </div>
-        <!-- 削除ボタン〇 -->
+        <!-- 削除ボタン -->
       <div class="col-4">
         <%= link_to "削除", illustration_path(@illustration), class:"btn btn-danger", method: :delete, data: { confirm: "本当に削除しますか？" } %>
       </div>

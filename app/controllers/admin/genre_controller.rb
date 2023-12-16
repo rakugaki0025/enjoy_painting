@@ -20,15 +20,13 @@ class Admin::GenreController < ApplicationController
         
           ## 記録保存が成功すれば投稿一覧へ
      if @genre.save
-         #p "00000000000000"
-         #p @sample_illustration
-         
+       
           ## 遷移先 ジャンル投稿一覧画面
         redirect_to admin_genre_index_path
           
-     else ## 保存できなかった場合, :画像投稿フォーム再表示
-        render :new
-          
+     else ## 保存できなかった場合, :ジャンル投稿へ
+         flash[:alert] = "エラー登録です"
+        redirect_to admin_genre_index_path
      end
       
   end
@@ -42,8 +40,11 @@ class Admin::GenreController < ApplicationController
         ## インスタンス名はなんでもいい,空のオブジェクトもなんでもいい
       @genre = Genre.new
       
-        ## 全サンプルイラストデータ取得
+        ## 全ジャンルデータ取得
       @genre = Genre.all
+      
+        ## 各ジャンルIDを取得
+      # @genre = Genre.find(params[:id])
       
   end
   
@@ -77,13 +78,12 @@ class Admin::GenreController < ApplicationController
         ## インスタンス変数 = ユーザー_find 探す:単数でどれか一つ  user_path(@user.id)
         ## 遷移先 '/customer' customer_path(@user.id)
       redirect_to admin_genre_index_path
-              
-    else
       
-        ## アクションを実行しない
-      render :edit
-        
+    else
+      flash[:alert] = "エラーです"
+      redirect_to admin_genre_index_path
     end
+    
   end
   
   
@@ -111,7 +111,7 @@ class Admin::GenreController < ApplicationController
         ## params  formから送られてくるデータはparamsの中
         ## require 送信データからモデル名(ここでは:item)を指定し、データを絞り込み
         ## permit  requireで絞り込んだデータの中から、保存を許可するカラムを指定
-      params.require(:genre).permit(:name )
+      params.require(:genre).permit(:name)
   end
   
   

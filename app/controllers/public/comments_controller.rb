@@ -10,10 +10,16 @@ class Public::CommentsController < ApplicationController
         ## コメントとイラストの関連付け
       comment.illustration_id = illustration.id
         ## コメントセーブ
-      comment.save!
-        ## 遷移先 コメントしたページへ
-      redirect_to illustration_path(illustration)
-    
+     if comment.save!
+           ## 遷移先 コメントしたページへ
+         redirect_to illustration_path(illustration)
+      
+     else
+          ## 保存できなかった場合,showへ遷移
+        render :show
+        
+     end
+      
   end
   
   

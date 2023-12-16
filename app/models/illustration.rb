@@ -2,7 +2,14 @@ class Illustration < ApplicationRecord
   
     ## 表示,削除,アップロードするメソッドを生成
   has_one_attached :image
-    
+  
+  
+    ## 必須入力にする設定_text_fild等
+  validates :name, presence: true
+  validates :image, presence: true
+  validates :introduction, presence: true
+  
+  
     ## ユーザーに:～属する 1:N の関係 [1] 側 送信
     ## illustration は nice __ に 対して 1:多 の関係である
     ## illustration は comment に 対して 1:多 の関係である

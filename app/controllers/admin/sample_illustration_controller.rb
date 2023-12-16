@@ -23,8 +23,6 @@ class Admin::SampleIllustrationController < ApplicationController
       
           ## 記録保存が成功すれば投稿一覧へ
      if @sample_illustration.save
-         #p "00000000000000"
-         #p @sample_illustration
          
           ## 遷移先 サンプル投稿_詳細画面
         redirect_to admin_sample_illustration_path(@sample_illustration.id)
@@ -42,6 +40,9 @@ class Admin::SampleIllustrationController < ApplicationController
       
         ## 全サンプルイラストデータ取得
       @sample_illustration = SampleIllustration.all
+      
+        ## アソシエーションを利用して,"sample"を取得_作成日時の降順に並び替え,6件ずつ表示
+      @sample_illustration = SampleIllustration.order(created_at: :desc).page(params[:page]).per(6)
       
   end
   

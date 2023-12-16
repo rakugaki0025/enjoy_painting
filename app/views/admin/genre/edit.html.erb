@@ -2,53 +2,53 @@
   
   
     <!-- エラーメッセージ -->
-  <% if @genre.errors.any? %>
+<!--  <#% if @genre.errors.any? %>-->
       <!-- エラーカウント -->
-    <h2>
-      <%= @genre.errors.count %>errors prohibited this obj from being saved:
-    </h2>
-      <ul>
-        <% @genre.errors.full_messages.each do |message| %>
-          <li>
-            <%= message %>
-          </li>
-        <% end %>
-      </ul>
-  <% end %>
+<!--    <h2>-->
+<!--      <#%= @genre.errors.count %>errors prohibited this obj from being saved:-->
+<!--    </h2>-->
+<!--      <ul>-->
+<!--        <#% @genre.errors.full_messages.each do |message| %>-->
+<!--          <li>-->
+<!--            <#%= message %>-->
+<!--          </li>-->
+<!--        <#% end %>-->
+<!--      </ul>-->
+<!--  <#% end %>-->
   
-  <div class="row">
-    <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-5">
+<!--  <div class="row">-->
+<!--    <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-5">-->
       
         <!-- 色指定のスタイル -->
-      <style>
-       .example {
-        background-color: #F0F0F0;
-        width:200px;
-        height:30px;
-       }
-      </style>
+<!--      <style>-->
+<!--       .example {-->
+<!--        background-color: #F0F0F0;-->
+<!--        width:200px;-->
+<!--        height:30px;-->
+<!--       }-->
+<!--      </style>-->
       
-    <%= form_with model: @genre, url: admin_genre_path, method: :patch do |f| %>
+<!--    <#%= form_with model: @genre, url: admin_genre_path, method: :patch do |f| %>-->
       
-      <table width="400"  height="50">
+<!--      <table width="400"  height="50">-->
             
-        <h4 class="example" align="center">ジャンル編集</h4>
+<!--        <h4 class="example" align="center">ジャンル編集</h4>-->
           <!-- サンプル名 -->
-        <tr>
-          <th>ジャンル名</th>
-            <td>
-              <%= f.text_field :name %>
-            </td>
-            <td>
-              <%= f.submit '変更を保存', class:"btn btn-success" %>
-            </td>
-        </tr>
+<!--        <tr>-->
+<!--          <th>ジャンル名</th>-->
+<!--            <td>-->
+<!--              <%#= f.text_field :name %>-->
+<!--            </td>-->
+<!--            <td>-->
+<!--              <%#= f.submit '変更を保存', class:"btn btn-success" %>-->
+<!--            </td>-->
+<!--        </tr>-->
         
-      </table>
+<!--      </table>-->
               
-    <% end %>
+<!--    <%# end %>-->
             
-    </div>
-  </div>
+<!--    </div>-->
+<!--  </div>-->
   
-  <%= link_to "編集", edit_admin_genre_path(genre.id), class:"btn btn-success" %>
+<!--  <%#= link_to "編集", edit_admin_genre_path(genre.id), class:"btn btn-success" %>-->

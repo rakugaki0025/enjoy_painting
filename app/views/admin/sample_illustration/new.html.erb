@@ -1,8 +1,20 @@
 <!-- Enjoy_view_admin_sample_illustration_new -->
 
-<div class="row">
+  <div class="row">
     <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-5">
-            
+      
+      <!-- エラーメッセージ -->
+    <div>
+      <% if @sample_illustration.errors.any? %>
+      
+      <%= @sample_illustration.errors.count %>件のエラーが発生しました
+        <ul>
+          <% @sample_illustration.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>      
       <!-- 色指定のスタイル -->
     <style>
      .example {
@@ -17,35 +29,35 @@
     <%= form_with model: @sample_illustration, url: admin_sample_illustration_index_path, method: :post do |sample_illustration| %>
         <!-- サンプル画像新規登録画面 -->
       <table width="400"  height="300">
-          <!-- タイトル〇 -->
+          <!-- タイトル -->
         <tr>
           <th>タイトル</th>
             <td>
               <%= sample_illustration.text_field :name %>
             </td>
         </tr>
-          <!-- サンプル画像〇 -->
+          <!-- サンプル画像 -->
         <tr>
           <th>サンプル画像</th>
             <td>
               <%= sample_illustration.file_field :image, accept: "image/*" %>
             </td>
         </tr>
-          <!-- 説明文〇 -->
+          <!-- 説明文 -->
         <tr>
           <th>サンプル説明文</th>
             <td>
               <%= sample_illustration.text_field :introduction %>
             </td>
         </tr>
-          <!-- ジャンル△ -->
+          <!-- ジャンル -->
         <tr>
           <th>ジャンル</th>
             <td>
               <%= sample_illustration.collection_select :genre_id, Genre.all, :id, :name %>
             </td>
         </tr>
-          <!-- 新規登録〇 -->
+          <!-- 新規登録 -->
         <tr>
           <td>
             <%= sample_illustration.submit '新規登録', class:"btn btn-success" %>

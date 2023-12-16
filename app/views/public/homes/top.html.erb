@@ -1,4 +1,5 @@
   <!-- enjoy_view_public_homes_top -->
+  
   <!-- フラッシュメッセージ投稿成功時 -->
 <div>
   <%= flash[:notice] %>
@@ -55,7 +56,12 @@
   </div>
     <div class="col-md-9">
       <% @sample_illustrations.each do |sample_illustration| %>
-        <%= image_tag sample_illustration.get_image, style: "max-width:100px;" %>
+        <%#= image_tag sample_illustration.get_image, style: "max-width:100px;" %>
+        
+        <%= link_to sample_illustration_path(sample_illustration.id) do %>
+          <%= image_tag sample_illustration.get_image, style: "max-width:100px;" %>
+        <% end %>
+        
       <% end %>
     
         <!-- 画像,タイトル,説明文,ジャンル -->

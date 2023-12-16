@@ -2,6 +2,14 @@
 
 
   <div class="row">
+        <!-- エラーメッセージ -->
+
+    <% flash.each do |key, message| %>
+      <div class "<%= key %>">
+        <%= message %>
+      </div>
+    <% end %>
+      
         <!-- 色指定のスタイル -->
       <style>
        .example {
@@ -22,18 +30,14 @@
           <td align="left">
             <%= form_with model: @genre, url: admin_genre_index_path, method: :post do |genre| %>
               ジャンル名
-                
-                  <%= genre.text_field :name %>
-                
-                
-                  <%= genre.submit '新規登録', class:"btn btn-primary" %>
-                
+              <%= genre.text_field :name %>
+              <%= genre.submit '新規登録', class:"btn btn-primary" %>
             <% end %>
           </td>
             <!-- サンプル新規登録画面へ,アイコン済〇 -->
           <td align="right">
             <%= link_to new_admin_sample_illustration_path, class: 'nav-link text-black' do %>
-              <i class="fas fa-pen-nib" aria-hidden="true"></i>
+              <i class="fas fa-pen-nib" aria-hidden="true">新規投稿へ</i>
             <% end %>
           </td>
         </tr>

@@ -6,6 +6,7 @@ class Nice < ApplicationRecord
   belongs_to :customer
   belongs_to :illustration
   
+    ## customer_idとillustration_idの組み合わせが一意である確認,複数回現れないようにする
   validates :customer_id, uniqueness: {scope: :illustration_id}
   
   

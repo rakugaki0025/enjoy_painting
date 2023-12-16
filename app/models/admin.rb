@@ -13,7 +13,10 @@ class Admin < ApplicationRecord
     ## 削除機能
     ## たくさん持っている:モデルが 1:N になるよう関連付け:削除
   has_many :genre, dependent: :destroy
+    ## コメントを付けることはできなかったため…
   ## has_many :comment, dependent: :destroy
   has_many :sample_illustrations
+  
+  
   
 end

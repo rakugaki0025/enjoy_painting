@@ -1,6 +1,8 @@
 class Genre < ApplicationRecord
   ## Enjoy_models_admin_genre
   
+    ## 必須入力にする設定
+  validates :name, presence: true
   
     ## ユーザーに:～属する 1:N の関係 [1] 側 送信
     ## genre は sumple_illustration に 対して 1:多 の関係である

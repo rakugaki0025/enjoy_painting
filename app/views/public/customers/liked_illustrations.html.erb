@@ -22,16 +22,30 @@
             <tr>
                 <!-- タイトル -->
               <th>
-               <%= post.name %> 
+                <%= post.name %> 
               </th>
                 <!-- 画像 -->
               <td>
-                <%= image_tag post.image, style: "max-width:200px;" %> 
+                <%= link_to illustration_path(post.id) do %>
+                  <%= image_tag post.image, style: "max-width:200px;" %> 
+                <% end %>
+              </td>
+                <!-- ジャンル -->
+              <td>
+                <%= post.genre.name %>
+              </td>
+                <!-- いいね数 -->
+              <td>
+                ♥<%= post.nice.count %>いいね
+              </td>
+                <!-- コメント数 -->
+              <td>
+                コメント件数：<%= post.comments.count %>
               </td>
             </tr>
           <% end %>
       </table>
-      
+      <%= paginate @liked_illustrations %>
     </div>
       <!-- ページネイション -->
     <div class="d-flex justify-content-center">

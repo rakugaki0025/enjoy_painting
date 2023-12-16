@@ -55,7 +55,10 @@ Rails.application.routes.draw do
       ## 取得 '実際の表示アドレス' => "指定のコントローラー#アクション", as: "名前つきルート"
     patch 'customers/withdrow' => "customers#withdrow", as: 'withdrow'
     
+### public_sample_illustrations
     
+      ## show    : 管理者_顧客側_投稿_詳細画面
+    resources :sample_illustrations, only: [:show]
     
 ### public_illustrations
       
