@@ -21,27 +21,39 @@
         
       <h4 class="example" align="center">サンプル画像詳細</h4>
       <table class="w-75 mx-auto">
-          <!-- サンプル詳細 -->
+          <!-- サンプル詳細,総合評価 -->
         <tbody>
             <!-- 総合評価 -->
           <tr>
             <th class="w-25">総合評価</th>
               <!-- 総合記述 -->
             <td>
-                <div id="star-rate<%= @sample_illustration.id%>"></div>
-                <%= @sample_illustration.reviews.average(:star).round(2) %>
-                <script>
-                 $('#star-rate<%= @sample_illustration.id %>').empty();
-                 $('#star-rate<%= @sample_illustration.id %>').raty({
-                   size      : 36,
-                   starOff   : '<%= asset_path('star-off.png') %>',
-                   starOn    : '<%= asset_path('star-on.png') %>',
-                   starHalf    : '<%= asset_path('starhalf.png') %>',
-                   halfShow      : true,
-                   readOnly: true,
-                   score: <%= @sample_illustration.reviews.average(:star).round(2) %>,
+                  <!-- 総合score表示 -->
+              <div id="star-rate<%= @sample_illustration.id%>"></div>
+                  <!-- 総合score表示,nilの場合非表示 -->
+                <% if @sample_illustration.reviews.average(:star).nil? %>
+                  <%# nilの場合に何も表示しない処理 %>
+                <% else %>
+                  <!-- score表示 -->
+                  <%= @sample_illustration.reviews.average(:star).round(2) %>
+                <% end %>
+                  <!-- 星表示記述 -->
+              <script>
+                $('#star-rate<%= @sample_illustration.id %>').empty();
+                $('#star-rate<%= @sample_illustration.id %>').raty({
+                 size      : 36,
+                 starOff   : '<%= asset_path('star-off.png') %>',
+                 starOn    : '<%= asset_path('star-on.png') %>',
+                 starHalf  : '<%= asset_path('star-half.png') %>',
+                 halfShow  : true,
+                 readOnly: true,
+                 score: <% if @sample_illustration.reviews.average(:star).nil? %>
+                          <%# nilの場合に何も表示しない処理 %>
+                        <% else %>
+                          <%= @sample_illustration.reviews.average(:star).round(2) %>
+                        <% end %>,
                  });
-               </script>
+              </script>
             </td>
           </tr>
             <!-- 参考画像 -->
@@ -73,56 +85,56 @@
                 <%= @sample_illustration.genre.name %>
               </td>
           </tr>
-            <!-- 評価機能 -->
-            <!-- ここからが星レビュー機能 -->
-          <tr>
-
-          </tr>
+          
         </tbody>
             
       </table>
             
             
     </div>
-    <% unless @sample_illustration.reviews.exists?(customer_id: current_customer.id) %>
+      <%# unless @sample_illustration.reviews.exists?(customer_id: current_customer.id) %>
+      <%# unless admin_signed_in? && @sample_illustration.reviews.exists?(customer_id: current_customer.id) %>
+    <% if @sample_illustration && !admin_signed_in? && !@sample_illustration.reviews.exists?(customer_id: current_customer.id) %>
+    
     <div class="mx-auto auto col-md-12 my-5">
       <%= form_with model: Review.new, url: sample_illustration_reviews_path(@sample_illustration.id), local:true do |star| %>
-      <table class="w-75 mx-auto">
-          <!-- サンプル詳細 -->
-        <tbody>
-          <tr>
-            <th class="w-25">
-              評価する
-            </th>
-            <td>
-              <div class="form-group row">
-                  <%#= star.label :star,'評価 ', class:'col-form-label' %>
-                  <%#= star.hidden_field :star, id: :star %>
-                <div id="star"></div>
-              </div>
-            </td>
-          </tr>
-          <tr>
-            <td></td>
-            <td>
-                <%= star.submit '登録', class:"btn btn-primary" %>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+        <table class="w-75 mx-auto">
+            <!-- 評価ボタン,星 -->
+          <tbody>
+            <tr>
+              <th class="w-25">
+                評価する
+              </th>
+              <td>
+                <div class="form-group row">
+                    <%#= star.label :star,'評価 ', class:'col-form-label' %>
+                    <%#= star.hidden_field :star, id: :star %>
+                  <div id="star"></div>
+                </div>
+              </td>
+            </tr>
+              <!-- 評価ボタン -->
+            <tr>
+              <td></td>
+              <td>
+                  <%= star.submit '登録', class:"btn btn-primary" %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       <% end %>
-      
-                <!-- 画像サイズ？ -->
-              <script>
-            　$('#star').empty();
-              $('#star').raty({
-                size   : 36,
-                starOff: '<%= asset_path('star-off.png') %>',
-                starOn : '<%= asset_path('star-on.png') %>',
-                      scoreName: 'review[star]',
-                half: false,
-              });
-              </script>
+          <!-- 評価する星の表示? -->
+        <script>
+        　$('#star').empty();
+          $('#star').raty({
+            size   : 36,
+            starOff: '<%= asset_path('star-off.png') %>',
+            starOn : '<%= asset_path('star-on.png') %>',
+                  scoreName: 'review[star]',
+            half: false,
+          });
+        </script>
+        
     </div>
     <% end %>
         <!-- 編集する_adminにしか表示されない記述 -->
