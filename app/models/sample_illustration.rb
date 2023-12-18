@@ -16,7 +16,7 @@ class SampleIllustration < ApplicationRecord
     ## sample_illustration は review に 対して 1:多 の関係である
     ## 削除機能
     ## たくさん持っている:モデルが 1:N になるよう関連付け:削除
-  has_many :review, dependent: :destroy
+  has_many :reviews, dependent: :destroy
   
     ## ユーザーに:～属する 1:N の関係 [N]側 受け
     ## sample_illustration は :admin 1:Nの N 側に当たる
@@ -41,6 +41,13 @@ class SampleIllustration < ApplicationRecord
         ## 記述がないと目的を果たせない(画像)get_image依存
       image
         
+  end
+  
+  
+  def star
+      
+      
+      
   end
   
   

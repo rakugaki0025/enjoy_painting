@@ -18,7 +18,7 @@ class Public::IllustrationsController < ApplicationController
           ## genre_id, name, introduction, image 格納
       @illustration = Illustration.new(illustration_params)
       
-          ## を呼び出す記述
+          ## イラストを呼び出す記述
       @illustration.customer = current_customer
       
           ## 記録保存が成功すれば投稿一覧へ
@@ -119,7 +119,7 @@ class Public::IllustrationsController < ApplicationController
   def illustration_params
         
         ## params  formから送られてくるデータはparamsの中
-        ## require 送信データからモデル名(ここでは:item)を指定し、データを絞り込み
+        ## require 送信データからモデル名(ここでは:illustration)を指定し、データを絞り込み
         ## permit  requireで絞り込んだデータの中から、保存を許可するカラムを指定
       params.require(:illustration).permit(:genre_id, :name, :introduction, :image)
   end

@@ -25,7 +25,7 @@ class Admin::GenreController < ApplicationController
         redirect_to admin_genre_index_path
           
      else ## 保存できなかった場合, :ジャンル投稿へ
-         flash[:alert] = "エラー登録です"
+         flash[:alert] = "Error registration."
         redirect_to admin_genre_index_path
      end
       
@@ -80,7 +80,7 @@ class Admin::GenreController < ApplicationController
       redirect_to admin_genre_index_path
       
     else
-      flash[:alert] = "エラーです"
+      flash[:alert] = "Error registration."
       redirect_to admin_genre_index_path
     end
     

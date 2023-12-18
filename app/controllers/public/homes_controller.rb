@@ -27,7 +27,7 @@ class Public::HomesController < ApplicationController
       
         ## 作成日時の降順に並び替え,6件ずつ表示
       @sample_illustrations = @sample_illustrations.order(created_at: :desc).page(params[:page]).per(6)
-      
+       
   end
   
   

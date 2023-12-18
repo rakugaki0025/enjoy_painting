@@ -25,7 +25,7 @@
         <h4 class="example" align="center">投稿画像詳細</h4>
           <!-- イラスト詳細 -->
         <tbody>
-            <!-- イラスト画像△ -->
+            <!-- イラスト画像 -->
           <tr>
             <%= image_tag @illustration.get_image, style: "max-width:500px;" %>
           </tr>
@@ -54,18 +54,28 @@
           <tr>
             <th></th>
               <td>
-                <% if @illustration.nice_by?(current_customer) %>
-                  <p>
-                    <%= link_to illustration_nice_path(@illustration), method: :delete do %>
-                      ♥<%= @illustration.nice.count %> いいね
-                    <% end %>
-                  </p>
+                  <!-- 会員がログインしているかを判断している(admin表示変更) -->
+                <% if customer_signed_in? %>
+                  <% if @illustration.nice_by?(current_customer) %>
+                      <!-- いいねする -->
+                    <p>
+                      <%= link_to illustration_nice_path(@illustration), method: :delete do %>
+                        ♥<%= @illustration.nice.count %> いいね
+                      <% end %>
+                    </p>
+                  <% else %>
+                      <!-- 削除する -->
+                    <p>
+                      <%= link_to illustration_nice_path(@illustration), method: :post do %>
+                        ♡<%= @illustration.nice.count %> いいね
+                      <% end %>
+                    </p>
+                  <% end %>
+                  
                 <% else %>
-                  <p>
-                    <%= link_to illustration_nice_path(@illustration), method: :post do %>
-                      ♡<%= @illustration.nice.count %> いいね
-                    <% end %>
-                  </p>
+                   <p>
+                     ♥<%= @illustration.nice.count %> いいね 
+                   </p>
                 <% end %>
               </td>
           </tr><br />

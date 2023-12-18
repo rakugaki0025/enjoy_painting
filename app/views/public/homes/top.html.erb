@@ -58,6 +58,8 @@
       <% @sample_illustrations.each do |sample_illustration| %>
         <%#= image_tag sample_illustration.get_image, style: "max-width:100px;" %>
         
+        <%#= sample_illustration.reviews.average(:star).round(2) %>
+        
         <%= link_to sample_illustration_path(sample_illustration.id) do %>
           <%= image_tag sample_illustration.get_image, style: "max-width:100px;" %>
         <% end %>

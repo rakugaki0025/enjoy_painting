@@ -31,6 +31,11 @@ class Customer < ApplicationRecord
   has_many :illustration
   has_many :review, dependent: :destroy
   
+  
+    ## ユーザーに:～属する 1:N の関係 [N]側 受け
+    ## customer は :sample_illustration 1:Nの N 側に当たる
+  belongs_to :sample_illustration
+  
     ## コメントnameを定義 <%= comment.customer.name %>
   def name
       last_name + " " + first_name

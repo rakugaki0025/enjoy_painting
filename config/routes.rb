@@ -58,7 +58,14 @@ Rails.application.routes.draw do
 ### public_sample_illustrations
     
       ## show    : 管理者_顧客側_投稿_詳細画面
-    resources :sample_illustrations, only: [:show]
+    resources :sample_illustrations, only: [:show] do
+      ## destroy : 削除する
+      ## create  : コメントする
+      ## update  : 更新する
+      ## コメント機能
+    resources :reviews, only: [:create, :destroy, :update]
+    
+    end
     
 ### public_illustrations
       
@@ -81,12 +88,13 @@ Rails.application.routes.draw do
       
     ### public_comment
         
-        ## create  : 削除する
+        ## destroy : 削除する
         ## create  : コメントする
         ## コメント機能
       resources :comments, only: [:create, :destroy]
       
     end
+    
     
       ## いいねブックマーク用
       ## 取得 '実際の表示アドレス' => "指定のコントローラー#アクション", as: "名前つきルート"
