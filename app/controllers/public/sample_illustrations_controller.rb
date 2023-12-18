@@ -10,7 +10,7 @@ class Public::SampleIllustrationsController < ApplicationController
   
     ## 
   def create
-      
+    
           ## star 格納
       @sample_illustration = SampleIllustration.new(sample_illustration_params)
       

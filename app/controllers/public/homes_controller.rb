@@ -16,8 +16,15 @@ class Public::HomesController < ApplicationController
       @illustrations = @illustrations.order(created_at: :desc).page(params[:page]).per(6)
       
       
+      @sample_illustration = SampleIllustration.new
+      
+      #@sample_illustrations = SampleIllustration.includes(:reviews).all
+      
         ## 全サンプルデータ取得
       @sample_illustrations = SampleIllustration.all
+      
+        ## レビュー評価を代入する
+      @sample_illustrations = @sample_illustrations.includes(:reviews)
       
         ## "genre_id"が存在_"params:genre_id"と一致,取得__present?が大事
       @sample_illustrations = @sample_illustrations.where(genre_id: params[:genre_id]) if params[:genre_id].present?
@@ -27,7 +34,7 @@ class Public::HomesController < ApplicationController
       
         ## 作成日時の降順に並び替え,6件ずつ表示
       @sample_illustrations = @sample_illustrations.order(created_at: :desc).page(params[:page]).per(6)
-       
+        
   end
   
   

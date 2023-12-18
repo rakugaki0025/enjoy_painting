@@ -55,17 +55,30 @@
     <!-- サンプルイラスト一覧表示 -->
   </div>
     <div class="col-md-9">
-      <% @sample_illustrations.each do |sample_illustration| %>
-        <%#= image_tag sample_illustration.get_image, style: "max-width:100px;" %>
+      <table>
         
-        <%#= sample_illustration.reviews.average(:star).round(2) %>
-        
-        <%= link_to sample_illustration_path(sample_illustration.id) do %>
-          <%= image_tag sample_illustration.get_image, style: "max-width:100px;" %>
+        <% @sample_illustrations.each do |sample_illustration| %>
+          <div style="display: inline-block;">
+              <!-- 総合評価 -->
+            <div style="text-align: center;">
+              <% if sample_illustration.reviews.average(:star).present? %>
+                総合
+                <%= sample_illustration.reviews.average(:star).round(2) %>
+              <% else %>
+                <!-- 非表示にするコンテンツ（例: "評価なし"など）-->
+                未評価
+              <% end %>
+            </div>
+              <!-- サンプル-->
+            <div style="display: inline-block;">
+              <%= link_to sample_illustration_path(sample_illustration.id) do %>
+                <%= image_tag sample_illustration.get_image, style: "max-width:100px;" %>
+              <% end %>
+            </div>
+          </div>
         <% end %>
         
-      <% end %>
-    
+      </table>
         <!-- 画像,タイトル,説明文,ジャンル -->
       <div class="row">
         <% @illustrations.each do |illustration| %>
