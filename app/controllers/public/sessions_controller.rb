@@ -8,6 +8,9 @@ class Public::SessionsController < Devise::SessionsController
     ## これがないと倫理削除に引っかからない
   before_action :customer_state, only: [:create]
   
+    ## ゲストユーザーとしてログインした場合は閲覧を制限する?
+  # before_action :guest_sign_in
+  
           ## sign_in と sign_up 注意
           ## ログイン後に遷移する場所
           ## ここでのresource はログイン,ログアウト時でしか使われない
@@ -33,7 +36,7 @@ class Public::SessionsController < Devise::SessionsController
           ## ゲストログインを定義
   def guest_sign_in
     
-          ## "email"属性で,"customer"モデルのレコードを検索見つからない場合
+          ## "email"属性で,"customer"モデルのレコードを検索し見つからない場合
           ## "guest@example.com"で新しいレコードを作成し"user"へ代入する
       user = Customer.find_or_create_by!(email: 'guest@example.com') do |user|
           ## ゲストユーザー情報
@@ -43,7 +46,7 @@ class Public::SessionsController < Devise::SessionsController
         user.last_name_kana = 'tarou'
         user.first_name_kana = 'webcamp'
         user.birth_day = '0000.00.00.'
-        
+        user.nickname = 'guest'
       end
           ## 作成が成功しサインインする。
       sign_in user
@@ -63,7 +66,7 @@ class Public::SessionsController < Devise::SessionsController
     
       #【処理内容2】 アカウントを取得できなかった場合、このメソッドを終了する
    return if !@customer
-  
+   
       #【処理内容3】 取得したアカウントのパスワードと入力されたパスワードが一致していない場合、このメソッドを終了する
      if @customer.valid_password?(params[:customer][:password])
   

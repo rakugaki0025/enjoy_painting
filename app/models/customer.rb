@@ -34,12 +34,15 @@ class Customer < ApplicationRecord
   
     ## ユーザーに:～属する 1:N の関係 [N]側 受け
     ## customer は :sample_illustration 1:Nの N 側に当たる
-  belongs_to :sample_illustration
+  belongs_to :sample_illustration, optional: true
   
     ## コメントnameを定義 <%= comment.customer.name %>
   def name
       last_name + " " + first_name
   end
+  
+  
+  
   
     ## プロフィール画像を許可
   has_one_attached :profile_image
@@ -47,18 +50,26 @@ class Customer < ApplicationRecord
     ## プロフィール画像を取得？
     ## ActiveStorageに格納したno_image画像(D)を表示する
   def get_profile_image(width, height)
-    
+
       unless profile_image.attached?
         
         file_path = Rails.root.join('app/assets/images/no_image.jpg')
       
-        profile_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
+        profile_image.attach(io: File.open(file_path), filename: 'no_image.jpg', content_type: 'image/jpeg')
       
       end
       
-      profile_image.variant(resize_to_limit: [width, height]).processed
+      #if email == 'guest@example.com'
+       # profile_image
+      #else
+        profile_image.variant(resize_to_limit: [width, height]).processed
+      #end
       ## profile_image.variant(resize_to_limit: [100, 100]).processed
     
+  end
+  
+  def guest_user?
+    email == 'guest@example.com'
   end
   
 end

@@ -75,6 +75,8 @@ class Public::CustomersController < ApplicationController
     
         ## ログインユーザーの情報を代入
       @customer = current_customer
+        ## ゲストログインは退会できない記述
+      redirect_to root_path, notice: 'ゲストは退会処理できません' and return if @customer.guest_user?
       
         ## ログインユーザーを true => false へ更新処理
         ## @ユーザー.update(必要なカラム:true false の指定)
