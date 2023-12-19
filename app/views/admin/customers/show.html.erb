@@ -31,7 +31,7 @@
           
           <!-- 会員情報一覧 -->
         <tbody>
-              <!-- 顧客ナンバー〇 -->
+              <!-- 顧客ナンバー -->
             <tr>
               <th>会員ID</th>
                 <td>
@@ -39,21 +39,21 @@
                 </td>
               <th></th>
             </tr>
-              <!-- ニックネーム〇 -->
+              <!-- ニックネーム -->
             <tr>
               <th>ニックネーム</th>
                 <td>
                   <%= @customer.nickname %>
                 </td>
             </tr>
-              <!-- メールアドレス〇 -->
+              <!-- メールアドレス -->
             <tr>
               <th>メールアドレス</th>
                 <td>
                   <%= @customer.email %>
                 </td>
             </tr>
-              <!-- 氏名〇 -->
+              <!-- 氏名 -->
             <tr>
               <th>氏名</th>
                 <td>
@@ -61,7 +61,7 @@
                   <%= @customer.first_name %>
                 </td>
             </tr>
-              <!-- 氏名kana〇 -->
+              <!-- 氏名kana -->
             <tr>
               <th>フリガナ</th>
                 <td>
@@ -69,14 +69,14 @@
                   <%= @customer.first_name_kana %>
                 </td>
             </tr>
-              <!-- 誕生日〇 -->
+              <!-- 誕生日 -->
             <tr>
               <th>誕生日</th>
                 <td>
                   <%= @customer.birth_day %>
                 </td>
             </tr>
-              <!-- 会員ステータス〇-->
+              <!-- 会員ステータス-->
             <tr>
               <th>会員ステータス</th>
                 <td>
@@ -90,10 +90,6 @@
               <!-- 編集する -->
             <td>
               <%= link_to "編集する", admin_customers_edit_path, class:"btn btn-success" %>
-            </td>
-              <!-- 管理者トップへ〇 -->
-            <td>
-              <%= link_to "管理者トップへ", admin_root_path, class:"btn btn-primary" %>  
             </td>
             
         </tbody>
