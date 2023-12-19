@@ -80,31 +80,27 @@
           <ul class="navbar-nav ml-auto">
               <!-- admin,customer/ログイン,ログアウト -->
             <div class="row">
-                  <!-- customer_ログイン△ -->
+                  <!-- customer_ログイン -->
               <% if customer_signed_in? %>
                 <ul class="navbar-nav ml-auto">
-                    <!-- アイコン_pablic△ -->
-                  <li class="nav-item">
-                    <%= link_to "アイコン", new_customer_session_path, class: "nav-link text-light" %>
-                  </li>
-                    <!-- マイページ_pablic〇 -->
+                    <!-- マイページ_pablic -->
                   <li class="nav-item">
                     <%= link_to "マイページ", customers_my_page_path, class: "nav-link text-light" %>
                   </li>
-                    <!-- 投稿一覧_pablic〇△ -->
+                    <!-- 投稿一覧_pablic -->
                   <li class="nav-item">
                     <%= link_to "投稿一覧", illustrations_path, class: "nav-link text-light" %>
                   </li>
-                    <!-- ブックマーク_pablic〇 -->
+                    <!-- ブックマーク_pablic -->
                   <li class="nav-item">
                     <%= link_to "ブックマーク", liked_illustrations_path, class: "nav-link text-light" %>
                   </li>
-                    <!-- ログアウトボタン_pablic〇 -->
+                    <!-- ログアウトボタン_pablic -->
                   <li class="nav-item">
                     <%= link_to 'cuログアウト', destroy_customer_session_path, method: :delete, class: "nav-link text-light" %>
                   </li>
                 </ul>
-                  <!-- admin_ログイン△ -->
+                  <!-- admin_ログイン -->
               <% elsif admin_signed_in? %>
                 <ul class="navbar-nav ml-auto">
                     <!-- 管理者投稿一覧_admin〇 -->
@@ -120,7 +116,7 @@
                     <%= link_to 'adログアウト', destroy_admin_session_path, method: :delete, class: "nav-link text-light" %>
                   </li>
                 </ul>
-                  <!-- ログアウト_customer△ -->
+                  <!-- ログアウト_customer -->
               <% else %>
                 <ul class="navbar-nav ml-auto">
                     <!-- About_pablic〇 -->
