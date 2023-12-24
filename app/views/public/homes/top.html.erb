@@ -15,7 +15,7 @@
     </style>
 
 <div style="display: flex; justify-content: center;">
-  <h4 class="example" style="text-align: center;">顧客_トップ_public_top</h4>
+  <h4 class="example" style="text-align: center;">TOPページ</h4>
 </div>
 
 
@@ -51,34 +51,36 @@
 </div>
 
 <div class="row">
-  <div class="col-md-3">
+  <div class="col-md-2">
     <!-- サンプルイラスト一覧表示 -->
   </div>
     <div class="col-md-9">
-      <table>
-        
-        <% @sample_illustrations.each do |sample_illustration| %>
-          <div style="display: inline-block;">
-              <!-- 総合評価 -->
-            <div style="text-align: center;">
-              <% if sample_illustration.reviews.average(:star).present? %>
-                総合
-                <%= sample_illustration.reviews.average(:star).round(2) %>
-              <% else %>
-                <!-- 非表示にするコンテンツ（例: "評価なし"など）-->
-                未評価
-              <% end %>
-            </div>
-              <!-- サンプル-->
+        <!-- 参考資料一覧 -->
+      <div style="text-align: center;">
+        <table>
+          <% @sample_illustrations.each do |sample_illustration| %>
             <div style="display: inline-block;">
-              <%= link_to sample_illustration_path(sample_illustration.id) do %>
-                <%= image_tag sample_illustration.get_image, style: "max-width:100px;" %>
-              <% end %>
+                <!-- 総合評価 -->
+              <div style="text-align: center;">
+                <% if sample_illustration.reviews.average(:star).present? %>
+                  総合
+                  <%= sample_illustration.reviews.average(:star).round(2) %>
+                <% else %>
+                  <!-- 非表示にするコンテンツ（例: "評価なし"など）-->
+                  未評価
+                <% end %>
+              </div>
+                <!-- サンプル-->
+              <div style="display: inline-block;">
+                <%= link_to sample_illustration_path(sample_illustration.id) do %>
+                  <%= image_tag sample_illustration.get_image, style: "max-width:100px;" %>
+                <% end %>
+              </div>
             </div>
-          </div>
-        <% end %>
-        
-      </table>
+          <% end %>
+        </table>
+      </div>
+      
         <!-- 画像,タイトル,説明文,ジャンル -->
       <div class="row">
         <% @illustrations.each do |illustration| %>
@@ -107,13 +109,13 @@
                   <span class="badge badge-secondary"><%= illustration.genre.name %></span>
                 </p>
                 
-                <%=link_to "read more", illustration, class: "card-link" %>
+                <%=link_to "詳細", illustration, class: "card-link" %>
               </div>
             </div>
           </div>
         <% end %>
-        <%= paginate @illustrations %>
       </div>
+      <%= paginate @illustrations %>
     </div>  
 </div>
   

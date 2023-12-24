@@ -12,9 +12,10 @@ class Customer < ApplicationRecord
     ## 必須入力にする設定_text_fild等
   validates :last_name, presence: true
   validates :first_name, presence: true
+  validates :last_name_kana, presence: true
+  validates :first_name_kana, presence: true
   validates :nickname, presence: true
   validates :birth_day, presence: true
-  
   
   
     ## ユーザーに:～属する 1:N の関係 [1] 側 送信

@@ -3,7 +3,7 @@ class Public::CustomersController < ApplicationController
   
         ## "edit"と"update"のアクションの実行前に、
         ## "is_matching_login_user"を実行させる記述
-  ## before_action :is_matching_login_user, only: [:edit, :update]
+  ## before_action :is_matching_login_customer, only: [:edit, :update]
   
   
         ## いいね(ブックマーク機能)
@@ -24,7 +24,7 @@ class Public::CustomersController < ApplicationController
   
         ## 顧客の登録情報編集画面
   def edit
-        
+      
         ## ログイン中のユーザーレコード取得
         ## current_(models名)
       @customer = current_customer
@@ -34,9 +34,6 @@ class Public::CustomersController < ApplicationController
         ## 顧客の登録情報更新 information_update_path
   def update
     
-        ##アクセス制限
-    ## is_matching_login_user
-       
         ## インスタンス変数 = ユーザー_find 探す:単数でどれか一つ
         ## レコードを一つ取得？
     @customer = current_customer
@@ -46,7 +43,7 @@ class Public::CustomersController < ApplicationController
               
         ## flash[:notice] は 投稿が成功した時だけ表示
         ## エラーメッセージでは使わない
-      flash[:notice] = "You have updated user successfully."
+      flash[:notice] = "会員情報を変更しました。"
               
         ## インスタンス変数 = ユーザー_find 探す:単数でどれか一つ  user_path(@user.id)
         ## 遷移先 '/customer' customer_path(@user.id)
@@ -95,23 +92,7 @@ class Public::CustomersController < ApplicationController
   end
   
   
-  #   ## アクセス制限の記述△
-  # def is_matching_login_user
-  #             # ログインしているユーザーのidとURLに含まれるidを比較し、
-  #             # 一致しなければ投稿画像一覧ページに移動する処理
-          
-  #     user = User.find(params[:id])
-  #             # ローカル変数 = ユーザー_find 探す:単数でどれか一つ
-  #             # URLを参考に特定のidを持ったレコードを取得する
-          
-  #     unless user.id == current_user.id
-  #             # ログイン中,ユーザーid,取得
-          
-  #     redirect_to user_path(current_user)
-  #             # 遷移先 Books#index 投稿画像一覧へ
-          
-  #     end
-  # end
+  
   
   
         ## 退会しているかを判断するメソッド
@@ -128,10 +109,12 @@ class Public::CustomersController < ApplicationController
             
             ## &&のインデントは？ 
       if  @customer.valid_password?(params[:customer][:password]) &&  (!@customer.is_active)
-            
+          
+          flash[:alert] = "退会済みのユーザーです。"
+          
             ## true の場合 ログインページへ遷移
           redirect_to new_customer_sessions
-              
+          
       end
   end
   
@@ -146,6 +129,26 @@ class Public::CustomersController < ApplicationController
         ## permit  requireで絞り込んだデータの中から、保存を許可するカラムを指定
       params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :nickname, :birth_day, :email, :profile_image )
   end
+  
+  
+    ## ログインしているユーザーのidとURLに含まれるidを比較し、
+    ## 一致しなければhomsページに移動する処理
+    ## アクセス制限の記述_private以下に記述
+  # def is_matching_login_customer
+      
+  #       ## ローカル変数 = ユーザー_find 探す:単数でどれか一つ
+  #       ## URLを参考に特定のidを持ったレコードを取得する
+  #     customer = Customer.find(params[:id])
+        
+  #       ## ログイン中,ユーザーid,取得
+  #     unless customer.id == current_customer.id
+        
+  #       ## 遷移先 homesへ
+  #     redirect_to root_path(current_user)
+        
+  #     end
+      
+  # end
   
   
 end

@@ -1,7 +1,10 @@
 class Public::IllustrationsController < ApplicationController
     ## Enjoy_cntroller_admin_illustration
-    
-    
+  
+    ## "edit"と"update"のアクションの実行前に、
+    ## "is_matching_login_user"を実行させる記述
+  before_action :is_matching_login_customer, only: [:edit, :update]
+  
     ## イラスト投稿_新規登録画面 new_illustration_path
   def new
      
@@ -61,6 +64,12 @@ class Public::IllustrationsController < ApplicationController
     ## イラスト投稿_編集画面 edit__illustration_path
   def edit
       
+      ## アクセス制限の記述
+      ## is_matching_login_customer
+      
+        ## 会員のレコードを取得
+      # @customer = Customer.find(params[:id])
+      
         ## 投稿した sample_illustoration :id を取得するレコード
       @illustration = Illustration.find(params[:id])
       
@@ -70,8 +79,11 @@ class Public::IllustrationsController < ApplicationController
     ## イラスト_投稿_情報更新する /illustration/:id
   def update
     
-        ##アクセス制限
-    ## is_matching_login_user
+        ## アクセス制限の記述
+      ## is_matching_login_customer
+      
+      ## 会員のレコードを取得
+    ## @customer = Customer.find(params[:id])
        
         ## インスタンス変数 = 商品_find 探す:単数でどれか一つ
         ## レコードを一つ取得？
@@ -123,6 +135,30 @@ class Public::IllustrationsController < ApplicationController
         ## permit  requireで絞り込んだデータの中から、保存を許可するカラムを指定
       params.require(:illustration).permit(:genre_id, :name, :introduction, :image)
   end
+  
+    ## ログインしているユーザーのidとURLに含まれるidを比較し、
+    ## 一致しなければhomsページに移動する処理
+    ## アクセス制限の記述_private以下に記述
+  def is_matching_login_customer
+      
+      illustration = Illustration.find(params[:id])
+      
+      customer = illustration.customer
+      
+        ## ローカル変数 = ユーザー_find 探す:単数でどれか一つ
+        ## URLを参考に特定のidを持ったレコードを取得する
+      #customer = Customer.find(params[:id])
+        
+        ## ログイン中,ユーザーid,取得
+      unless customer == current_customer
+        
+          ## 遷移先 homesへ
+        redirect_to root_path
+        
+      end
+      
+  end
+  
   
 end
 

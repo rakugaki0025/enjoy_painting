@@ -1,13 +1,13 @@
 <!-- enjoy_view_pablic_customers_edit -->
 
 
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-7">
     
       <!-- エラーメッセージ user info -->
     <% if @customer.errors.any? %>
       <h2>
-        <%= @customer.errors.count %>error prohibited this obj from being saved:
+        <%= @customer.errors.count %>件数のエラーが発生しました。
       </h2>
       
       <ul>

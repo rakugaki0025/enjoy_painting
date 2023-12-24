@@ -1,14 +1,17 @@
 <!-- Enjoy_view_admin_genre_index -->
-
-
-  <div class="row">
-        <!-- エラーメッセージ(メンター記述) -->
+  
+  
+  <div class="row justify-content-center" style="padding: 10px 0;">
+      <!-- エラーメッセージ(メンター記述) -->
     <% flash.each do |key, message| %>
       <div class "<%= key %>">
         <%= message %>
       </div>
     <% end %>
-      
+  </div>
+  
+  <div class="row">
+    
         <!-- 色指定のスタイル -->
       <style>
        .example {

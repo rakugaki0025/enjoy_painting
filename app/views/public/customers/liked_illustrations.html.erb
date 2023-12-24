@@ -1,8 +1,8 @@
 <!-- enjoy_view_pablic_customers_liked_illustrations -->
   
   
-  <div class="row">
-    <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-5">
+  <div class="row justify-content-center">
+    <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-8">
       
         <!-- 色指定のスタイル -->
       <style>
@@ -14,36 +14,47 @@
       </style>
       
         <!-- サンプル画像,サンプル名,説明文,ジャンル -->
-      <table width="450"  height="80">
+      <table width="700"  height="80">
         
       <h4 class="example" align="center">いいねした投稿(ブックマーク)</h4>
           
-          <% @liked_illustrations.each do |post| %>
+        <% @liked_illustrations.each do |post| %>
+            <!-- いいね内容 -->
+          <thead align="center">
+            <th style="padding: 10px 0;">タイトル</th>
+            <th style="padding: 10px 0;">投稿画像</th>
+            <th style="padding: 10px 0;">ジャンル</th>
+            <th style="padding: 10px 0;">いいね数</th>
+            <th style="padding: 10px 0;">コメント数</th>
+          </thead>
+            <!-- いいねされた画像 -->
+          <tbody align="center">
             <tr>
                 <!-- タイトル -->
-              <th>
+              <td style="padding: 0 10px;">
                 <%= post.name %> 
-              </th>
+              </td>
                 <!-- 画像 -->
-              <td>
+              <td style="padding: 0 10px;">
                 <%= link_to illustration_path(post.id) do %>
                   <%= image_tag post.image, style: "max-width:200px;" %> 
                 <% end %>
               </td>
                 <!-- ジャンル -->
-              <td>
+              <td style="padding: 0 10px;">
                 <%= post.genre.name %>
               </td>
                 <!-- いいね数 -->
-              <td>
-                ♥<%= post.nice.count %>いいね
+              <td style="padding: 0 10px;">
+                ♥<%= post.nice.count %> いいね
               </td>
                 <!-- コメント数 -->
-              <td>
-                コメント件数：<%= post.comments.count %>
+              <td style="padding: 0 10px;">
+                <%= post.comments.count %>件
               </td>
             </tr>
-          <% end %>
+          </tbody>
+        <% end %>
       </table>
       <%= paginate @liked_illustrations %>
     </div>

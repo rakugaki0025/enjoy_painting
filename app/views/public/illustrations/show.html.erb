@@ -122,15 +122,19 @@
         </tbody>  
         
       </table>
-          
-        <!-- 編集する -->
-      <div class="col-8">
-        <%= link_to "編集する", edit_illustration_path, class:"btn btn-success" %>
-      </div>
-        <!-- 削除ボタン -->
-      <div class="col-4">
-        <%= link_to "削除", illustration_path(@illustration), class:"btn btn-danger", method: :delete, data: { confirm: "本当に削除しますか？" } %>
-      </div>
       
+      
+      <% if @illustration.customer == current_customer %>
+      
+          <!-- 編集する -->
+        <div class="col-8">
+          <%= link_to "編集する", edit_illustration_path, class:"btn btn-success" %>
+        </div>
+          <!-- 削除ボタン -->
+        <div class="col-4">
+          <%= link_to "削除", illustration_path(@illustration), class:"btn btn-danger", method: :delete, data: { confirm: "本当に削除しますか？" } %>
+        </div>
+      
+      <% end %>
     </div>
   </div>

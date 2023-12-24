@@ -77,7 +77,9 @@ class Public::SessionsController < Devise::SessionsController
         # 退会後の処理を行う
         # ログイン処理
         ## ログイン成功時のリダイレクト先を指定（例: ホーム画面）
+        # redirect_to new_customer_session_path
       redirect_to new_customer_registration_path
+      
       
         # 退会済みの場合のエラーメッセージを表示してログイン画面に戻る
      flash.now[:alert] = "退会済みのユーザーです。"

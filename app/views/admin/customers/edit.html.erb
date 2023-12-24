@@ -1,24 +1,23 @@
 <!-- nagano_view_admin_customers_edit_top -->
-
-
-  <!-- エラーメッセージ -->
-  <% if @customer.errors.any? %>
-    <!-- エラーカウント -->
-    <h2>
-      <%= @customer.errors.count %>errors prohibited this obj from being saved:
-    </h2>
-      <ul>
-        <% @cusotmer.errors.full_messages.each do |message| %>
-          <li>
-            <%= message %>
-          </li>
-        <% end %>
-      </ul>
-  <% end %>
   
   
-  <div class="row">
+  <div class="row justify-content-center">
     <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-6">
+      
+         <!-- エラーメッセージ -->
+      <div>
+        <% if @customer.errors.any? %>
+          <!-- エラーカウント -->
+        <div>
+          <%= @customer.errors.count %>件のエラーが発生しました。
+        </div>
+          <ul>
+            <% @customer.errors.full_messages.each do |message| %>
+              <li><%= message %></li>
+            <% end %>
+          </ul>
+        <% end %>
+      </div>
       
         <!-- 色指定のスタイル -->
       <style>
