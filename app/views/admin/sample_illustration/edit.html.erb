@@ -5,7 +5,7 @@
   <% if @sample_illustration.errors.any? %>
       <!-- エラーカウント -->
     <h2>
-      <%= @sample_illustration.errors.count %>errors prohibited this obj from being saved:
+      <%= @sample_illustration.errors.count %>件のエラーが発生しました。
     </h2>
       <ul>
         <% @sample_illustration.errors.full_messages.each do |message| %>

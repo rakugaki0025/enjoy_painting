@@ -7,7 +7,7 @@
     <div>
       <% if @sample_illustration.errors.any? %>
       
-      <%= @sample_illustration.errors.count %>件のエラーが発生しました
+      <%= @sample_illustration.errors.count %>件のエラーが発生しました。
         <ul>
           <% @sample_illustration.errors.full_messages.each do |message| %>
             <li><%= message %></li>
