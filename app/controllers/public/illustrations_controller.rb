@@ -94,7 +94,7 @@ class Public::IllustrationsController < ApplicationController
               
         ## flash[:notice] は 投稿が成功した時だけ表示
         ## エラーメッセージでは使わない
-      flash[:notice] = "You have updated user successfully."
+      flash[:notice] = "変更を保存しました。"
               
         ## インスタンス変数 = ユーザー_find 探す:単数でどれか一つ  user_path(@user.id)
         ## 遷移先 '/customer' customer_path(@user.id)

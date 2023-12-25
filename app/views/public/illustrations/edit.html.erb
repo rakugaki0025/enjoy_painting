@@ -1,24 +1,24 @@
 <!-- Enjoy_view_admin_illustration_edit -->
-
-
-<!-- エラーメッセージ -->
-  <% if @illustration.errors.any? %>
-      <!-- エラーカウント -->
-    <h2>
-      <%= @illustration.errors.count %>件数のエラーが発生しています。
-    </h2>
-      <ul>
-        <% @illustration.errors.full_messages.each do |message| %>
-          <li>
-            <%= message %>
-          </li>
-        <% end %>
-      </ul>
-  <% end %>
+  
   
   <div class="row">
     <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-5">
-      
+      <!-- エラーメッセージ -->
+    <div class="row justify-content-center" style="padding: 10px 0;">
+      <% if @illustration.errors.any? %>
+          <!-- エラーカウント -->
+        <h2>
+          <%= @illustration.errors.count %>件数のエラーが発生しています。
+        </h2>
+          <ul>
+            <% @illustration.errors.full_messages.each do |message| %>
+              <li>
+                <%= message %>
+              </li>
+            <% end %>
+          </ul>
+      <% end %>
+    </div>
         <!-- 色指定のスタイル -->
       <style>
        .example {
