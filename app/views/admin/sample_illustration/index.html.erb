@@ -30,7 +30,6 @@
               <i class="fas fa-plus-circle" aria-hidden="true">ジャンル登録</i>
             <% end %>
           </td>
-          
         </tr>
       </table>
       
@@ -39,21 +38,21 @@
         <!-- サンプルID,サンプル名,説明文,ジャンル -->
       <table border="1" width="900"  height="280">
               <!-- ID,画像,名前,説明文,ジャンル,削除△ -->
-        <thead class="example">
-          <tr align=”center”>
-            <th>ID</th>
-            <th>サンプル画像</th>
-            <th>サンプルタイトル</th>
-            <th>説明文</th>
-            <th>ジャンル</th>
-            <th>削除</th>
-            <th>評価</th>
+        <thead class="example" align="center">
+          <tr>
+            <th style="padding: 10px 0;">ID</th>
+            <th style="padding: 10px 0;">サンプル画像</th>
+            <th style="padding: 10px 0;">サンプルタイトル</th>
+            <th style="padding: 10px 0;">説明文</th>
+            <th style="padding: 10px 0;">ジャンル</th>
+            <th style="padding: 10px 0;">削除</th>
+            <!--<th style="padding: 10px 0;">評価</th>-->
           </tr>
         </thead>
               <!-- サンプル一覧表示〇 -->
         <% @sample_illustration.each do |sample_illustration| %>
               <!-- ID,画像,名前,説明文,ジャンル,削除 -->
-        <tbody>
+        <tbody align="center">
           <tr>
               <!-- サンプルナンバー -->
             <td>

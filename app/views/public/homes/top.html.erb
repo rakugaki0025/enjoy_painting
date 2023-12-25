@@ -58,6 +58,11 @@
         <!-- 参考資料一覧 -->
       <div style="text-align: center;">
         <table>
+            <!-- サンプルタイトル -->
+          <div style="display: flex; justify-content: center;">
+            <h4 class="example" style="text-align: center;">サンプルイラスト</h4>
+          </div>
+          
           <% @sample_illustrations.each do |sample_illustration| %>
             <div style="display: inline-block;">
                 <!-- 総合評価 -->
@@ -80,6 +85,11 @@
           <% end %>
         </table>
         <%= paginate @sample_illustrations %>
+      </div>
+      
+        <!-- サンプルタイトル -->
+      <div style="display: flex; justify-content: center;">
+        <h4 class="example" style="text-align: center;">ユーザーイラスト</h4>
       </div>
       
         <!-- 画像,タイトル,説明文,ジャンル -->

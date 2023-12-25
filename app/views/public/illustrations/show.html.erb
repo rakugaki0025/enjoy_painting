@@ -90,7 +90,7 @@
                       <!--%= form_with model: [@illustration, @comment], url: illustration_comment_index_path(@illustration[:id]), local: true do |f| %-->
                     <%= form_with model:[@illustration, @comment], url: illustration_comments_path(@illustration[:id]), method: :post do |f| %>
                       <%= f.text_area :content, rows: '5', placeholder: "コメントをここに" %>
-                      <%= f.submit "送信する" %>
+                      <%= f.submit "コメントする", class:"btn btn-primary" %>
                     <% end %>
                   </div>
                   <p>

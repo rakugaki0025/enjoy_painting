@@ -12,38 +12,38 @@
   
   <div class="row">
     
-        <!-- 色指定のスタイル -->
-      <style>
-       .example {
-        background-color: #F0F0F0;
-        width:300px;
-        height:30px;
-       }
-      </style>
+      <!-- 色指定のスタイル -->
+    <style>
+     .example {
+      background-color: #F0F0F0;
+      width:300px;
+      height:30px;
+     }
+    </style>
       
-        <!-- 投稿画像一覧,アイコン -->
-      <table width="950"  height="50">
-        <tr>
-            <!-- 管理者ジャンル投稿一覧〇 -->
-          <th>
-            <h4 class="example" align="center">管理者ジャンル投稿一覧</h4>
-          </th>
-            <!-- ジャンル名,新規登録〇 -->
-          <td align="left">
-            <%= form_with model: @genre, url: admin_genre_index_path, method: :post do |genre| %>
-              ジャンル名
-              <%= genre.text_field :name %>
-              <%= genre.submit '新規登録', class:"btn btn-primary" %>
-            <% end %>
-          </td>
-            <!-- サンプル新規登録画面へ,アイコン済〇 -->
-          <td align="right">
-            <%= link_to new_admin_sample_illustration_path, class: 'nav-link text-black' do %>
-              <i class="fas fa-pen-nib" aria-hidden="true">新規投稿へ</i>
-            <% end %>
-          </td>
-        </tr>
-      </table>
+      <!-- 投稿画像一覧,アイコン -->
+    <table width="950"  height="50">
+      <tr>
+          <!-- 管理者ジャンル投稿一覧 -->
+        <th>
+          <h4 class="example" align="center">管理者ジャンル投稿一覧</h4>
+        </th>
+          <!-- ジャンル名,新規登録 -->
+        <td align="left">
+          <%= form_with model: @genre, url: admin_genre_index_path, method: :post do |genre| %>
+            ジャンル名
+            <%= genre.text_field :name %>
+            <%= genre.submit '新規登録', class:"btn btn-primary" %>
+          <% end %>
+        </td>
+          <!-- サンプル新規登録画面へ,アイコン済 -->
+        <td align="right">
+          <%= link_to new_admin_sample_illustration_path, class: 'nav-link text-black' do %>
+            <i class="fas fa-pen-nib" aria-hidden="true">サンプル投稿へ</i>
+          <% end %>
+        </td>
+      </tr>
+    </table>
       
     <div class="mx-auto auto col-8">
         

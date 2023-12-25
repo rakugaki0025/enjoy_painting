@@ -236,7 +236,10 @@ ja:                   ## 日本語の設定を行う
         birth_day: 誕生日
           ## 追加
         password: パスワード
-        
+      
+      email:
+        taken: を入れてください
+      
       sample_illustration:
         name: タイトル
         image: サンプル画像
@@ -246,6 +249,8 @@ ja:                   ## 日本語の設定を行う
     errors:
       models:
         customer:
+          taken: を入れてください
+            
           attributes:
               ## 追加
             email:
