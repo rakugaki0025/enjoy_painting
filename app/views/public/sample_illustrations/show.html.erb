@@ -95,7 +95,7 @@
     </div>
       <%# unless @sample_illustration.reviews.exists?(customer_id: current_customer.id) %>
       <%# unless admin_signed_in? && @sample_illustration.reviews.exists?(customer_id: current_customer.id) %>
-    <% if @sample_illustration && !admin_signed_in? && !@sample_illustration.reviews.exists?(customer_id: current_customer.id) %>
+    <% if @sample_illustration && !admin_signed_in? && (!customer_signed_in? || !@sample_illustration.reviews.exists?(customer_id: current_customer.id)) %>
     
     <div class="mx-auto auto col-md-12 my-5">
       <%= form_with model: Review.new, url: sample_illustration_reviews_path(@sample_illustration.id), local:true do |star| %>
