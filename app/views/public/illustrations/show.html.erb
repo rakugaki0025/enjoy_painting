@@ -87,36 +87,61 @@
                 <div>
                     <!-- コメント枠,送信ボタン -->
                   <div>
-                      <!--%= form_with model: [@illustration, @comment], url: illustration_comment_index_path(@illustration[:id]), local: true do |f| %-->
-                    <%= form_with model:[@illustration, @comment], url: illustration_comments_path(@illustration[:id]), method: :post do |f| %>
-                      <%= f.text_area :content, rows: '5', placeholder: "コメントをここに" %>
-                      <%= f.submit "コメントする", class:"btn btn-primary" %>
+                        <!--%= form_with model: [@illustration, @comment], url: illustration_comment_index_path(@illustration[:id]), local: true do |f| %-->
+                      <!-- admin,customerがログインしていない場合非表示 -->
+                    <%# if admin_signed_in? || customer_signed_in? %>
+                    <% if customer_signed_in? %>
+                      <%= form_with model:[@illustration, @comment], url: illustration_comments_path(@illustration[:id]), method: :post do |f| %>
+                        <%= f.text_area :content, rows: '5', placeholder: "コメントをここに", maxlength: 120 %>
+                        <%= f.submit "コメントする", class:"btn btn-primary" %>
+                      <% end %>
                     <% end %>
                   </div>
+                    <!-- コメント最大文字数の判定 -->
+                  <script>
+                    document.addEventListener("DOMContentLoaded", function() {
+                      const textArea = document.querySelector("#comment_content");
+                  
+                      textArea.addEventListener("input", function() {
+                        const maxLength = parseInt(textArea.getAttribute("maxlength"), 10);
+                        if (textArea.value.length > maxLength) {
+                          textArea.value = textArea.value.slice(0, maxLength);
+                        }
+                      });
+                    });
+                  </script>
+                  
+                  <p>コメント件数：<%= @illustration.comments.count %></p>
+                    <!-- コメント内容表示 -->
                   <p>
-                    コメント件数：<%= @illustration.comments.count %>
-                  </p>
-                  <% @illustration.comments.each do |comment| %>
-                      <!-- アイコン -->
-                    <%= image_tag comment.customer.get_profile_image(60,60) %>
-                      <!-- 投稿者名 -->
-                    <%= comment.customer.name %>
-                      <!-- 投稿時間 -->
-                    <%= comment.created_at.strftime('%Y/%m/%d') %><%= comment.content %>
-                      <!-- 削除コメント_コメントした人が同じだった場合表示する記述,もしくはadmin -->
-                    <% if (comment.customer == current_customer) || admin_signed_in? %>
-                      <%= link_to "削除", illustration_comment_path(comment.illustration, comment), method: :delete %>
+                    <% @illustration.comments.each do |comment| %>
+                        <!-- アイコン -->
+                      <%= image_tag comment.customer.get_profile_image(60,60) %>
+                        <!-- 投稿者名 -->
+                      <%= comment.customer.name %>
+                        <!-- コメント投稿時間 -->
+                      <%= comment.created_at.strftime('%Y/%m/%d') %><br>
+                        <!-- コメント内容 -->
+                      <% content = comment.content %>
+                        <!-- コメント最大文字数120 -->
+                      <% max_length = 120 %>
+                        <!-- コメント改行数 -->
+                      <% lines = content.scan(/.{1,30}/) %>
+                        <!-- 改行コード -->
+                      <%= lines.map { |line| line.gsub(/</, '&lt;').gsub(/>/, '&gt;') }.join("<br>").html_safe %><br>
+                        <!-- 削除コメント_コメントした人が同じだった場合表示する記述,もしくはadmin -->
+                      <% if (comment.customer == current_customer) || admin_signed_in? %>
+                        <%= link_to "削除", illustration_comment_path(comment.illustration, comment), method: :delete %>
+                      <% end %>
+                      <br />
+                      <br />
                     <% end %>
-                    <br />
-                    <br />
-                  <% end %>
+                  </p>
                 </div>
-                 
                   <!-- コメント数 -->
-                <p>
-                  <%= link_to "#{@illustration.comments.count} コメント", illustration_path(@illustration.id) %>
-                </p>
-                
+                <!--<p>-->
+                  <%#= link_to "#{@illustration.comments.count} コメント", illustration_path(@illustration.id) %>
+                <!--</p>-->
               </td>
           </tr>
         </tbody>  

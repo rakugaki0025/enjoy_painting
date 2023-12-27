@@ -9,18 +9,17 @@
   <div class="row">
     <div class="mx-auto auto col-md-12">
       
-        <!-- 色指定のスタイル -->
-      <style>
-       .example {
-        background-color: #F0F0F0;
-        width:200px;
-        height:30px;
-       }
-      </style>
-      
+      <!-- 色指定のスタイル -->
+    <style>
+     .example {
+      background-color: #F0F0F0;
+      width:200px;
+      height:30px;
+     }
+    </style>
+    
         <!-- サンプル画像,サンプル名,説明文,ジャンル -->
-        
-      <h4 class="example" align="center">サンプル画像詳細</h4>
+    <h4 class="example" align="center">サンプル画像詳細</h4>
       <table class="w-75 mx-auto">
           <!-- サンプル詳細,総合評価 -->
         <tbody>
@@ -86,63 +85,64 @@
                 <%= @sample_illustration.genre.name %>
               </td>
           </tr>
-          
         </tbody>
-            
       </table>
-            
-            
+      
     </div>
-      <%# unless @sample_illustration.reviews.exists?(customer_id: current_customer.id) %>
-      <%# unless admin_signed_in? && @sample_illustration.reviews.exists?(customer_id: current_customer.id) %>
-    <% if @sample_illustration && !admin_signed_in? && (!customer_signed_in? || !@sample_illustration.reviews.exists?(customer_id: current_customer.id)) %>
     
-    <div class="mx-auto auto col-md-12 my-5">
-      <%= form_with model: Review.new, url: sample_illustration_reviews_path(@sample_illustration.id), local:true do |star| %>
-        <table class="w-75 mx-auto">
-            <!-- 評価ボタン,星 -->
-          <tbody>
-            <tr>
-              <th class="w-25">
-                資料を評価
-              </th>
-              <td>
-                <div class="form-group row">
-                    <%#= star.label :star,'評価 ', class:'col-form-label' %>
-                    <%#= star.hidden_field :star, id: :star %>
-                  <div id="star"></div>
-                </div>
-              </td>
-            </tr>
-              <!-- 評価ボタン -->
-            <tr>
-              <td></td>
-              <td>
-                  <%= star.submit '評価する', class:"btn btn-primary" %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      <% end %>
-          <!-- 評価する星の表示? -->
-        <script>
-        　$('#star').empty();
-          $('#star').raty({
-            size   : 36,
-            starOff: '<%= asset_path('star-off.png') %>',
-            starOn : '<%= asset_path('star-on.png') %>',
-                  scoreName: 'review[star]',
-            half: false,
-          });
-        </script>
+        <!-- 誰もログインしていない時非表示にし、且つ、会員がログインした時は表示する記述 -->
+      <% if !admin_signed_in? && (customer_signed_in? && (@sample_illustration.nil? || !@sample_illustration.reviews.exists?(customer_id: current_customer.id))) %>
+          <!-- サンプルがある、且つ、管理者がいない、且つ、会員がいない、または、サンプルに会員の評価がない、のどちらかの条件を満たした場合、trueを返す -->
+        <% if @sample_illustration && !admin_signed_in? && (!customer_signed_in? || !@sample_illustration.reviews.exists?(customer_id: current_customer.id)) %>
         
-    </div>
-    <% end %>
+        <div class="mx-auto auto col-md-12 my-5">
+          <%= form_with model: Review.new, url: sample_illustration_reviews_path(@sample_illustration.id), local:true do |star| %>
+              <!-- 評価ボタン,星 -->
+            <table class="w-75 mx-auto">
+                <!-- 評価ボタン,星 -->
+              <tbody>
+                <tr>
+                  <th class="w-25">
+                    資料を評価
+                  </th>
+                  <td>
+                    <div class="form-group row">
+                        <%#= star.label :star,'評価 ', class:'col-form-label' %>
+                        <%#= star.hidden_field :star, id: :star %>
+                      <div id="star"></div>
+                    </div>
+                  </td>
+                </tr>
+                  <!-- 評価ボタン -->
+                <tr>
+                  <td></td>
+                  <td>
+                    <%= star.submit '評価する', class:"btn btn-primary" %>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          <% end %>
+              <!-- 評価する星の表示? -->
+            <script>
+            　$('#star').empty();
+              $('#star').raty({
+                size   : 36,
+                starOff: '<%= asset_path('star-off.png') %>',
+                starOn : '<%= asset_path('star-on.png') %>',
+                      scoreName: 'review[star]',
+                half: false,
+              });
+            </script>
+        </div>
+        <% end %>
+      <% end %>
+      
         <!-- 編集する_adminにしか表示されない記述 -->
     <div class="mx-auto auto col-md-12">  
-        <% if admin_signed_in? %>
-          <%= link_to "編集する", edit_admin_sample_illustration_path, class: "btn btn-success" %>
-        <% end %>
+      <% if admin_signed_in? %>
+        <%= link_to "編集する", edit_admin_sample_illustration_path, class: "btn btn-success" %>
+      <% end %>
     </div>
   </div>
   
