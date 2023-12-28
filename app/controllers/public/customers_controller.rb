@@ -1,6 +1,9 @@
 class Public::CustomersController < ApplicationController
   ## enjoy_controllers_public_customers
   
+    ## ログインしていないユーザーの実行
+  # before_action :authenticate_customer!
+  
         ## "edit"と"update"のアクションの実行前に、
         ## "is_matching_login_user"を実行させる記述
   ## before_action :is_matching_login_customer, only: [:edit, :update]
@@ -91,10 +94,6 @@ class Public::CustomersController < ApplicationController
       
   end
   
-  
-  
-  
-  
         ## 退会しているかを判断するメソッド
   protected
   
@@ -130,24 +129,17 @@ class Public::CustomersController < ApplicationController
       params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :nickname, :birth_day, :email, :profile_image )
   end
   
-  
-    ## ログインしているユーザーのidとURLに含まれるidを比較し、
-    ## 一致しなければhomsページに移動する処理
-    ## アクセス制限の記述_private以下に記述
-  # def is_matching_login_customer
+    
+    ## ログインしていないユーザーを実行
+  # def authenticate_customer!
+    
+  #     ## adminの場合は実行しない記述
+  #   if current_customer && !current_customer.admin?
       
-  #       ## ローカル変数 = ユーザー_find 探す:単数でどれか一つ
-  #       ## URLを参考に特定のidを持ったレコードを取得する
-  #     customer = Customer.find(params[:id])
-        
-  #       ## ログイン中,ユーザーid,取得
-  #     unless customer.id == current_customer.id
-        
-  #       ## 遷移先 homesへ
-  #     redirect_to root_path(current_user)
-        
-  #     end
+  #     redirect_to root_path, alert: "ログインしてください"
       
+  #   end
+    
   # end
   
   

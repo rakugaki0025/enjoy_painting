@@ -55,7 +55,11 @@
             <th>
               <label for="customer_email">メールアドレス</label>
                 <th>
-                  <%= f.text_field :email %>
+                  <% if current_customer&.guest_user? %>
+                    <%= @customer.email %>
+                  <% else %>
+                    <%= f.text_field :email %>
+                  <% end %>
                 </th>
             </th>
           </tr>

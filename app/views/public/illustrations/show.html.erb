@@ -29,6 +29,13 @@
           <tr>
             <%= image_tag @illustration.get_image, style: "max-width:500px;" %>
           </tr>
+            <!-- ユーザーアイコン -->
+          <tr>
+            <th>投稿者</th>
+              <td>
+                <%= image_tag @illustration.customer.get_profile_image(100,100) if @illustration.customer.present? %>
+              </td>
+          </tr>
             <!-- タイトル -->
           <tr>
             <th>タイトル</th>
@@ -87,7 +94,7 @@
                 <div>
                     <!-- コメント枠,送信ボタン -->
                   <div>
-                        <!--%= form_with model: [@illustration, @comment], url: illustration_comment_index_path(@illustration[:id]), local: true do |f| %-->
+                          <!--%= form_with model: [@illustration, @comment], url: illustration_comment_index_path(@illustration[:id]), local: true do |f| %-->
                       <!-- admin,customerがログインしていない場合非表示 -->
                     <%# if admin_signed_in? || customer_signed_in? %>
                     <% if customer_signed_in? %>

@@ -239,12 +239,14 @@ ja:                   ## 日本語の設定を行う
       
       email:
         taken: を入れてください
-      
+        # 追加
       sample_illustration:
         name: タイトル
         image: サンプル画像
         introduction: サンプル説明
+        # 追加
       illustration:
+        customer: 会員
         name: タイトル
         image: 画像
         introduction: 説明文
@@ -275,6 +277,8 @@ ja:                   ## 日本語の設定を行う
             
         illustration:
           attributes:
+            customer:
+              required: はログインしてください
             introduction:
               blank: を入れてください
             name:

@@ -1,5 +1,8 @@
 class Public::IllustrationsController < ApplicationController
     ## Enjoy_cntroller_admin_illustration
+    
+    ## ログインしていないユーザーの実行
+    before_action :authenticate_customer!, only: [:new, :create, :edit, :update, :destroy]
   
     ## "edit"と"update"のアクションの実行前に、
     ## "is_matching_login_user"を実行させる記述
@@ -136,21 +139,42 @@ class Public::IllustrationsController < ApplicationController
       params.require(:illustration).permit(:genre_id, :name, :introduction, :image)
   end
   
+  #   ## ログインしていないユーザーを実行
+  # def authenticate_customer!
+  #     # ログインしている場合は実行しない
+  #   if (!admin_signed_in? && (customer_signed_in? && (@sample_illustration.nil? || !@sample_illustration.reviews.exists?(customer_id: current_customer.id))))
+      
+  #     return
+      
+  #   end
+    
+  #     redirect_to root_path, alert: "ログインしてください"
+      
+  # end
+  
+  
     ## ログインしているユーザーのidとURLに含まれるidを比較し、
     ## 一致しなければhomsページに移動する処理
     ## アクセス制限の記述_private以下に記述
   def is_matching_login_customer
       
-      illustration = Illustration.find(params[:id])
+        # ログインしていないユーザーの場合はルートパスにリダイレクト
+      # unless current_customer
+      #   redirect_to root_path
+      #   return
+      # end
+      
+      
+      # illustration = Illustration.find(params[:id])
+      # unless illustration.customer == current_customer
+      #   redirect_to root_path, alert: "ログイン中の顧客と一致しないためアクセスできません"
+      # end
       
       customer = illustration.customer
-      
-        ## ローカル変数 = ユーザー_find 探す:単数でどれか一つ
-        ## URLを参考に特定のidを持ったレコードを取得する
-      #customer = Customer.find(params[:id])
         
         ## ログイン中,ユーザーid,取得
-      unless customer == current_customer
+      # unless customer == current_customer
+      unless current_customer && customer == current_customer
         
           ## 遷移先 homesへ
         redirect_to root_path

@@ -1,6 +1,9 @@
 class Public::SampleIllustrationsController < ApplicationController
     ## enjoy_controller_public_sample_illustrations_show用
     
+   ## ログインしていないユーザーの実行
+  # before_action :authenticate_customer!
+  
     ## 管理者_顧客_投稿_詳細画面 sample_illustration_path
   def show
         ## 投稿した sample_illustoration :id を取得するレコード
@@ -62,7 +65,6 @@ class Public::SampleIllustrationsController < ApplicationController
     end
   end
   
-  
     ## イラスト_画像_削除する(単体) illustration/:id
   def destroy
       
@@ -77,7 +79,6 @@ class Public::SampleIllustrationsController < ApplicationController
         
   end
   
-  
   private
   
         ## サンプル登録情報編集画面等で使用…
@@ -89,6 +90,18 @@ class Public::SampleIllustrationsController < ApplicationController
       params.require(:sample_illustration).permit(:genre_id, :name, :introduction, :image)
   end
   
+    ## ログインしていないユーザーを実行
+  # def authenticate_customer!
+  #     # ログインしている場合は実行しない
+  #   if current_customer && (current_customer.admin? || current_customer.customer?)
+      
+  #     return
+       
+  #   end
+    
+  #     redirect_to root_path, alert: "ログインしてください"
+      
+  # end
   
 end
 

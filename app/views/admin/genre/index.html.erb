@@ -47,9 +47,9 @@
       
     <div class="mx-auto auto col-8">
         
-          <!-- ナンバー,名前,削除△ -->
+          <!-- ジャンル名,編集, -->
       <table border="1" width="600">
-              <!-- ナンバー,名前,削除△ -->
+              <!-- ジャンル名,編集, -->
         <thead class="example">
           <th align=”center”>
             <th>ジャンル名</th>
@@ -58,7 +58,7 @@
         </thead>
               <!-- 各ジャンル表示 -->
         <% @genre.each do |genre| %>
-              <!-- ナンバー,名前,削除△ -->
+              <!-- ナンバー,名前,削除 -->
           <tbody>
             <tr>
                 <!-- ジャンルナンバー -->
@@ -69,7 +69,7 @@
               <td align="center">
                 <%= genre.name %>
               </td>
-                <!-- ジャンル編集ボタン△ -->
+                <!-- ジャンル編集ボタン -->
               <td align="center">
                  <%= form_with model: genre, url: admin_genre_path(genre), method: :patch do |genre| %>
                    <%= genre.text_field :name %>
