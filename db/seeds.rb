@@ -20,12 +20,7 @@ genres.each do |name|
   Genre.create!(name: name)
 end
 
-Admin.create!(
-    ## "任意のメールアドレス"[,]も忘れずに
-  email: "abc@001",
-    ## "任意のパスワード"
-  password: "000001"
-)
+
 
 first_customer = Customer.create!(                                                                 
  :email=>"abc@007",                                                             
