@@ -23,6 +23,10 @@ class Admin::SampleIllustrationController < ApplicationController
       
           ## 記録保存が成功すれば投稿一覧へ
      if @sample_illustration.save
+        
+          ## flash[:notice] は 投稿が成功した時だけ表示
+          ## エラーメッセージでは使わない
+        flash[:notice] = "サンプル情報を投稿しました。"
          
           ## 遷移先 サンプル投稿_詳細画面
         redirect_to admin_sample_illustration_path(@sample_illustration.id)
