@@ -18,13 +18,13 @@
           <td>
             <h4 class="example" align="center">管理者投稿画像一覧</h4>
           </td>
-            <!-- サンプル新規登録画面へ,アイコン済△ -->
+            <!-- サンプル新規登録画面へ,アイコン済 -->
           <td align="right">
             <%= link_to new_admin_sample_illustration_path, class: 'nav-link text-black' do %>
               <i class="fas fa-pen-nib" aria-hidden="true">サンプル投稿</i>
             <% end %>
           </td>
-            <!-- ジャンル新規登録画面へ,アイコン済△ -->
+            <!-- ジャンル新規登録画面へ,アイコン済 -->
           <td align="right">
             <%= link_to admin_genre_index_path, class: 'nav-link text-black' do %>
               <i class="fas fa-plus-circle" aria-hidden="true">ジャンル登録</i>
@@ -37,7 +37,7 @@
       
         <!-- サンプルID,サンプル名,説明文,ジャンル -->
       <table border="1" width="900"  height="280">
-              <!-- ID,画像,名前,説明文,ジャンル,削除△ -->
+              <!-- ID,画像,名前,説明文,ジャンル,削除 -->
         <thead class="example" align="center">
           <tr>
             <th style="padding: 10px 0;">ID</th>
@@ -45,8 +45,8 @@
             <th style="padding: 10px 0;">サンプルタイトル</th>
             <th style="padding: 10px 0;">説明文</th>
             <th style="padding: 10px 0;">ジャンル</th>
+            <th style="padding: 10px 0;">総合評価</th>
             <th style="padding: 10px 0;">削除</th>
-            <!--<th style="padding: 10px 0;">評価</th>-->
           </tr>
         </thead>
               <!-- サンプル一覧表示 -->
@@ -77,6 +77,15 @@
               <!-- ジャンル -->
             <td>
               <%= sample_illustration.genre.name %>
+            </td>
+              <!-- 総合評価 -->
+            <td>
+              <% if sample_illustration.reviews.average(:star).present? %>
+                <%= sample_illustration.reviews.average(:star).round(2) %>
+              <% else %>
+                  <!-- 非表示にするコンテンツ（例: "評価なし"など）-->
+                未評価
+              <% end %>
             </td>
               <!-- 削除ボタン -->
             <td>

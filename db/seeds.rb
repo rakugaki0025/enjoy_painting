@@ -20,7 +20,7 @@ genres.each do |name|
   Genre.create!(name: name)
 end
 
-
+## Admin.create!
 
 first_customer = Customer.create!(                                                                 
  :email=>"abc@007",                                                             
