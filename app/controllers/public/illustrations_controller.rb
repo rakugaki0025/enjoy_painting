@@ -52,6 +52,17 @@ class Public::IllustrationsController < ApplicationController
       
   end
   
+    ## 会員イラスト投稿_一覧画面 illustrations_path
+  def user
+      
+        ## 全イラストデータ取得
+      @illustrations = Illustration.all
+      
+        ## アソシエーションを利用して,"customer"を取得_作成日時の降順に並び替え,6件ずつ表示
+      @illustrations = current_customer.illustration.order(created_at: :desc).page(params[:page]).per(6)
+      
+  end
+  
   
     ## イラスト_投稿_詳細画面 illustration_path
   def show

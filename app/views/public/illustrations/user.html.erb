@@ -1,0 +1,90 @@
+<!-- Enjoy_view_public_illustrations_user -->
+  
+  
+  <div class="row justify-content-center">
+        <!-- 色指定のスタイル -->
+      <style>
+       .example {
+        background-color: #F0F0F0;
+        width:250px;
+        height:30px;
+       }
+      </style>
+        <!-- イラスト投稿画像一覧,アイコン -->
+      <table width="950"  height="50">
+        <tr>
+            <!-- イラスト投稿画像一覧 -->
+          <td>
+            <h4 class="example" align="center">投稿画像一覧</h4>
+          </td>
+            <!-- イラスト新規登録画面へ,アイコン済 -->
+          <td style="text-align: center;">
+            <%= link_to new_illustration_path, class: 'nav-link text-black' do %>
+              <i class="fas fa-pen-nib" aria-hidden="true">投稿する</i>
+            <% end %>
+          </td>
+        </tr>
+      </table>
+      
+    <div class="mx-auto auto col-11">
+      
+        <!-- サンプルID,サンプル名,説明文,ジャンル -->
+      <table border="1" width="900"  height="280">
+              <!-- ID,画像,名前,説明文,ジャンル,削除 -->
+        <thead class="example" align="center">
+          <tr>
+            <th>ID</th>
+            <th>アイコン</th>
+            <th>投稿画像</th>
+            <th>タイトル</th>
+            <th>説明文</th>
+            <th>ジャンル</th>
+            <th>コメント数</th>
+          </tr>
+        </thead>
+              <!-- イラスト一覧表示〇 -->
+        <% @illustrations.each do |illustration| %>
+              <!-- ID,画像,名前,説明文,ジャンル,削除 -->
+        <tbody>
+          <tr>
+              <!-- イラストナンバー -->
+            <td style="text-align: center;">
+              <%= illustration.id %>
+            </td>
+              <!-- 投稿者アイコン -->
+            <td style="text-align: center;">
+              <%= image_tag illustration.customer.get_profile_image(50,50) if illustration.customer.present? %>
+            </td>
+              <!-- イラスト画像 -->
+            <td style="text-align: center;">
+              <%= link_to illustration_path(illustration.id) do %>
+                <%= image_tag illustration.get_image, style: "max-width:180px;" %>
+              <% end %>
+            </td>
+              <!-- イラスト名 -->
+            <td style="text-align: center;">
+              <%= link_to illustration_path(illustration.id) do %>
+                <%= illustration.name %>
+              <% end %>
+            </td>
+              <!-- 説明文 -->
+            <td style="text-align: center;">
+              <%= illustration.introduction %>
+            </td>
+              <!-- ジャンル -->
+            <td style="text-align: center;">
+              <%= illustration.genre.name %>
+            </td>
+              <!-- コメント数 -->
+            <td style="text-align: center;">
+              <%= link_to "#{illustration.comments.count} 件数", illustration_path(illustration.id) %>
+            </td>
+          </tr>
+        </tbody>
+            
+        <% end %>
+        
+      </table>
+      <%= paginate @illustrations %>
+    </div>
+  </div>

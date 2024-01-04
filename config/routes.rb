@@ -68,7 +68,12 @@ Rails.application.routes.draw do
     end
     
 ### public_illustrations
-      
+    
+      ## いいねブックマーク用
+      ## 取得 '実際の表示アドレス' => "指定のコントローラー#アクション", as: "名前つきルート"
+    get 'illustrations/user' => "illustrations#user", as: :user_illustration
+    
+    
       ## show    : 顧客_投稿_詳細画面
       ## new     : 顧客_投稿_新規登録画面
       ## create  : 顧客_投稿_新規情報登録する
@@ -78,7 +83,8 @@ Rails.application.routes.draw do
       ## destroy : 顧客_投稿_削除する(単体)
       ## customer ディレクトリ ルーティング自動生成 onlyで(限定生成)
     resources :illustrations, only: [:show, :new, :index, :create, :edit, :update, :destroy] do
-      
+    
+    
     ### public_nice
     
         ## destroy  : 取り消しする
