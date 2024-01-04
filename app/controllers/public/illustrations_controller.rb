@@ -54,12 +54,15 @@ class Public::IllustrationsController < ApplicationController
   
     ## 会員イラスト投稿_一覧画面 illustrations_path
   def user
-      
+    
         ## 全イラストデータ取得
       @illustrations = Illustration.all
       
-        ## アソシエーションを利用して,"customer"を取得_作成日時の降順に並び替え,6件ずつ表示
-      @illustrations = current_customer.illustration.order(created_at: :desc).page(params[:page]).per(6)
+        ## 作成日時の降順に並び替え,指定されたページ番号のデータを取得し,表示数を6に指定
+      @illustrations = Illustration.order(created_at: :desc).page(params[:page]).per(6)
+      
+        ## customerとparamsが一致したデータを検索,その後,作成日時の降順に並び替え表示数を6に指定
+      @illustrations = Illustration.where(customer_id: params[:id]).order(created_at: :desc).page(params[:page]).per(6)
       
   end
   
@@ -69,6 +72,7 @@ class Public::IllustrationsController < ApplicationController
       
         ## 投稿した sample_illustoration :id を取得するレコード
       @illustration = Illustration.find(params[:id])
+      
         ## コメントを定義
       @comment = Comment.new
       

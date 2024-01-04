@@ -71,7 +71,7 @@ Rails.application.routes.draw do
     
       ## いいねブックマーク用
       ## 取得 '実際の表示アドレス' => "指定のコントローラー#アクション", as: "名前つきルート"
-    get 'illustrations/user' => "illustrations#user", as: :user_illustration
+    get 'illustrations/user/:id' => "illustrations#user", as: :user_illustration
     
     
       ## show    : 顧客_投稿_詳細画面

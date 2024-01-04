@@ -33,7 +33,7 @@
           <tr>
             <th>投稿者</th>
               <td>
-                <%= link_to user_illustration_path(@illustration.id) do %>
+                <%= link_to user_illustration_path(@illustration.customer_id) do %>
                   <%= image_tag @illustration.customer.get_profile_image(100,100) if @illustration.customer.present? %>
                 <% end %>
               </td>
