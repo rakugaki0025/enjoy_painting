@@ -9,7 +9,6 @@
       <h2>
         <%= @customer.errors.count %>件数のエラーが発生しました。
       </h2>
-      
       <ul>
         <% @customer.errors.full_messages.each do |message| %>
           <li><%= message %></li>
@@ -29,7 +28,7 @@
                <!-- form_with model: @コントローラーeditの情報, url: 遷移先のルーティング_path, method: :ルーティングのメソッド -->
     <%= form_with model: @customer, url: information_update_path, method: :patch do |f| %>
       
-        <!-- 会員情報編集〇 -->
+        <!-- 会員情報編集 -->
       <table width="400"  height="300">
         
         <h4 class="example" align="center">会員情報編集</h4>
