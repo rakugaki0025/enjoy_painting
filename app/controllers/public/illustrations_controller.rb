@@ -2,7 +2,7 @@ class Public::IllustrationsController < ApplicationController
     ## Enjoy_cntroller_admin_illustration
     
     ## ログインしていないユーザーの実行
-    before_action :authenticate_customer!, only: [:new, :create, :edit, :update, :destroy]
+  before_action :authenticate_customer!, only: [:new, :create, :edit, :update, :destroy]
   
     ## "edit"と"update"のアクションの実行前に、
     ## "is_matching_login_user"を実行させる記述
