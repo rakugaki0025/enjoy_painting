@@ -40,28 +40,28 @@
           <!-- 顧客情報欄 -->
         <tbody>
             <!-- アイコン -->
-          <tr>
+          <tr align="center">
             <th>アイコン</th>
               <td align="center">
                 <%= image_tag @customer.get_profile_image(100,100) %>
               </td>
           </tr>
             <!-- ニックネーム -->
-          <tr>
+          <tr align="center">
             <th>ニックネーム</th>
               <td>
                 <%= @customer.nickname %>
               </td>
           </tr>
             <!-- メールアドレス -->
-          <tr>
+          <tr align="center">
             <th>メールアドレス</th>
               <td>
                 <%= @customer.email %>
               </td>
           </tr>
             <!-- 氏名 -->
-          <tr>
+          <tr align="center">
             <th>氏名</th>
               <td>
                 <%= @customer.last_name %>
@@ -69,7 +69,7 @@
        　　     </td>
           </tr>
             <!-- カナ -->
-          <tr>
+          <tr align="center">
             <th>カナ</th>
               <td>
                 <%= @customer.last_name_kana %>
@@ -77,16 +77,14 @@
        　　     </td>
           </tr>
             <!-- 誕生日 -->
-          <tr>
+          <tr align="center">
             <th>誕生日</th>
               <td>
                 <%= @customer.birth_day %>
               </td>
           </tr>
         </tbody>
-          
       </table>
-      
           <!-- いいね一覧△ -->
       <table>
         <tr style="height: 100px;">
