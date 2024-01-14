@@ -5,7 +5,7 @@ class Public::IllustrationsController < ApplicationController
   before_action :authenticate_customer!, only: [:new, :create, :edit, :update, :destroy]
     ## "edit"と"update"のアクションの実行前に、
     ## "is_matching_login_user"を実行させる記述
-  #before_action :is_matching_login_customer, only: [:edit, :update]
+  before_action :is_matching_login_customer, only: [:edit, :update]
   
     ## イラスト投稿_新規登録画面 new_illustration_path
   def new
@@ -61,13 +61,10 @@ class Public::IllustrationsController < ApplicationController
   
     ## イラスト_投稿_詳細画面 illustration_path
   def show
-      
         ## 投稿した sample_illustoration :id を取得するレコード
       @illustration = Illustration.find(params[:id])
-      
         ## コメントを定義
       @comment = Comment.new
-      
   end
   
     ## イラスト投稿_編集画面 edit__illustration_path
@@ -136,22 +133,17 @@ class Public::IllustrationsController < ApplicationController
     ## 一致しなければhomsページに移動する処理
     ## アクセス制限の記述_private以下に記述
   def is_matching_login_customer
-      
-        # ログインしていないユーザーの場合はルートパスにリダイレクト
-      # unless current_customer
-      #   redirect_to root_path
-      #   return
-      # end
-      
-      
-      # illustration = Illustration.find(params[:id])
-      # unless illustration.customer == current_customer
-      #   redirect_to root_path, alert: "ログイン中の顧客と一致しないためアクセスできません"
-      # end
-      
+          ## イラストモデルから対象のレコードの取得
+      illustration = Illustration.find(params[:id])
+          ## イラスト所有者とログイン中の会員が一致するか確認
+      unless illustration.customer == current_customer
+          ## ログイン中の会員でない場合ホーム画面へ遷移する
+        redirect_to root_path, alert: "ログイン中の顧客と一致しないためアクセスできません"
+        
+      end
+          ## customerに代入 = イラストの所有者である customer を取得
       customer = illustration.customer
-        ## ログイン中,ユーザーid,取得
-      # unless customer == current_customer
+          ## 特定のイラストレーションにアクセスする際に、正しいユーザーでログインしているかどうかを確認
       unless current_customer && customer == current_customer
           ## 遷移先 homesへ
         redirect_to root_path
