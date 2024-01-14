@@ -5,7 +5,7 @@ class Public::IllustrationsController < ApplicationController
   before_action :authenticate_customer!, only: [:new, :create, :edit, :update, :destroy]
     ## "edit"と"update"のアクションの実行前に、
     ## "is_matching_login_user"を実行させる記述
-  before_action :is_matching_login_customer, only: [:edit, :update]
+  #before_action :is_matching_login_customer, only: [:edit, :update]
   
     ## イラスト投稿_新規登録画面 new_illustration_path
   def new
