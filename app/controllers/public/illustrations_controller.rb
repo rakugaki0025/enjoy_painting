@@ -3,19 +3,16 @@ class Public::IllustrationsController < ApplicationController
     
     ## ログインしていないユーザーの実行
   before_action :authenticate_customer!, only: [:new, :create, :edit, :update, :destroy]
-  
     ## "edit"と"update"のアクションの実行前に、
     ## "is_matching_login_user"を実行させる記述
   before_action :is_matching_login_customer, only: [:edit, :update]
   
     ## イラスト投稿_新規登録画面 new_illustration_path
   def new
-     
         ## インスタンス変数 = モデル名 空オブジェクト 新規作成
         ## 左の箱に右を格納
         ## インスタンス名はなんでもいい,空のオブジェクトもなんでもいい
       @illustration = Illustration.new
-      
   end
   
     ## イラスト_投稿_新規情報登録する illustration_path
@@ -40,7 +37,6 @@ class Public::IllustrationsController < ApplicationController
       
   end
   
-  
     ## イラスト投稿_一覧画面 illustrations_path
   def index
       
@@ -54,18 +50,14 @@ class Public::IllustrationsController < ApplicationController
   
     ## 会員イラスト投稿_一覧画面 illustrations_path
   def user
-    
         ## 全イラストデータ取得
       @illustrations = Illustration.all
-      
         ## 作成日時の降順に並び替え,指定されたページ番号のデータを取得し,表示数を6に指定
       @illustrations = Illustration.order(created_at: :desc).page(params[:page]).per(6)
-      
         ## customerとparamsが一致したデータを検索,その後,作成日時の降順に並び替え表示数を6に指定
       @illustrations = Illustration.where(customer_id: params[:id]).order(created_at: :desc).page(params[:page]).per(6)
       
   end
-  
   
     ## イラスト_投稿_詳細画面 illustration_path
   def show
@@ -78,69 +70,41 @@ class Public::IllustrationsController < ApplicationController
       
   end
   
-  
     ## イラスト投稿_編集画面 edit__illustration_path
   def edit
-      
-      ## アクセス制限の記述
-      ## is_matching_login_customer
-      
-        ## 会員のレコードを取得
-      # @customer = Customer.find(params[:id])
-      
         ## 投稿した sample_illustoration :id を取得するレコード
       @illustration = Illustration.find(params[:id])
-      
   end
-  
   
     ## イラスト_投稿_情報更新する /illustration/:id
   def update
-    
-        ## アクセス制限の記述
-      ## is_matching_login_customer
-      
-      ## 会員のレコードを取得
-    ## @customer = Customer.find(params[:id])
-       
         ## インスタンス変数 = 商品_find 探す:単数でどれか一つ
         ## レコードを一つ取得？
     @illustration = Illustration.find(params[:id])
-              
         ## サンプル情報 アップデート
     if  @illustration.update(illustration_params)
-              
         ## flash[:notice] は 投稿が成功した時だけ表示
         ## エラーメッセージでは使わない
       flash[:notice] = "変更を保存しました。"
-              
         ## インスタンス変数 = ユーザー_find 探す:単数でどれか一つ  user_path(@user.id)
         ## 遷移先 '/customer' customer_path(@user.id)
       redirect_to illustration_path(@illustration.id)
-              
     else
-      
         ## アクションを実行しない
       render :edit
-        
     end
   end
   
   
     ## イラスト_画像_削除する(単体) illustration/:id
   def destroy
-      
         ## データ(レコード)を一件取得
       @illustration = Illustration.find(params[:id])
-        
         ## データ（レコード）を削除
       @illustration.destroy
-      
         ## イラスト一覧画面へリダイレクト
       redirect_to illustrations_path
-        
   end
-  
   
   
   private
@@ -186,16 +150,12 @@ class Public::IllustrationsController < ApplicationController
       # end
       
       customer = illustration.customer
-        
         ## ログイン中,ユーザーid,取得
       # unless customer == current_customer
       unless current_customer && customer == current_customer
-        
           ## 遷移先 homesへ
         redirect_to root_path
-        
       end
-      
   end
   
   
