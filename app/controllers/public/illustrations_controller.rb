@@ -115,19 +115,6 @@ class Public::IllustrationsController < ApplicationController
       params.require(:illustration).permit(:genre_id, :name, :introduction, :image)
   end
   
-  #   ## ログインしていないユーザーを実行
-  # def authenticate_customer!
-  #     # ログインしている場合は実行しない
-  #   if (!admin_signed_in? && (customer_signed_in? && (@sample_illustration.nil? || !@sample_illustration.reviews.exists?(customer_id: current_customer.id))))
-      
-  #     return
-      
-  #   end
-    
-  #     redirect_to root_path, alert: "ログインしてください"
-      
-  # end
-  
   
     ## ログインしているユーザーのidとURLに含まれるidを比較し、
     ## 一致しなければhomsページに移動する処理
@@ -139,7 +126,6 @@ class Public::IllustrationsController < ApplicationController
       unless illustration.customer == current_customer
           ## ログイン中の会員でない場合ホーム画面へ遷移する
         redirect_to root_path, alert: "ログイン中の顧客と一致しないためアクセスできません"
-        
       end
           ## customerに代入 = イラストの所有者である customer を取得
       customer = illustration.customer
@@ -149,7 +135,6 @@ class Public::IllustrationsController < ApplicationController
         redirect_to root_path
       end
   end
-  
   
 end
 
