@@ -33,8 +33,8 @@
         <p style="margin-bottom: 10px;">会員でない方も閲覧はできますが、投稿には会員登録が必要になります。</p>
       </div>
     </div>
+      <!-- ジャンル検索,キーワード -->
     <div class="row justify-content-center">
-        <!-- ジャンル検索,キーワード -->
       <div class="col-md-6">
         <%= form_with url: root_url, method: :get, local: true do |f| %>
             <!-- ジャンル検索 -->
@@ -143,5 +143,5 @@
       <%= paginate @illustrations %>
     </div>
   </div>
-    
-    
+  
+  
