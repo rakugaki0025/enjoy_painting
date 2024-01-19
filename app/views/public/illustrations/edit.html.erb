@@ -3,13 +3,13 @@
   
   <div class="row">
     <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-5">
-      <!-- エラーメッセージ -->
-    <div class="row justify-content-center" style="padding: 10px 0;">
-      <% if @illustration.errors.any? %>
-          <!-- エラーカウント -->
-        <h2>
-          <%= @illustration.errors.count %>件数のエラーが発生しています。
-        </h2>
+        <!-- エラーメッセージ -->
+      <div class="row justify-content-center" style="padding: 10px 0;">
+        <% if @illustration.errors.any? %>
+            <!-- エラーカウント -->
+          <h2>
+            <%= @illustration.errors.count %>件数のエラーが発生しています。
+          </h2>
           <ul>
             <% @illustration.errors.full_messages.each do |message| %>
               <li>
@@ -17,9 +17,9 @@
               </li>
             <% end %>
           </ul>
-      <% end %>
-    </div>
-        <!-- 色指定のスタイル -->
+        <% end %>
+      </div>
+          <!-- 色指定のスタイル -->
       <style>
        .example {
         background-color: #F0F0F0;
@@ -28,51 +28,46 @@
        }
       </style>
       
-    <%= form_with model: @illustration, url: illustration_path(@illustration[:id]), method: :patch do |illustration| %>
-      
-      <table width="400"  height="300">
-            
-        <h4 class="example" align="center">イラスト編集</h4>
-          <!-- イラスト画像 -->
-        <tr>
-          <th>イラスト画像</th>
+      <%= form_with model: @illustration, url: illustration_path(@illustration[:id]), method: :patch do |illustration| %>
+        <table width="400"  height="300">
+          <h4 class="example" align="center">イラスト編集</h4>
+            <!-- イラスト画像 -->
+          <tr>
+            <th>イラスト画像</th>
+              <td>
+                <%= illustration.file_field :image, accept: "image/*" %>
+              </td>
+          </tr>
+            <!-- タイトル -->
+          <tr>
+            <th>タイトル</th>
+              <td>
+                <%= illustration.text_field :name %>
+              </td>
+          </tr>
+            <!-- 説明文 -->
+          <tr>
+            <th>説明文</th>
+              <td>
+                <%= illustration.text_field :introduction %>
+              </td>
+          </tr>
+            <!-- ジャンル -->
+          <tr>
+            <th>ジャンル</th>
+              <td>
+                <!--%= illustration.text_field :genre_id, value: @illustration.genre.name %-->
+                <%= illustration.collection_select :genre_id, Genre.all, :id, :name %>
+              </td>
+          </tr>
+            <!-- 新規登録 -->
+          <tr>
             <td>
-              <%= illustration.file_field :image, accept: "image/*" %>
+              <%= illustration.submit '変更を保存', class:"btn btn-success" %>
             </td>
-        </tr>
-          <!-- タイトル -->
-        <tr>
-          <th>タイトル</th>
-            <td>
-              <%= illustration.text_field :name %>
-            </td>
-        </tr>
-          <!-- 説明文 -->
-        <tr>
-          <th>説明文</th>
-            <td>
-              <%= illustration.text_field :introduction %>
-            </td>
-        </tr>
-          <!-- ジャンル -->
-        <tr>
-          <th>ジャンル</th>
-            <td>
-              <!--%= illustration.text_field :genre_id, value: @illustration.genre.name %-->
-              <%= illustration.collection_select :genre_id, Genre.all, :id, :name %>
-            </td>
-        </tr>
-          <!-- 新規登録 -->
-        <tr>
-          <td>
-            <%= illustration.submit '変更を保存', class:"btn btn-success" %>
-          </td>
-        </tr>
-                  
-      </table>
-              
-    <% end %>
-            
+          </tr>
+        </table>
+      <% end %>
     </div>
   </div>
   
