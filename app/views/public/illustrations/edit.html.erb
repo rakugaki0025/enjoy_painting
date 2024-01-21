@@ -19,7 +19,7 @@
           </ul>
         <% end %>
       </div>
-          <!-- 色指定のスタイル -->
+        <!-- 色指定のスタイル -->
       <style>
        .example {
         background-color: #F0F0F0;
@@ -34,31 +34,30 @@
             <!-- イラスト画像 -->
           <tr>
             <th>イラスト画像</th>
-              <td>
-                <%= illustration.file_field :image, accept: "image/*" %>
-              </td>
+            <td>
+              <%= illustration.file_field :image, accept: "image/*" %>
+            </td>
           </tr>
             <!-- タイトル -->
           <tr>
             <th>タイトル</th>
-              <td>
-                <%= illustration.text_field :name %>
-              </td>
+            <td>
+              <%= illustration.text_field :name %>
+            </td>
           </tr>
             <!-- 説明文 -->
           <tr>
             <th>説明文</th>
-              <td>
-                <%= illustration.text_field :introduction %>
-              </td>
+            <td>
+              <%= illustration.text_field :introduction %>
+            </td>
           </tr>
             <!-- ジャンル -->
           <tr>
             <th>ジャンル</th>
-              <td>
-                <!--%= illustration.text_field :genre_id, value: @illustration.genre.name %-->
-                <%= illustration.collection_select :genre_id, Genre.all, :id, :name %>
-              </td>
+            <td>
+              <%= illustration.collection_select :genre_id, Genre.all, :id, :name %>
+            </td>
           </tr>
             <!-- 新規登録 -->
           <tr>
