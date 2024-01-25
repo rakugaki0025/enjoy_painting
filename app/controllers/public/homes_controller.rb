@@ -30,7 +30,6 @@ class Public::HomesController < ApplicationController
         
   end
   
-  
     ## 顧客_アバウトページ_about_path
   def about
   
