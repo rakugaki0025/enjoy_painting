@@ -92,7 +92,6 @@ class Public::IllustrationsController < ApplicationController
     end
   end
   
-  
     ## イラスト_画像_削除する(単体) illustration/:id
   def destroy
         ## データ(レコード)を一件取得
@@ -102,7 +101,6 @@ class Public::IllustrationsController < ApplicationController
         ## イラスト一覧画面へリダイレクト
       redirect_to illustrations_path
   end
-  
   
   private
   
@@ -115,7 +113,7 @@ class Public::IllustrationsController < ApplicationController
       params.require(:illustration).permit(:genre_id, :name, :introduction, :image)
   end
   
-  
+
     ## ログインしているユーザーのidとURLに含まれるidを比較し、
     ## 一致しなければhomsページに移動する処理
     ## アクセス制限の記述_private以下に記述
