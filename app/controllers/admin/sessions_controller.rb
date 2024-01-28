@@ -29,9 +29,9 @@ class Admin::SessionsController < Devise::SessionsController
   # end
   
   
-          ## sign_in と sign_up 注意
-          ## ログイン後に遷移する場所
-          ## ここでのresource はログイン,ログアウト時でしか使われない
+    ## sign_in と sign_up 注意
+    ## ログイン後に遷移する場所
+    ## ここでのresource はログイン,ログアウト時でしか使われない
   def after_sign_in_path_for(resource)
           ## /homes, top画面に遷移したい
           ## ここでのresource はログイン,ログアウト時でしか使われない
@@ -39,7 +39,7 @@ class Admin::SessionsController < Devise::SessionsController
       admin_sample_illustration_index_path
   end
   
-          ## ログアウト後に遷移する場所
+    ## ログアウト後に遷移する場所
   def after_sign_out_path_for(resource)
           ## new_admin_session = homes/topに遷移
       new_admin_session_path
