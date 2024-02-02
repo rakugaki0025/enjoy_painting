@@ -73,13 +73,12 @@ class Public::SessionsController < Devise::SessionsController
         ## 処理内容4】 アクティブでない会員に対する処理
         ## 既に退会済みの場合
        if @customer.is_active == false
-    
+         
         # 退会後の処理を行う
         # ログイン処理
         ## ログイン成功時のリダイレクト先を指定（例: ホーム画面）
         # redirect_to new_customer_session_path
       redirect_to new_customer_registration_path
-      
       
         # 退会済みの場合のエラーメッセージを表示してログイン画面に戻る
      flash.now[:alert] = "退会済みのユーザーです。"
