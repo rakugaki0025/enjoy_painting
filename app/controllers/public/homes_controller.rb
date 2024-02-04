@@ -35,5 +35,5 @@ class Public::HomesController < ApplicationController
   
   end
   
-  
 end
+
