@@ -1,7 +1,6 @@
 class Admin::SampleIllustrationController < ApplicationController
     ## Enjoy_cntroller_admin_sample_illustration
     
-    
     ## 管理者_投稿_新規登録画面 new_admin_sample_illustration_path
   def new
      
@@ -38,7 +37,6 @@ class Admin::SampleIllustrationController < ApplicationController
       
   end
   
-  
     ## 管理者_投稿_一覧画面 admin_sample_illustration_path
   def index
       
@@ -50,7 +48,6 @@ class Admin::SampleIllustrationController < ApplicationController
       
   end
   
-  
     ## 管理者_投稿_詳細画面 admin_sample_illustration_path
   def show
       
@@ -58,7 +55,6 @@ class Admin::SampleIllustrationController < ApplicationController
       @sample_illustration = SampleIllustration.find(params[:id])
       
   end
-  
   
     ## 管理者_投稿_編集画面 edit_admin_sample_illustration_path
   def edit
@@ -97,7 +93,6 @@ class Admin::SampleIllustrationController < ApplicationController
     end
   end
   
-  
     ## 管理者_画像_削除する(単体) admin/sample_illustration/:id
   def destroy
       
@@ -111,8 +106,6 @@ class Admin::SampleIllustrationController < ApplicationController
       redirect_to '/admin/sample_illustration'
         
   end
-  
-  
   
   private
   

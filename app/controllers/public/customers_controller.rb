@@ -8,7 +8,6 @@ class Public::CustomersController < ApplicationController
         ## "is_matching_login_user"を実行させる記述
   ## before_action :is_matching_login_customer, only: [:edit, :update]
   
-  
         ## いいね(ブックマーク機能)
   def liked_illustrations
         ## いいね呼び出し_customer経由で呼び出し
@@ -116,7 +115,6 @@ class Public::CustomersController < ApplicationController
           
       end
   end
-  
   
   private
   
