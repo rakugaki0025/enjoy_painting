@@ -29,7 +29,6 @@ class Public::SessionsController < Devise::SessionsController
           ## public, root_to = homes/topに遷移
       root_path
           
-          
   end
   
           ## ゲストログインを定義
