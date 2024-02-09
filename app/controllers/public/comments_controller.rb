@@ -17,12 +17,10 @@ class Public::CommentsController < ApplicationController
      else
           ## 保存できなかった場合,showへ遷移
         redirect_to illustration_path(illustration.id), notice: "コメントが空です。"
-          
         
      end
       
   end
-  
   
     ## コメント削除
   def destroy
@@ -46,7 +44,6 @@ class Public::CommentsController < ApplicationController
         end
       
   end
-  
   
   private
   
