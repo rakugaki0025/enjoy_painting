@@ -113,7 +113,6 @@ class Public::IllustrationsController < ApplicationController
       params.require(:illustration).permit(:genre_id, :name, :introduction, :image)
   end
   
-
     ## ログインしているユーザーのidとURLに含まれるidを比較し、
     ## 一致しなければhomsページに移動する処理
     ## アクセス制限の記述_private以下に記述
