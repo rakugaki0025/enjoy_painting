@@ -29,7 +29,6 @@ class Public::ReviewsController < ApplicationController
       
   end
   
-  
     ## イラスト_投稿_情報更新する /illustration/:id
   def update
     
@@ -59,7 +58,6 @@ class Public::ReviewsController < ApplicationController
     end
   end
   
-  
     ## イラスト_画像_削除する(単体) illustration/:id
   def destroy
       
@@ -73,7 +71,6 @@ class Public::ReviewsController < ApplicationController
       redirect_to illustrations_path
         
   end
-  
   
   private
   
