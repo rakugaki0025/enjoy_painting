@@ -22,7 +22,6 @@ class Public::SessionsController < Devise::SessionsController
       root_path
           
   end
-  
           ## ログアウト後に遷移する場所
   def after_sign_out_path_for(resource)
           
@@ -30,7 +29,6 @@ class Public::SessionsController < Devise::SessionsController
       root_path
           
   end
-  
           ## ゲストログインを定義
   def guest_sign_in
     
@@ -52,7 +50,6 @@ class Public::SessionsController < Devise::SessionsController
       redirect_to root_path, notice: 'ゲストユーザーとしてログインしました。'
     
   end
-  
     ## 退会処理後のログインの規制
   private
   
