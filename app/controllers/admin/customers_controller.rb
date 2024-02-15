@@ -62,7 +62,6 @@ class Admin::CustomersController < ApplicationController
   
   end
   
-  
   private
   
         ## 商品登録情報編集画面等で使用…
