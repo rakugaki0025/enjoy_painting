@@ -3,10 +3,6 @@ class Public::HomesController < ApplicationController
   
     ## 顧客_トップページ_root_path
   def top
-        ## イラストデータを入れる
-      @illustration = Illustration.new
-        ## 全イラストデータ取得
-      @illustrations = Illustration.all
         ## イラストに紐づく会員情報取得
       @illustrations = Illustration.includes(:customer).all
         ## "genre_id"が存在_"params:genre_id"と一致,取得__present?が大事
@@ -32,7 +28,6 @@ class Public::HomesController < ApplicationController
   
     ## 顧客_アバウトページ_about_path
   def about
-  
   end
   
 end
