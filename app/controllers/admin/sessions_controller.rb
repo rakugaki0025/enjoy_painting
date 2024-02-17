@@ -28,7 +28,6 @@ class Admin::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
   
-  
     ## sign_in と sign_up 注意
     ## ログイン後に遷移する場所
     ## ここでのresource はログイン,ログアウト時でしか使われない
