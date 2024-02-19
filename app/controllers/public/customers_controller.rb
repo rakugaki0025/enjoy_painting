@@ -6,21 +6,18 @@ class Public::CustomersController < ApplicationController
         ## いいね呼び出し_customer経由で呼び出し
       @liked_illustrations = current_customer.nice_illustrations.page(params[:page]).per(6)
   end
-  
         ## 顧客のマイページ
   def show
         ## ログイン中のユーザーレコード取得
         ## current_(models名)
       @customer = current_customer
   end
-  
         ## 顧客の登録情報編集画面
   def edit
         ## ログイン中のユーザーレコード取得
         ## current_(models名)
       @customer = current_customer
   end
-     
         ## 顧客の登録情報更新 information_update_path
   def update
         ## インスタンス変数 = ユーザー_find 探す:単数でどれか一つ
@@ -89,20 +86,6 @@ class Public::CustomersController < ApplicationController
         ## permit  requireで絞り込んだデータの中から、保存を許可するカラムを指定
       params.require(:customer).permit(:last_name, :first_name, :last_name_kana, :first_name_kana, :nickname, :birth_day, :email, :profile_image )
   end
-  
-    
-    ## ログインしていないユーザーを実行
-  # def authenticate_customer!
-    
-  #     ## adminの場合は実行しない記述
-  #   if current_customer && !current_customer.admin?
-      
-  #     redirect_to root_path, alert: "ログインしてください"
-      
-  #   end
-    
-  # end
-  
   
 end
 
