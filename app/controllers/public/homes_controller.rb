@@ -1,5 +1,5 @@
 class Public::HomesController < ApplicationController
-  ## enjoy_homes_controller_pablic
+    ## enjoy_homes_controller_pablic
   
     ## 顧客_トップページ_root_path
   def top
@@ -23,9 +23,7 @@ class Public::HomesController < ApplicationController
       @sample_illustrations = @sample_illustrations.where('name LIKE(?)', "%#{params[:name]}%") if params[:name].present?
         ## 作成日時の降順に並び替え,6件ずつ表示
       @sample_illustrations = @sample_illustrations.order(created_at: :desc).page(params[:page]).per(6)
-        
   end
-  
     ## 顧客_アバウトページ_about_path
   def about
   end

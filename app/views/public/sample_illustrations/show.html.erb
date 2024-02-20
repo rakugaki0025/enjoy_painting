@@ -4,7 +4,6 @@
   <div>
     <%= flash[:notice] %>
   </div>
-  
     <!-- 商品画像,商品名,商品説明,税込価格 -->
   <div class="row">
     <div class="mx-auto auto col-md-12">
@@ -18,7 +17,6 @@
       </style>
         <!-- サンプル画像,サンプル名,説明文,ジャンル -->
       <h4 class="example" align="center">サンプル画像詳細</h4>
-      
       <table class="w-75 mx-auto">
           <!-- サンプル詳細,総合評価 -->
         <tbody>
@@ -87,7 +85,6 @@
         </tbody>
       </table>
     </div>
-    
         <!-- 誰もログインしていない時非表示にし、且つ、会員がログインした時は表示する記述 -->
       <% if !admin_signed_in? && (customer_signed_in? && (@sample_illustration.nil? || !@sample_illustration.reviews.exists?(customer_id: current_customer.id))) %>
           <!-- サンプルがある、且つ、管理者がいない、且つ、会員がいない、または、サンプルに会員の評価がない、のどちらかの条件を満たした場合、trueを返す -->
@@ -138,4 +135,5 @@
       <% end %>
     </div>
   </div>
+  
   
