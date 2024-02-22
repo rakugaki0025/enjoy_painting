@@ -88,7 +88,6 @@
         <!-- 誰もログインしていない時非表示にし、且つ、会員がログインした時は表示する記述 -->
       <% if !admin_signed_in? && (customer_signed_in? && (@sample_illustration.nil? || !@sample_illustration.reviews.exists?(customer_id: current_customer.id))) %>
           <!-- サンプルがある、且つ、管理者がいない、且つ、会員がいない、または、サンプルに会員の評価がない、のどちらかの条件を満たした場合、trueを返す -->
-        <%# if @sample_illustration && !admin_signed_in? && (!customer_signed_in? || !@sample_illustration.reviews.exists?(customer_id: current_customer.id)) %>
         <% if @sample_illustration && !admin_signed_in? && customer_signed_in? && !@sample_illustration.reviews.exists?(customer_id: current_customer.id) %>
           <div class="mx-auto auto col-md-12 my-5">
             <%= form_with model: Review.new, url: sample_illustration_reviews_path(@sample_illustration.id), local:true do |star| %>
