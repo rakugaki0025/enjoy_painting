@@ -38,7 +38,6 @@ class Public::CustomersController < ApplicationController
   end
         ## 顧客の退会画面
   def confirm
-      
         ## ログイン中のユーザーレコード取得
         ## current_(models名)
       @customer = current_customer
@@ -73,7 +72,6 @@ class Public::CustomersController < ApplicationController
             flash[:alert] = "退会済みのユーザーです。"
               ## true の場合 ログインページへ遷移
             redirect_to new_customer_sessions
-          
       end
   end
   
