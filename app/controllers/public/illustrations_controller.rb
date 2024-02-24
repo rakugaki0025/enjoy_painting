@@ -6,7 +6,6 @@ class Public::IllustrationsController < ApplicationController
     ## "edit"と"update"のアクションの実行前に、
     ## "is_matching_login_user"を実行させる記述
   before_action :is_matching_login_customer, only: [:edit, :update]
-  
     ## イラスト投稿_新規登録画面 new_illustration_path
   def new
         ## インスタンス変数 = モデル名 空オブジェクト 新規作成
@@ -14,19 +13,14 @@ class Public::IllustrationsController < ApplicationController
         ## インスタンス名はなんでもいい,空のオブジェクトもなんでもいい
       @illustration = Illustration.new
   end
-  
     ## イラスト_投稿_新規情報登録する illustration_path
   def create
-      
           ## genre_id, name, introduction, image 格納
       @illustration = Illustration.new(illustration_params)
-      
           ## イラストを呼び出す記述
       @illustration.customer = current_customer
-      
           ## 記録保存が成功すれば投稿一覧へ
      if @illustration.save
-         
           ## 遷移先 イラスト投稿_詳細画面
         redirect_to illustration_path(@illustration.id)
           
