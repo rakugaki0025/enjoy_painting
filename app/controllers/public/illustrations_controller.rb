@@ -23,12 +23,9 @@ class Public::IllustrationsController < ApplicationController
      if @illustration.save
           ## 遷移先 イラスト投稿_詳細画面
         redirect_to illustration_path(@illustration.id)
-          
      else ## 保存できなかった場合, :画像投稿フォーム再表示
         render :new
-          
      end
-      
   end
   
     ## イラスト投稿_一覧画面 illustrations_path
