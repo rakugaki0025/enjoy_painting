@@ -27,18 +27,13 @@ class Public::IllustrationsController < ApplicationController
         render :new
      end
   end
-  
     ## イラスト投稿_一覧画面 illustrations_path
   def index
-      
         ## 全イラストデータ取得
       @illustrations = Illustration.all
-      
         ## アソシエーションを利用して,"customer"を取得_作成日時の降順に並び替え,6件ずつ表示
       @illustrations = current_customer.illustration.order(created_at: :desc).page(params[:page]).per(6)
-      
   end
-  
     ## 会員イラスト投稿_一覧画面 illustrations_path
   def user
         ## 全イラストデータ取得
@@ -47,9 +42,7 @@ class Public::IllustrationsController < ApplicationController
       @illustrations = Illustration.order(created_at: :desc).page(params[:page]).per(6)
         ## customerとparamsが一致したデータを検索,その後,作成日時の降順に並び替え表示数を6に指定
       @illustrations = Illustration.where(customer_id: params[:id]).order(created_at: :desc).page(params[:page]).per(6)
-      
   end
-  
     ## イラスト_投稿_詳細画面 illustration_path
   def show
         ## 投稿した sample_illustoration :id を取得するレコード
