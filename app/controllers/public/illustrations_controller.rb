@@ -50,13 +50,11 @@ class Public::IllustrationsController < ApplicationController
         ## コメントを定義
       @comment = Comment.new
   end
-  
     ## イラスト投稿_編集画面 edit__illustration_path
   def edit
         ## 投稿した sample_illustoration :id を取得するレコード
       @illustration = Illustration.find(params[:id])
   end
-  
     ## イラスト_投稿_情報更新する /illustration/:id
   def update
         ## インスタンス変数 = 商品_find 探す:単数でどれか一つ
@@ -75,7 +73,6 @@ class Public::IllustrationsController < ApplicationController
       render :edit
     end
   end
-  
     ## イラスト_画像_削除する(単体) illustration/:id
   def destroy
         ## データ(レコード)を一件取得
@@ -96,7 +93,6 @@ class Public::IllustrationsController < ApplicationController
         ## permit  requireで絞り込んだデータの中から、保存を許可するカラムを指定
       params.require(:illustration).permit(:genre_id, :name, :introduction, :image)
   end
-  
     ## ログインしているユーザーのidとURLに含まれるidを比較し、
     ## 一致しなければhomsページに移動する処理
     ## アクセス制限の記述_private以下に記述
