@@ -84,10 +84,8 @@ class Public::IllustrationsController < ApplicationController
   end
   
   private
-  
         ## サンプル登録情報編集画面等で使用…
   def illustration_params
-        
         ## params  formから送られてくるデータはparamsの中
         ## require 送信データからモデル名(ここでは:illustration)を指定し、データを絞り込み
         ## permit  requireで絞り込んだデータの中から、保存を許可するカラムを指定
@@ -112,6 +110,5 @@ class Public::IllustrationsController < ApplicationController
         redirect_to root_path
       end
   end
-  
 end
 
