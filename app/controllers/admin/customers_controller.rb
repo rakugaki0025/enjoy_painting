@@ -15,7 +15,6 @@ class Admin::CustomersController < ApplicationController
       @customers = Customer.all
       
   end
-  
         ## 顧客詳細画面　admin_customers_show_path
   def show
       
@@ -23,7 +22,6 @@ class Admin::CustomersController < ApplicationController
       @customer = Customer.find(params[:id])
       
   end
-  
         ## 顧客編集画面 admin_customers_edit_path
   def edit
     
@@ -31,7 +29,6 @@ class Admin::CustomersController < ApplicationController
       @customer = Customer.find(params[:id])
       
   end
-  
         ## 顧客情報の登録 admin_customers_update_path
   def update
       
@@ -66,15 +63,13 @@ class Admin::CustomersController < ApplicationController
   
         ## 商品登録情報編集画面等で使用…
   def customer_params
-        
         ## params  formから送られてくるデータはparamsの中
         ## require 送信データからモデル名(ここでは:customer)を指定し、データを絞り込み
         ## permit  requireで絞り込んだデータの中から、保存を許可するカラムを指定
       params.require(:customer).permit(:last_name, :first_name, 
       :last_name_kana, :first_name_kana, :nickname, :birth_day, 
       :email, :is_active )
-      
   end
   
-  
 end
+
