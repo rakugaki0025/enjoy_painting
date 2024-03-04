@@ -70,6 +70,5 @@ class Admin::CustomersController < ApplicationController
       :last_name_kana, :first_name_kana, :nickname, :birth_day, 
       :email, :is_active )
   end
-  
 end
 
