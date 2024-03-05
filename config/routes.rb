@@ -12,6 +12,7 @@ Rails.application.routes.draw do
       ## ゲストログイン
     post '/users/guest_sign_in' => 'public/sessions#guest_sign_in'
   end
+  
     ## 管理者用
     ## URL /admin/sign_in ...
   devise_for :admin, skip: [:registrations, :passwords], controllers: {
@@ -48,6 +49,7 @@ Rails.application.routes.draw do
       ## コメント機能
     resources :reviews, only: [:create, :destroy, :update]
     end
+    
 ### public_illustrations
       ## いいねブックマーク用
       ## 取得 '実際の表示アドレス' => "指定のコントローラー#アクション", as: "名前つきルート"
@@ -72,10 +74,12 @@ Rails.application.routes.draw do
         ## コメント機能
       resources :comments, only: [:create, :destroy]
     end
+    
       ## いいねブックマーク用
       ## 取得 '実際の表示アドレス' => "指定のコントローラー#アクション", as: "名前つきルート"
     get '/liked_illust' => "customers#liked_illustrations", as: :liked_illustrations
   end
+  
     # namespaceでは /admin が表示される 例 /admin/homes
   namespace :admin do
       ## 管理者トップページ(注文履歴一覧)
@@ -111,5 +115,6 @@ Rails.application.routes.draw do
       ## genre ディレクトリ ルーティング自動生成 onlyで(限定生成)
     resources :genre, only: [:new, :create, :index, :edit, :update]
   end
+  
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
