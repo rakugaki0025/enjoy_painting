@@ -37,12 +37,10 @@ class Admin::SessionsController < Devise::SessionsController
           ## 管理者投稿画像一覧へ遷移
       admin_sample_illustration_index_path
   end
-  
     ## ログアウト後に遷移する場所
   def after_sign_out_path_for(resource)
           ## new_admin_session = homes/topに遷移
       new_admin_session_path
   end
-  
 end
 
