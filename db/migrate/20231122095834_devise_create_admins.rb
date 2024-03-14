@@ -36,7 +36,6 @@ class DeviseCreateAdmins < ActiveRecord::Migration[6.1]
 
 
       t.timestamps null: false        # t.データ型 :カラム名, null: false
-      
     end
 
     add_index :admins, :email,                unique: true

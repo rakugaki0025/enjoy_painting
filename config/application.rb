@@ -20,9 +20,8 @@ module EnjoyPainting
     #
     # config.time_zone = "Central Time (US & Canada)"
     # config.eager_load_paths << Rails.root.join("extras")
-    
-      ## 日本語化表記_i18n
+
+    ## 日本語化表記_i18n
     config.i18n.default_locale = :ja
-    
   end
 end
