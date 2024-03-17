@@ -13,14 +13,11 @@ class Public::CommentsController < ApplicationController
     if comment.save
       ## 遷移先 コメントしたページへ
       redirect_to illustration_path(illustration)
-
     else
       ## 保存できなかった場合,showへ遷移
       redirect_to illustration_path(illustration.id), notice: "コメントが空です。"
-
     end
   end
-
   ## コメント削除
   def destroy
     ## コメントデータ取得
@@ -35,11 +32,9 @@ class Public::CommentsController < ApplicationController
       flash[:alert] = "削除に失敗しました。関連するイラストが見つかりませんでした。"
       ## 遷移先
       redirect_to illustrations_path
-
     else
       ## 遷移先
       redirect_to illustration_path(@illustration.id), notice: "コメントを削除しました。"
-
     end
   end
 

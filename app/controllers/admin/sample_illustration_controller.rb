@@ -60,7 +60,6 @@ class Admin::SampleIllustrationController < ApplicationController
       render :edit
     end
   end
-
   ## 管理者_画像_削除する(単体) admin/sample_illustration/:id
   def destroy
     ## データ(レコード)を一件取得
@@ -80,4 +79,3 @@ class Admin::SampleIllustrationController < ApplicationController
       params.require(:sample_illustration).permit(:genre_id, :name, :introduction, :image)
     end
 end
-
