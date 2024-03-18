@@ -58,7 +58,6 @@ class Public::CustomersController < ApplicationController
     ## 退会処理後の遷移先
     redirect_to root_path
   end
-  ## 退会しているかを判断するメソッド
 
   protected
     ## 退会済み(false) user(customer)はログイン拒否
