@@ -2,9 +2,7 @@
   
   <div class="row">
     <div class="col-sm-12 col-md-8 col-lg-5 px-5 px-sm-0 mx-auto">
-      
       <h2>管理者ログイン画面</h2>
-        
         <!-- @admin,は書き込みはしておらずそのまま呼び出している -->
       <%= form_with model: @admin, url: admin_session_path do |f| %>
           <!-- email -->
@@ -17,7 +15,6 @@
           <%= f.label :password %><br />
           <%= f.password_field :password, autocomplete: "current-password" %>
         </div>
-      
         <% if devise_mapping.rememberable? %>
           <div class="field">
             <%= f.check_box :remember_me %>
@@ -25,12 +22,10 @@
           </div>
         <% end %>
           <div class="actions">
-            <%= f.submit "Log in" %>
+            <%= f.submit "Log in", class:"btn btn-success" %>
           </div>
       <% end %>
-      
       <%= render "admin/shared/links" %>
     </div>
   </div>
-  
   
