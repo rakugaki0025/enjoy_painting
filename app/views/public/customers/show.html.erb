@@ -1,91 +1,90 @@
 <!-- enjoy_view_pablic_customers_show -->
   
   
-  <div class="row">
-    <div class="mx-auto auto col-md-5">
-        <!-- フラッシュメッセージ投稿成功時 -->
-      <div>
-        <%= flash[:notice] %>
-      </div>
-        <!-- 色指定のスタイル -->
-      <style>
-       .example {
-        background-color: #F0F0F0;
-        width:160px;
-        height:30px;
-        border-radius: 10px; /* 角を丸くするための設定 */
-       }
-      </style>
-      <h4 class="example" align="center">マイページ</h4><br />
-        <!-- 登録情報編集へ遷移 -->
-      <table>
-        <tr>
-          <th>
-              登録情報
-            <% if @customer == current_customer %>
-              <%= link_to "編集する", information_edit_path, class:"btn btn-success" %>
-            <% end %> 
-          </th>
-        </tr>
-      </table>
-      <table border="1" width="400"  height="300">
-          <!-- 顧客情報欄 -->
-        <tbody>
-            <!-- アイコン -->
-          <tr align="center">
-            <th>アイコン</th>
-              <td align="center">
-                <%= image_tag @customer.get_profile_image(100,100) %>
-              </td>
-          </tr>
-            <!-- ニックネーム -->
-          <tr align="center">
-            <th>ニックネーム</th>
-              <td>
-                <%= @customer.nickname %>
-              </td>
-          </tr>
-            <!-- メールアドレス -->
-          <tr align="center">
-            <th>メールアドレス</th>
-              <td>
-                <%= @customer.email %>
-              </td>
-          </tr>
-            <!-- 氏名 -->
-          <tr align="center">
-            <th>氏名</th>
-              <td>
-                <%= @customer.last_name %>
-                <%= @customer.first_name %>
-       　　     </td>
-          </tr>
-            <!-- カナ -->
-          <tr align="center">
-            <th>カナ</th>
-              <td>
-                <%= @customer.last_name_kana %>
-                <%= @customer.first_name_kana %>
-              </td>
-          </tr>
-            <!-- 誕生日 -->
-          <tr align="center">
-            <th>誕生日</th>
-              <td>
-                <%= @customer.birth_day %>
-              </td>
-          </tr>
-        </tbody>
-      </table>
-        <!-- いいね一覧〇 -->
-      <table>
-        <tr style="height: 100px;">
-        <th>いいね一覧</th>
-          <td>
-            <%= link_to "ブックマーク", liked_illustrations_path, class:"btn btn-primary" %>
-          </td>
-        </tr>
-      </table>
+<div class="row">
+  <div class="mx-auto auto col-md-5">
+      <!-- フラッシュメッセージ投稿成功時 -->
+    <div>
+      <%= flash[:notice] %>
     </div>
+      <!-- 色指定のスタイル -->
+    <style>
+     .example {
+      background-color: #F0F0F0;
+      width:160px;
+      height:30px;
+      border-radius: 10px; /* 角を丸くするための設定 */
+     }
+    </style>
+    <h4 class="example" align="center">マイページ</h4><br />
+      <!-- 登録情報編集へ遷移 -->
+    <table>
+      <tr>
+        <th>
+            登録情報
+          <% if @customer == current_customer %>
+            <%= link_to "編集する", information_edit_path, class:"btn btn-success" %>
+          <% end %> 
+        </th>
+      </tr>
+    </table>
+    <table border="1" width="400"  height="300">
+        <!-- 顧客情報欄 -->
+      <tbody>
+          <!-- アイコン -->
+        <tr align="center">
+          <th>アイコン</th>
+            <td align="center">
+              <%= image_tag @customer.get_profile_image(100,100) %>
+            </td>
+        </tr>
+          <!-- ニックネーム -->
+        <tr align="center">
+          <th>ニックネーム</th>
+            <td>
+              <%= @customer.nickname %>
+            </td>
+        </tr>
+          <!-- メールアドレス -->
+        <tr align="center">
+          <th>メールアドレス</th>
+            <td>
+              <%= @customer.email %>
+            </td>
+        </tr>
+          <!-- 氏名 -->
+        <tr align="center">
+          <th>氏名</th>
+            <td>
+              <%= @customer.last_name %>
+              <%= @customer.first_name %>
+            </td>
+        </tr>
+          <!-- カナ -->
+        <tr align="center">
+          <th>カナ</th>
+            <td>
+              <%= @customer.last_name_kana %>
+              <%= @customer.first_name_kana %>
+            </td>
+        </tr>
+          <!-- 誕生日 -->
+        <tr align="center">
+          <th>誕生日</th>
+            <td>
+              <%= @customer.birth_day %>
+            </td>
+        </tr>
+      </tbody>
+    </table>
+      <!-- いいね一覧〇 -->
+    <table>
+      <tr style="height: 100px;">
+      <th>いいね一覧</th>
+        <td>
+          <%= link_to "ブックマーク", liked_illustrations_path, class:"btn btn-primary" %>
+        </td>
+      </tr>
+    </table>
   </div>
-  
+</div>
