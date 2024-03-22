@@ -1,139 +1,138 @@
 <!-- Enjoy_view_public_sample_illustration_show -->
 
-    <!-- フラッシュメッセージ投稿成功時 -->
-  <div>
-    <%= flash[:notice] %>
-  </div>
-    <!-- 商品画像,商品名,商品説明,税込価格 -->
-  <div class="row">
-    <div class="mx-auto auto col-md-12">
-        <!-- 色指定のスタイル -->
-      <style>
-       .example {
-        background-color: #F0F0F0;
-        width:220px;
-        height:30px;
-        border-radius: 10px; /* 角を丸くするための設定 */
-       }
-      </style>
-        <!-- サンプル画像,サンプル名,説明文,ジャンル -->
-      <h4 class="example" align="center">サンプル画像詳細</h4>
-      <table class="w-75 mx-auto">
-          <!-- サンプル詳細,総合評価 -->
-        <tbody>
-            <!-- 総合評価 -->
-          <tr>
-            <th class="w-25">総合評価</th>
-              <!-- 総合記述 -->
+  <!-- フラッシュメッセージ投稿成功時 -->
+<div>
+  <%= flash[:notice] %>
+</div>
+  <!-- 商品画像,商品名,商品説明,税込価格 -->
+<div class="row">
+  <div class="mx-auto auto col-md-12">
+      <!-- 色指定のスタイル -->
+    <style>
+     .example {
+      background-color: #F0F0F0;
+      width:220px;
+      height:30px;
+      border-radius: 10px; /* 角を丸くするための設定 */
+     }
+    </style>
+      <!-- サンプル画像,サンプル名,説明文,ジャンル -->
+    <h4 class="example" align="center">サンプル画像詳細</h4>
+    <table class="w-75 mx-auto">
+        <!-- サンプル詳細,総合評価 -->
+      <tbody>
+          <!-- 総合評価 -->
+        <tr>
+          <th class="w-25">総合評価</th>
+            <!-- 総合記述 -->
+          <td>
+                <!-- 総合score表示 -->
+            <div id="star-rate<%= @sample_illustration.id%>"></div>
+                <!-- 総合score表示,nilの場合非表示 -->
+              <% if @sample_illustration.reviews.average(:star).nil? %>
+                <%# nilの場合に何も表示しない処理 %>
+              <% else %>
+                <!-- score表示 -->
+                <%= @sample_illustration.reviews.average(:star).round(2) %>
+              <% end %>
+                <!-- 星表示記述 -->
+            <script>
+              $('#star-rate<%= @sample_illustration.id %>').empty();
+              $('#star-rate<%= @sample_illustration.id %>').raty({
+               size      : 36,
+               starOff   : '<%= asset_path('star-off.png') %>',
+               starOn    : '<%= asset_path('star-on.png') %>',
+               starHalf  : '<%= asset_path('star-half.png') %>',
+               halfShow  : true,
+               readOnly: true,
+               score: <% if @sample_illustration.reviews.average(:star).nil? %>
+                        <%# nilの場合に何も表示しない処理 %>
+                      <% else %>
+                        <%= @sample_illustration.reviews.average(:star).round(2) %>
+                      <% end %>,
+               });
+            </script>
+          </td>
+        </tr>
+          <!-- 参考画像 -->
+        <tr>
+          <th>参考画像</th>
             <td>
-                  <!-- 総合score表示 -->
-              <div id="star-rate<%= @sample_illustration.id%>"></div>
-                  <!-- 総合score表示,nilの場合非表示 -->
-                <% if @sample_illustration.reviews.average(:star).nil? %>
-                  <%# nilの場合に何も表示しない処理 %>
-                <% else %>
-                  <!-- score表示 -->
-                  <%= @sample_illustration.reviews.average(:star).round(2) %>
-                <% end %>
-                  <!-- 星表示記述 -->
-              <script>
-                $('#star-rate<%= @sample_illustration.id %>').empty();
-                $('#star-rate<%= @sample_illustration.id %>').raty({
-                 size      : 36,
-                 starOff   : '<%= asset_path('star-off.png') %>',
-                 starOn    : '<%= asset_path('star-on.png') %>',
-                 starHalf  : '<%= asset_path('star-half.png') %>',
-                 halfShow  : true,
-                 readOnly: true,
-                 score: <% if @sample_illustration.reviews.average(:star).nil? %>
-                          <%# nilの場合に何も表示しない処理 %>
-                        <% else %>
-                          <%= @sample_illustration.reviews.average(:star).round(2) %>
-                        <% end %>,
-                 });
-              </script>
+              <%= image_tag @sample_illustration.get_image, class:"w-75" %>
             </td>
-          </tr>
-            <!-- 参考画像 -->
-          <tr>
-            <th>参考画像</th>
-              <td>
-                <%= image_tag @sample_illustration.get_image, class:"w-75" %>
-              </td>
-              <!--%= image_tag @item.get_image %-->
-          </tr>
-            <!-- サンプル名 -->
-          <tr>
-            <th>サンプル名</th>
-              <td>
-                <%= @sample_illustration.name %>
-              </td>
-          </tr>
-            <!-- 説明文 -->
-          <tr>
-            <th>説明文</th>
-              <td>
-                <%= @sample_illustration.introduction %>
-              </td>
-          </tr>
-            <!-- ジャンル -->
-          <tr>
-            <th>ジャンル</th>
-              <td>
-                <%= @sample_illustration.genre.name %>
-              </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-      <!-- 誰もログインしていない時非表示にし、且つ、会員がログインした時は表示する記述 -->
-    <% if !admin_signed_in? && (customer_signed_in? && (@sample_illustration.nil? || !@sample_illustration.reviews.exists?(customer_id: current_customer.id))) %>
-        <!-- サンプルがある、且つ、管理者がいない、且つ、会員がいない、または、サンプルに会員の評価がない、のどちらかの条件を満たした場合、trueを返す -->
-      <% if @sample_illustration && !admin_signed_in? && customer_signed_in? && !@sample_illustration.reviews.exists?(customer_id: current_customer.id) %>
-        <div class="mx-auto auto col-md-12 my-5">
-        <%= form_with model: Review.new, url: sample_illustration_reviews_path(@sample_illustration.id), local:true do |star| %>
-            <!-- 評価ボタン,星 -->
-          <table class="w-75 mx-auto">
-              <!-- 評価ボタン,星 -->
-            <tbody>
-              <tr>
-                <th class="w-25">資料を評価</th>
-                <td>
-                  <div class="form-group row">
-                    <div id="star"></div>
-                  </div>
-                </td>
-              </tr>
-                <!-- 評価ボタン -->
-              <tr>
-                <td></td>
-                <td>
-                  <%= star.submit '評価する', class:"btn btn-primary" %>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        <% end %>
-            <!-- 評価する星の表示? -->
-          <script>
-          　$('#star').empty();
-            $('#star').raty({
-              size   : 36,
-              starOff: '<%= asset_path('star-off.png') %>',
-              starOn : '<%= asset_path('star-on.png') %>',
-                    scoreName: 'review[star]',
-              half: false,
-            });
-          </script>
-        </div>
-      <% end %>
-    <% end %>
-        <!-- 編集する_adminにしか表示されない記述 -->
-    <div class="mx-auto auto col-md-12">  
-      <% if admin_signed_in? %>
-        <%= link_to "編集する", edit_admin_sample_illustration_path, class: "btn btn-success" %>
-      <% end %>
-    </div>
+            <!--%= image_tag @item.get_image %-->
+        </tr>
+          <!-- サンプル名 -->
+        <tr>
+          <th>サンプル名</th>
+            <td>
+              <%= @sample_illustration.name %>
+            </td>
+        </tr>
+          <!-- 説明文 -->
+        <tr>
+          <th>説明文</th>
+            <td>
+              <%= @sample_illustration.introduction %>
+            </td>
+        </tr>
+          <!-- ジャンル -->
+        <tr>
+          <th>ジャンル</th>
+            <td>
+              <%= @sample_illustration.genre.name %>
+            </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-  
-  
+    <!-- 誰もログインしていない時非表示にし、且つ、会員がログインした時は表示する記述 -->
+  <% if !admin_signed_in? && (customer_signed_in? && (@sample_illustration.nil? || !@sample_illustration.reviews.exists?(customer_id: current_customer.id))) %>
+      <!-- サンプルがある、且つ、管理者がいない、且つ、会員がいない、または、サンプルに会員の評価がない、のどちらかの条件を満たした場合、trueを返す -->
+    <% if @sample_illustration && !admin_signed_in? && customer_signed_in? && !@sample_illustration.reviews.exists?(customer_id: current_customer.id) %>
+      <div class="mx-auto auto col-md-12 my-5">
+      <%= form_with model: Review.new, url: sample_illustration_reviews_path(@sample_illustration.id), local:true do |star| %>
+          <!-- 評価ボタン,星 -->
+        <table class="w-75 mx-auto">
+            <!-- 評価ボタン,星 -->
+          <tbody>
+            <tr>
+              <th class="w-25">資料を評価</th>
+              <td>
+                <div class="form-group row">
+                  <div id="star"></div>
+                </div>
+              </td>
+            </tr>
+              <!-- 評価ボタン -->
+            <tr>
+              <td></td>
+              <td>
+                <%= star.submit '評価する', class:"btn btn-primary" %>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      <% end %>
+        <!-- 評価する星の表示? -->
+      <script>
+      　$('#star').empty();
+        $('#star').raty({
+          size   : 36,
+          starOff: '<%= asset_path('star-off.png') %>',
+          starOn : '<%= asset_path('star-on.png') %>',
+                scoreName: 'review[star]',
+          half: false,
+        });
+      </script>
+      </div>
+    <% end %>
+  <% end %>
+      <!-- 編集する_adminにしか表示されない記述 -->
+  <div class="mx-auto auto col-md-12">  
+    <% if admin_signed_in? %>
+      <%= link_to "編集する", edit_admin_sample_illustration_path, class: "btn btn-success" %>
+    <% end %>
+  </div>
+</div>
+
