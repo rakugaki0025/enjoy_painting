@@ -1,143 +1,142 @@
-  <!-- enjoy_view_public_homes_top -->
-  
-    <!-- フラッシュメッセージ投稿成功時 -->
-  <div class="text-center">
-    <% if flash[:notice] %>
-      <div class="alert alert-success">
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
-    <% if flash[:alert] %>
-      <div class="alert alert-danger">
-        <%= flash[:alert] %>
-      </div>
-    <% end %>
+<!-- enjoy_view_public_homes_top -->
+
+  <!-- フラッシュメッセージ投稿成功時 -->
+<div class="text-center">
+  <% if flash[:notice] %>
+    <div class="alert alert-success">
+      <%= flash[:notice] %>
+    </div>
+  <% end %>
+  <% if flash[:alert] %>
+    <div class="alert alert-danger">
+      <%= flash[:alert] %>
+    </div>
+  <% end %>
+</div>
+    <!-- 色指定のスタイル -->
+  <style>
+   .example {
+    background-color: #F0F0F0;
+    width:380px;
+    height:30px;
+    border-radius: 10px; /* 角を丸くするための設定 */
+   }
+  </style>
+    <!-- ようこそ,EnjoyPaintingへ！！ -->
+  <div style="text-align: center;">
+    <h2 style="font-size: 35px; letter-spacing: 0.2em; text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);">
+      <u>ようこそ,EnjoyPaintingへ！！</u>
+    </h2>
+    <div style="margin-top: 30px; margin-bottom: 40px; letter-spacing: 0.1em;">
+      <p style="margin-bottom: 10px;">このサイトは、お絵かき上達のECサイトになります。</p>
+      <p style="margin-bottom: 10px;">会員でない方も閲覧はできますが、投稿には会員登録が必要になります。</p>
+    </div>
   </div>
-      <!-- 色指定のスタイル -->
-    <style>
-     .example {
-      background-color: #F0F0F0;
-      width:380px;
-      height:30px;
-      border-radius: 10px; /* 角を丸くするための設定 */
-     }
-    </style>
-      <!-- ようこそ,EnjoyPaintingへ！！ -->
+    <!-- ジャンル検索,キーワード -->
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <%= form_with url: root_url, method: :get, local: true do |f| %>
+          <!-- ジャンル検索 -->
+        <div class="form-group row">
+          <%= f.label :genre_id, "ジャンル検索", class: "col-md-3 col-form-label" %>
+            <!-- 検索枠 -->
+          <div class="col-md-9">
+            <%= f.collection_select :genre_id, Genre.all, :id, :name,
+                { include_blank: "--select--",
+                  selected: params[:genre_id] },
+                { class: "form-control" } %>
+          </div>
+        </div>
+          <!-- 検索キーワード(name) -->
+        <div class="form-group row">
+          <%= f.label :genre_id, "名前検索", class: "col-md-3 col-form-label" %>
+            <!-- 検索枠 -->
+          <div class="col-md-9">
+            <%= f.search_field :name, class: "form-control",
+                                      placeholder: "--name--",
+                                      value: params[:name] %>
+          </div>
+        </div>
+        <%= f.submit "検索", class: "btn btn-primary" %>
+      <% end %>
+    </div>
+  </div>
+<div class="row">
+  <div class="col-md-2"></div>
+  <div class="col-md-9">
+      <!-- 参考資料一覧 -->
     <div style="text-align: center;">
-      <h2 style="font-size: 35px; letter-spacing: 0.2em; text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);">
-        <u>ようこそ,EnjoyPaintingへ！！</u>
-      </h2>
-      <div style="margin-top: 30px; margin-bottom: 40px; letter-spacing: 0.1em;">
-        <p style="margin-bottom: 10px;">このサイトは、お絵かき上達のECサイトになります。</p>
-        <p style="margin-bottom: 10px;">会員でない方も閲覧はできますが、投稿には会員登録が必要になります。</p>
-      </div>
-    </div>
-      <!-- ジャンル検索,キーワード -->
-    <div class="row justify-content-center">
-      <div class="col-md-6">
-        <%= form_with url: root_url, method: :get, local: true do |f| %>
-            <!-- ジャンル検索 -->
-          <div class="form-group row">
-            <%= f.label :genre_id, "ジャンル検索", class: "col-md-3 col-form-label" %>
-              <!-- 検索枠 -->
-            <div class="col-md-9">
-              <%= f.collection_select :genre_id, Genre.all, :id, :name,
-                  { include_blank: "--select--",
-                    selected: params[:genre_id] },
-                  { class: "form-control" } %>
+      <table>
+          <!-- サンプルタイトル -->
+        <div style="display: flex; justify-content: center;">
+          <h4 class="example" style="text-align: center;">サンプルイラスト</h4>
+        </div>
+        <% @sample_illustrations.each do |sample_illustration| %>
+          <div style="display: inline-block;">
+              <!-- 総合評価 -->
+            <div style="text-align: center;">
+              <% if sample_illustration.reviews.average(:star).present? %>
+                総合
+                <%= sample_illustration.reviews.average(:star).round(2) %>
+              <% else %>
+                <!-- 非表示にするコンテンツ（例: "評価なし"など）-->
+                未評価
+              <% end %>
             </div>
-          </div>
-            <!-- 検索キーワード(name) -->
-          <div class="form-group row">
-            <%= f.label :genre_id, "名前検索", class: "col-md-3 col-form-label" %>
-              <!-- 検索枠 -->
-            <div class="col-md-9">
-              <%= f.search_field :name, class: "form-control",
-                                        placeholder: "--name--",
-                                        value: params[:name] %>
-            </div>
-          </div>
-          <%= f.submit "検索", class: "btn btn-primary" %>
-        <% end %>
-      </div>
-    </div>
-  <div class="row">
-    <div class="col-md-2"></div>
-    <div class="col-md-9">
-        <!-- 参考資料一覧 -->
-      <div style="text-align: center;">
-        <table>
-            <!-- サンプルタイトル -->
-          <div style="display: flex; justify-content: center;">
-            <h4 class="example" style="text-align: center;">サンプルイラスト</h4>
-          </div>
-          <% @sample_illustrations.each do |sample_illustration| %>
+              <!-- サンプル-->
             <div style="display: inline-block;">
-                <!-- 総合評価 -->
-              <div style="text-align: center;">
-                <% if sample_illustration.reviews.average(:star).present? %>
-                  総合
-                  <%= sample_illustration.reviews.average(:star).round(2) %>
-                <% else %>
-                  <!-- 非表示にするコンテンツ（例: "評価なし"など）-->
-                  未評価
-                <% end %>
-              </div>
-                <!-- サンプル-->
-              <div style="display: inline-block;">
-                <%= link_to sample_illustration_path(sample_illustration.id) do %>
-                  <%= image_tag sample_illustration.get_image, style: "max-width:100px;" %>
-                <% end %>
-              </div>
-            </div>
-          <% end %>
-        </table>
-        <%= paginate @sample_illustrations %>
-      </div>
-        <!-- ユーザータイトル -->
-      <div style="display: flex; justify-content: center;">
-        <h4 class="example" style="text-align: center;">ユーザーイラスト</h4>
-      </div>
-        <!-- 画像,タイトル,説明文,ジャンル -->
-      <div class="row">
-        <% @illustrations.each do |illustration| %>
-          <div class="col-sm-6 col-lg-4">
-            <div class="card my-3">
-                <!-- 画像,タイトル,説明文,ジャンル -->
-              <div class="card-body">
-                  <!-- 投稿画像 -->
-                <p class="card-image_top">
-                  <%= link_to illustration_path(illustration.id) do %>
-                    <%= image_tag illustration.get_image, style: "max-width:200px;" %>
-                  <% end %>
-                </p>
-                  <!-- アイコン -->
-                <p class="card-image">
-                  投稿者
-                  <%= image_tag illustration.customer.get_profile_image(50,50) if illustration.customer.present? %>
-                </p>
-                  <!-- タイトル -->
-                <h6 class="card-title">
-                  タイトル<br />
-                  <%= illustration.name %>
-                </h6>
-                  <!-- 説明文 -->
-                <p class="card-text">
-                  説明<br />
-                  <%= illustration.introduction.truncate(15) %>
-                </p>
-                  <!-- ジャンル -->
-                <p class="card-test">
-                  ジャンル
-                  <span class="badge badge-primary"><%= illustration.genre.name %></span>
-                </p>
-              </div>
+              <%= link_to sample_illustration_path(sample_illustration.id) do %>
+                <%= image_tag sample_illustration.get_image, style: "max-width:100px;" %>
+              <% end %>
             </div>
           </div>
         <% end %>
-      </div>
-      <%= paginate @illustrations %>
+      </table>
+      <%= paginate @sample_illustrations %>
     </div>
+      <!-- ユーザータイトル -->
+    <div style="display: flex; justify-content: center;">
+      <h4 class="example" style="text-align: center;">ユーザーイラスト</h4>
+    </div>
+      <!-- 画像,タイトル,説明文,ジャンル -->
+    <div class="row">
+      <% @illustrations.each do |illustration| %>
+        <div class="col-sm-6 col-lg-4">
+          <div class="card my-3">
+              <!-- 画像,タイトル,説明文,ジャンル -->
+            <div class="card-body">
+                <!-- 投稿画像 -->
+              <p class="card-image_top">
+                <%= link_to illustration_path(illustration.id) do %>
+                  <%= image_tag illustration.get_image, style: "max-width:200px;" %>
+                <% end %>
+              </p>
+                <!-- アイコン -->
+              <p class="card-image">
+                投稿者
+                <%= image_tag illustration.customer.get_profile_image(50,50) if illustration.customer.present? %>
+              </p>
+                <!-- タイトル -->
+              <h6 class="card-title">
+                タイトル<br />
+                <%= illustration.name %>
+              </h6>
+                <!-- 説明文 -->
+              <p class="card-text">
+                説明<br />
+                <%= illustration.introduction.truncate(15) %>
+              </p>
+                <!-- ジャンル -->
+              <p class="card-test">
+                ジャンル
+                <span class="badge badge-primary"><%= illustration.genre.name %></span>
+              </p>
+            </div>
+          </div>
+        </div>
+      <% end %>
+    </div>
+    <%= paginate @illustrations %>
   </div>
-  
-  
+</div>
+
