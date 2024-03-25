@@ -13,54 +13,54 @@
     </div>
   <% end %>
 </div>
-    <!-- 色指定のスタイル -->
-  <style>
-   .example {
-    background-color: #F0F0F0;
-    width:380px;
-    height:30px;
-    border-radius: 10px; /* 角を丸くするための設定 */
-   }
-  </style>
-    <!-- ようこそ,EnjoyPaintingへ！！ -->
-  <div style="text-align: center;">
-    <h2 style="font-size: 35px; letter-spacing: 0.2em; text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);">
-      <u>ようこそ,EnjoyPaintingへ！！</u>
-    </h2>
-    <div style="margin-top: 30px; margin-bottom: 40px; letter-spacing: 0.1em;">
-      <p style="margin-bottom: 10px;">このサイトは、お絵かき上達のECサイトになります。</p>
-      <p style="margin-bottom: 10px;">会員でない方も閲覧はできますが、投稿には会員登録が必要になります。</p>
-    </div>
+  <!-- 色指定のスタイル -->
+<style>
+ .example {
+  background-color: #F0F0F0;
+  width:380px;
+  height:30px;
+  border-radius: 10px; /* 角を丸くするための設定 */
+ }
+</style>
+  <!-- ようこそ,EnjoyPaintingへ！！ -->
+<div style="text-align: center;">
+  <h2 style="font-size: 35px; letter-spacing: 0.2em; text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.5);">
+    <u>ようこそ,EnjoyPaintingへ！！</u>
+  </h2>
+  <div style="margin-top: 30px; margin-bottom: 40px; letter-spacing: 0.1em;">
+    <p style="margin-bottom: 10px;">このサイトは、お絵かき上達のECサイトになります。</p>
+    <p style="margin-bottom: 10px;">会員でない方も閲覧はできますが、投稿には会員登録が必要になります。</p>
   </div>
-    <!-- ジャンル検索,キーワード -->
-  <div class="row justify-content-center">
-    <div class="col-md-6">
-      <%= form_with url: root_url, method: :get, local: true do |f| %>
-          <!-- ジャンル検索 -->
-        <div class="form-group row">
-          <%= f.label :genre_id, "ジャンル検索", class: "col-md-3 col-form-label" %>
-            <!-- 検索枠 -->
-          <div class="col-md-9">
-            <%= f.collection_select :genre_id, Genre.all, :id, :name,
-                { include_blank: "--select--",
-                  selected: params[:genre_id] },
-                { class: "form-control" } %>
-          </div>
+</div>
+  <!-- ジャンル検索,キーワード -->
+<div class="row justify-content-center">
+  <div class="col-md-6">
+    <%= form_with url: root_url, method: :get, local: true do |f| %>
+        <!-- ジャンル検索 -->
+      <div class="form-group row">
+        <%= f.label :genre_id, "ジャンル検索", class: "col-md-3 col-form-label" %>
+          <!-- 検索枠 -->
+        <div class="col-md-9">
+          <%= f.collection_select :genre_id, Genre.all, :id, :name,
+              { include_blank: "--select--",
+                selected: params[:genre_id] },
+              { class: "form-control" } %>
         </div>
-          <!-- 検索キーワード(name) -->
-        <div class="form-group row">
-          <%= f.label :genre_id, "名前検索", class: "col-md-3 col-form-label" %>
-            <!-- 検索枠 -->
-          <div class="col-md-9">
-            <%= f.search_field :name, class: "form-control",
-                                      placeholder: "--name--",
-                                      value: params[:name] %>
-          </div>
+      </div>
+        <!-- 検索キーワード(name) -->
+      <div class="form-group row">
+        <%= f.label :genre_id, "名前検索", class: "col-md-3 col-form-label" %>
+          <!-- 検索枠 -->
+        <div class="col-md-9">
+          <%= f.search_field :name, class: "form-control",
+                                    placeholder: "--name--",
+                                    value: params[:name] %>
         </div>
-        <%= f.submit "検索", class: "btn btn-primary" %>
-      <% end %>
-    </div>
+      </div>
+      <%= f.submit "検索", class: "btn btn-primary" %>
+    <% end %>
   </div>
+</div>
 <div class="row">
   <div class="col-md-2"></div>
   <div class="col-md-9">
