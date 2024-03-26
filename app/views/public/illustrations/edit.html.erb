@@ -1,4 +1,4 @@
-<!-- Enjoy_view_admin_illustration_edit -->
+<!-- Enjoy_view_public_illustration_edit -->
 
 <div class="row">
   <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-5">
@@ -24,6 +24,7 @@
       background-color: #F0F0F0;
       width:200px;
       height:30px;
+      border-radius: 10px; /* 角を丸くするための設定 */
      }
     </style>
     <%= form_with model: @illustration, url: illustration_path(@illustration[:id]), method: :patch do |illustration| %>
