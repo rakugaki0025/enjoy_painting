@@ -1,74 +1,68 @@
 <!-- Enjoy_view_public_illustration_new -->
 
 <div class="row justify-content-center">
-    <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-5">
+  <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-5">
+    <!-- エラーメッセージ -->
+  <div>
+    <% if @illustration.errors.any? %>
     
-      <!-- エラーメッセージ -->
-    <div>
-      <% if @illustration.errors.any? %>
-      
-      <%= @illustration.errors.count %>件のエラーが発生しました
-        <ul>
-          <% @illustration.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
-          <% end %>
-        </ul>
-      <% end %>
-    </div>
-    
-      <!-- 色指定のスタイル -->
-    <style>
-     .example {
-      background-color: #F0F0F0;
-      width:300px;
-      height:30px;
-     }
-    </style>
-            
-    <h4 class="example" align="center">画像新規登録画面</h4>
-    
-    <%= form_with model: @illustration, url: illustrations_path, method: :post do |illustration| %>
-        <!-- イラスト画像新規登録画面 -->
-      <table width="400"  height="300">
-          <!-- タイトル -->
-        <tr>
-          <th>タイトル</th>
-            <td>
-              <%= illustration.text_field :name %>
-            </td>
-        </tr>
-          <!-- イラスト画像 -->
-        <tr>
-          <th>イラスト画像</th>
-            <td>
-              <%= illustration.file_field :image, accept: "image/*" %>
-            </td>
-        </tr>
-          <!-- 説明文 -->
-        <tr>
-          <th>説明文</th>
-            <td>
-              <%= illustration.text_field :introduction %>
-            </td>
-        </tr>
-          <!-- ジャンル -->
-        <tr>
-          <th>ジャンル</th>
-            <td>
-              <%= illustration.collection_select :genre_id, Genre.all, :id, :name %>
-            </td>
-        </tr>
-          <!-- 新規登録 -->
-        <tr>
-          <td>
-            <%= illustration.submit '新規登録', class:"btn btn-success" %>
-          </td>
-        </tr>
-                  
-      </table>
+    <%= @illustration.errors.count %>件のエラーが発生しました
+      <ul>
+        <% @illustration.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
     <% end %>
-          
-    </div>
   </div>
+    <!-- 色指定のスタイル -->
+  <style>
+   .example {
+    background-color: #F0F0F0;
+    width:300px;
+    height:30px;
+   }
+  </style>
+  <h4 class="example" align="center">画像新規登録画面</h4>
+  <%= form_with model: @illustration, url: illustrations_path, method: :post do |illustration| %>
+      <!-- イラスト画像新規登録画面 -->
+    <table width="400"  height="300">
+        <!-- タイトル -->
+      <tr>
+        <th>タイトル</th>
+          <td>
+            <%= illustration.text_field :name %>
+          </td>
+      </tr>
+        <!-- イラスト画像 -->
+      <tr>
+        <th>イラスト画像</th>
+          <td>
+            <%= illustration.file_field :image, accept: "image/*" %>
+          </td>
+      </tr>
+        <!-- 説明文 -->
+      <tr>
+        <th>説明文</th>
+          <td>
+            <%= illustration.text_field :introduction %>
+          </td>
+      </tr>
+        <!-- ジャンル -->
+      <tr>
+        <th>ジャンル</th>
+          <td>
+            <%= illustration.collection_select :genre_id, Genre.all, :id, :name %>
+          </td>
+      </tr>
+        <!-- 新規登録 -->
+      <tr>
+        <td>
+          <%= illustration.submit '新規登録', class:"btn btn-success" %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
+  </div>
+</div>
   
   
