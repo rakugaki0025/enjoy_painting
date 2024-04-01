@@ -1,110 +1,108 @@
 <!-- enjoy_view_pablic_customers_edit -->
 
-
-  <div class="row justify-content-center">
-    <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-7">
-      <!-- エラーメッセージ user info -->
-    <% if @customer.errors.any? %>
-      <h2>
-        <%= @customer.errors.count %>件数のエラーが発生しました。
-      </h2>
-      <ul>
-        <% @customer.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul> 
-    <% end %>
-      <!-- 色指定のスタイル -->
-    <style>
-     .example {
-      background-color: #F0F0F0;
-      width:180px;
-      height:30px;
-      border-radius: 10px; /* 角を丸くするための設定 */
-     }
-    </style>
-        <!-- form_with model: @コントローラーeditの情報, url: 遷移先のルーティング_path, method: :ルーティングのメソッド -->
-    <%= form_with model: @customer, url: information_update_path, method: :patch do |f| %>
-        <!-- 会員情報編集 -->
-    <table width="400"  height="300">
+<div class="row justify-content-center">
+  <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-7">
+    <!-- エラーメッセージ user info -->
+  <% if @customer.errors.any? %>
+    <h2>
+      <%= @customer.errors.count %>件数のエラーが発生しました。
+    </h2>
+    <ul>
+      <% @customer.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+    </ul> 
+  <% end %>
+    <!-- 色指定のスタイル -->
+  <style>
+   .example {
+    background-color: #F0F0F0;
+    width:180px;
+    height:30px;
+    border-radius: 10px; /* 角を丸くするための設定 */
+   }
+  </style>
+      <!-- form_with model: @コントローラーeditの情報, url: 遷移先のルーティング_path, method: :ルーティングのメソッド -->
+  <%= form_with model: @customer, url: information_update_path, method: :patch do |f| %>
+      <!-- 会員情報編集 -->
+  <table width="400"  height="300">
     <h4 class="example" align="center">会員情報編集</h4>
-        <!-- アイコン-->
-      <tr>
-        <th>
-          <label for="customer_image">アイコン</label>
-            <th>
-              <%= f.file_field :profile_image, accept: "image/*" %>
-            </th>
-        </th>
-      </tr>
-        <!-- ニックネーム -->
-      <tr>
-        <th>
-          <label for="customer_nickname">ニックネーム</label>
-            <th>
-              <%= f.text_field :nickname %>
-            </th>
-        </th>
-      </tr>
-        <!-- メールアドレス -->
-      <tr>
-        <th>
-          <label for="customer_email">メールアドレス</label>
-            <th>
-              <% if current_customer&.guest_user? %>
-                <%= @customer.email %>
-              <% else %>
-                <%= f.text_field :email %>
-              <% end %>
-            </th>
-        </th>
-      </tr>
-        <!-- 氏名 -->
-      <tr>
-        <th>
-          <label for="customer_name">氏名</label>
-            <th>
-              <%= f.text_field :last_name %>
-            </th>
-            <th>
-              <%= f.text_field :first_name %>
-            </th>
-        </th>
-      </tr>
-        <!-- フリガナ -->
-      <tr>
-        <th>
-          <label for="customer_name">フリガナ</label>
-            <th>
-              <%= f.text_field :last_name_kana %>
-            </th>
-            <th>
-              <%= f.text_field :first_name_kana %>
-            </th>
-        </th>
-      </tr>
-        <!-- 誕生日 -->
-      <tr>
-        <th>
-          <label for="customer_birth_day">誕生日</label>
-            <th>
-              <%= f.text_field :birth_day %>
-            </th>
-        </th>
-      </tr>
-        <!-- 編集内容を保存する〇 -->
-      <tr>
-        <th>
-          <%= f.submit '編集内容を保存する', class:"btn btn-success" %>
-        </th>
-          <!-- 退会する〇-->
-        <th>
-          <%= link_to "退会する", confirm_path, class:"btn btn-danger" %>
-        </th>
-    　</tr>
-    </table>
-    <% end %>
-    </div>
+      <!-- アイコン-->
+    <tr>
+      <th>
+        <label for="customer_image">アイコン</label>
+          <th>
+            <%= f.file_field :profile_image, accept: "image/*" %>
+          </th>
+      </th>
+    </tr>
+      <!-- ニックネーム -->
+    <tr>
+      <th>
+        <label for="customer_nickname">ニックネーム</label>
+          <th>
+            <%= f.text_field :nickname %>
+          </th>
+      </th>
+    </tr>
+      <!-- メールアドレス -->
+    <tr>
+      <th>
+        <label for="customer_email">メールアドレス</label>
+          <th>
+            <% if current_customer&.guest_user? %>
+              <%= @customer.email %>
+            <% else %>
+              <%= f.text_field :email %>
+            <% end %>
+          </th>
+      </th>
+    </tr>
+      <!-- 氏名 -->
+    <tr>
+      <th>
+        <label for="customer_name">氏名</label>
+          <th>
+            <%= f.text_field :last_name %>
+          </th>
+          <th>
+            <%= f.text_field :first_name %>
+          </th>
+      </th>
+    </tr>
+      <!-- フリガナ -->
+    <tr>
+      <th>
+        <label for="customer_name">フリガナ</label>
+          <th>
+            <%= f.text_field :last_name_kana %>
+          </th>
+          <th>
+            <%= f.text_field :first_name_kana %>
+          </th>
+      </th>
+    </tr>
+      <!-- 誕生日 -->
+    <tr>
+      <th>
+        <label for="customer_birth_day">誕生日</label>
+          <th>
+            <%= f.text_field :birth_day %>
+          </th>
+      </th>
+    </tr>
+      <!-- 編集内容を保存する〇 -->
+    <tr>
+      <th>
+        <%= f.submit '編集内容を保存する', class:"btn btn-success" %>
+      </th>
+        <!-- 退会する〇-->
+      <th>
+        <%= link_to "退会する", confirm_path, class:"btn btn-danger" %>
+      </th>
+  　</tr>
+  </table>
+  <% end %>
   </div>
-  
-  
+</div>
+
