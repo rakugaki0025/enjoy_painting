@@ -1,33 +1,33 @@
 <!-- Enjoy_view_public_illustrations_index -->
   
 <div class="row justify-content-center">
-          <!-- 色指定のスタイル -->
-    <style>
-     .example {
-      background-color: #F0F0F0;
-      width:250px;
-      height:30px;
-     }
-    </style>
-          <!-- イラスト投稿画像一覧,アイコン -->
-    <table width="950"  height="50">
-      <tr>
-          <!-- イラスト投稿画像一覧 -->
-        <td>
-          <h4 class="example" align="center">投稿画像一覧</h4>
-        </td>
-          <!-- イラスト新規登録画面へ,アイコン済 -->
-        <td style="text-align: center;">
-          <%= link_to new_illustration_path, class: 'nav-link text-black' do %>
-            <i class="fas fa-pen-nib" aria-hidden="true">投稿する</i>
-          <% end %>
-        </td>
-      </tr>
-    </table>
+        <!-- 色指定のスタイル -->
+  <style>
+   .example {
+    background-color: #F0F0F0;
+    width:250px;
+    height:30px;
+   }
+  </style>
+        <!-- イラスト投稿画像一覧,アイコン -->
+  <table width="950"  height="50">
+    <tr>
+        <!-- イラスト投稿画像一覧 -->
+      <td>
+        <h4 class="example" align="center">投稿画像一覧</h4>
+      </td>
+        <!-- イラスト新規登録画面へ,アイコン済 -->
+      <td style="text-align: center;">
+        <%= link_to new_illustration_path, class: 'nav-link text-black' do %>
+          <i class="fas fa-pen-nib" aria-hidden="true">投稿する</i>
+        <% end %>
+      </td>
+    </tr>
+  </table>
   <div class="mx-auto auto col-11">
-            <!-- サンプルID,サンプル名,説明文,ジャンル -->
+        <!-- サンプルID,サンプル名,説明文,ジャンル -->
     <table border="1" width="900"  height="280">
-            <!-- ID,画像,名前,説明文,ジャンル,削除 -->
+        <!-- ID,画像,名前,説明文,ジャンル,削除 -->
       <thead class="example" align="center">
         <tr>
           <th>ID</th>
@@ -39,9 +39,9 @@
           <th>コメント数</th>
         </tr>
       </thead>
-            <!-- イラスト一覧表示〇 -->
+        <!-- イラスト一覧表示〇 -->
       <% @illustrations.each do |illustration| %>
-            <!-- ID,画像,名前,説明文,ジャンル,削除 -->
+        <!-- ID,画像,名前,説明文,ジャンル,削除 -->
       <tbody>
         <tr>
             <!-- イラストナンバー -->

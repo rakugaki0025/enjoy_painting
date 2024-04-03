@@ -1,162 +1,161 @@
 <!-- Enjoy_view_public_illustration_show -->
-  
-    <!-- フラッシュメッセージ投稿成功時 -->
-  <div>
-    <%= flash[:notice] %>
-  </div>
-    <!-- 商品画像,商品名,商品説明,税込価格 -->
-  <div class="row">
-    <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-5">
-        <!-- 色指定のスタイル -->
-      <style>
-       .example {
-        background-color: #F0F0F0;
-        width:200px;
-        height:30px;
-        border-radius: 10px; /* 角を丸くするための設定 */
-       }
-      </style>
-        <!-- サンプル画像,サンプル名,説明文,ジャンル -->
-      <table width="450"  height="80">
-        <h4 class="example" align="center">投稿画像詳細</h4>
-          <!-- イラスト詳細 -->
-        <tbody>
-            <!-- イラスト画像 -->
-          <tr>
-            <%= image_tag @illustration.get_image, style: "max-width:500px;" %>
-          </tr>
-            <!-- ユーザーアイコン -->
-          <tr>
-            <th>投稿者</th>
-              <td>
-                <%= link_to user_illustration_path(@illustration.customer_id) do %>
-                  <%= image_tag @illustration.customer.get_profile_image(100,100) if @illustration.customer.present? %>
-                <% end %>
-              </td>
-          </tr>
-            <!-- タイトル -->
-          <tr>
-            <th>タイトル</th>
-              <td>
-                <%= @illustration.name %>
-              </td>
-          </tr><br />
-            <!-- 説明文 -->
-          <tr>
-            <th>説明文</th>
-              <td>
-                <%= @illustration.introduction %>
-              </td>
-          </tr><br />
-            <!-- ジャンル -->
-          <tr>
-            <th>ジャンル</th>
-              <td>
-                <%= @illustration.genre.name %>
-              </td>
-          </tr><br />
-            <!-- いいね機能 -->
-          <tr>
-            <th></th>
-              <td>
-                  <!-- 会員がログインしているかを判断している(admin表示変更) -->
-                <% if customer_signed_in? %>
-                  <% if @illustration.nice_by?(current_customer) %>
-                      <!-- いいねする -->
-                    <p>
-                      <%= link_to illustration_nice_path(@illustration), method: :delete do %>
-                        ♥<%= @illustration.nice.count %> いいね
-                      <% end %>
-                    </p>
-                  <% else %>
-                      <!-- 削除する -->
-                    <p>
-                      <%= link_to illustration_nice_path(@illustration), method: :post do %>
-                        ♡<%= @illustration.nice.count %> いいね
-                      <% end %>
-                    </p>
-                  <% end %>
-                  
-                <% else %>
-                   <p>
-                     ♥<%= @illustration.nice.count %> いいね 
-                   </p>
-                <% end %>
-              </td>
-          </tr><br />
-            <!-- コメント -->
-          <tr>
-          <th>コメント</th>
+
+  <!-- フラッシュメッセージ投稿成功時 -->
+<div>
+  <%= flash[:notice] %>
+</div>
+  <!-- 商品画像,商品名,商品説明,税込価格 -->
+<div class="row">
+  <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-5">
+      <!-- 色指定のスタイル -->
+    <style>
+     .example {
+      background-color: #F0F0F0;
+      width:200px;
+      height:30px;
+      border-radius: 10px; /* 角を丸くするための設定 */
+     }
+    </style>
+      <!-- サンプル画像,サンプル名,説明文,ジャンル -->
+    <table width="450"  height="80">
+      <h4 class="example" align="center">投稿画像詳細</h4>
+        <!-- イラスト詳細 -->
+      <tbody>
+          <!-- イラスト画像 -->
+        <tr>
+          <%= image_tag @illustration.get_image, style: "max-width:500px;" %>
+        </tr>
+          <!-- ユーザーアイコン -->
+        <tr>
+          <th>投稿者</th>
             <td>
-                <!-- コメント件数 -->
-              <div>
-                  <!-- コメント枠,送信ボタン -->
-                <div>
-                        <!--%= form_with model: [@illustration, @comment], url: illustration_comment_index_path(@illustration[:id]), local: true do |f| %-->
-                    <!-- admin,customerがログインしていない場合非表示 -->
-                  <%# if admin_signed_in? || customer_signed_in? %>
-                  <% if customer_signed_in? %>
-                    <%= form_with model:[@illustration, @comment], url: illustration_comments_path(@illustration[:id]), method: :post do |f| %>
-                      <%= f.text_area :content, rows: '5', placeholder: "コメントをここに", maxlength: 120 %>
-                      <%= f.submit "コメントする", class:"btn btn-primary" %>
-                    <% end %>
-                  <% end %>
-                </div>
-                  <!-- コメント最大文字数の判定 -->
-                <script>
-                  document.addEventListener("DOMContentLoaded", function() {
-                    const textArea = document.querySelector("#comment_content");
-                
-                    textArea.addEventListener("input", function() {
-                      const maxLength = parseInt(textArea.getAttribute("maxlength"), 10);
-                      if (textArea.value.length > maxLength) {
-                        textArea.value = textArea.value.slice(0, maxLength);
-                      }
-                    });
-                  });
-                </script>
-                <p>コメント件数：<%= @illustration.comments.count %></p>
-                  <!-- コメント内容表示 -->
-                <p>
-                  <% @illustration.comments.each do |comment| %>
-                      <!-- アイコン -->
-                    <%= image_tag comment.customer.get_profile_image(60,60) %>
-                      <!-- 投稿者名 -->
-                    <%= comment.customer.name %>
-                      <!-- コメント投稿時間 -->
-                    <%= comment.created_at.strftime('%Y/%m/%d') %><br>
-                      <!-- コメント内容 -->
-                    <% content = comment.content %>
-                      <!-- コメント最大文字数120 -->
-                    <% max_length = 120 %>
-                      <!-- コメント改行数 -->
-                    <% lines = content.scan(/.{1,30}/) %>
-                      <!-- 改行コード -->
-                    <%= lines.map { |line| line.gsub(/</, '&lt;').gsub(/>/, '&gt;') }.join("<br>").html_safe %><br>
-                      <!-- 削除コメント_コメントした人が同じだった場合表示する記述,もしくはadmin -->
-                    <% if (comment.customer == current_customer) || admin_signed_in? %>
-                      <%= link_to "削除", illustration_comment_path(comment.illustration, comment), method: :delete %>
-                    <% end %>
-                    <br />
-                    <br />
-                  <% end %>
-                </p>
-              </div>
+              <%= link_to user_illustration_path(@illustration.customer_id) do %>
+                <%= image_tag @illustration.customer.get_profile_image(100,100) if @illustration.customer.present? %>
+              <% end %>
             </td>
-          </tr>
-        </tbody>
-      </table>
-      <% if @illustration.customer == current_customer %>
-          <!-- 編集する -->
-        <div class="col-8">
-          <%= link_to "編集する", edit_illustration_path(@illustration), class:"btn btn-success" %>
-        </div>
-          <!-- 削除ボタン -->
-        <div class="col-4">
-          <%= link_to "削除", illustration_path(@illustration), class:"btn btn-danger", method: :delete, data: { confirm: "本当に削除しますか？" } %>
-        </div>
-      <% end %>
-    </div>
+        </tr>
+          <!-- タイトル -->
+        <tr>
+          <th>タイトル</th>
+            <td>
+              <%= @illustration.name %>
+            </td>
+        </tr><br />
+          <!-- 説明文 -->
+        <tr>
+          <th>説明文</th>
+            <td>
+              <%= @illustration.introduction %>
+            </td>
+        </tr><br />
+          <!-- ジャンル -->
+        <tr>
+          <th>ジャンル</th>
+            <td>
+              <%= @illustration.genre.name %>
+            </td>
+        </tr><br />
+          <!-- いいね機能 -->
+        <tr>
+          <th></th>
+            <td>
+                <!-- 会員がログインしているかを判断している(admin表示変更) -->
+              <% if customer_signed_in? %>
+                <% if @illustration.nice_by?(current_customer) %>
+                    <!-- いいねする -->
+                  <p>
+                    <%= link_to illustration_nice_path(@illustration), method: :delete do %>
+                      ♥<%= @illustration.nice.count %> いいね
+                    <% end %>
+                  </p>
+                <% else %>
+                    <!-- 削除する -->
+                  <p>
+                    <%= link_to illustration_nice_path(@illustration), method: :post do %>
+                      ♡<%= @illustration.nice.count %> いいね
+                    <% end %>
+                  </p>
+                <% end %>
+                
+              <% else %>
+                 <p>
+                   ♥<%= @illustration.nice.count %> いいね 
+                 </p>
+              <% end %>
+            </td>
+        </tr><br />
+          <!-- コメント -->
+        <tr>
+        <th>コメント</th>
+          <td>
+              <!-- コメント件数 -->
+            <div>
+                <!-- コメント枠,送信ボタン -->
+              <div>
+                      <!--%= form_with model: [@illustration, @comment], url: illustration_comment_index_path(@illustration[:id]), local: true do |f| %-->
+                  <!-- admin,customerがログインしていない場合非表示 -->
+                <%# if admin_signed_in? || customer_signed_in? %>
+                <% if customer_signed_in? %>
+                  <%= form_with model:[@illustration, @comment], url: illustration_comments_path(@illustration[:id]), method: :post do |f| %>
+                    <%= f.text_area :content, rows: '5', placeholder: "コメントをここに", maxlength: 120 %>
+                    <%= f.submit "コメントする", class:"btn btn-primary" %>
+                  <% end %>
+                <% end %>
+              </div>
+                <!-- コメント最大文字数の判定 -->
+              <script>
+                document.addEventListener("DOMContentLoaded", function() {
+                  const textArea = document.querySelector("#comment_content");
+              
+                  textArea.addEventListener("input", function() {
+                    const maxLength = parseInt(textArea.getAttribute("maxlength"), 10);
+                    if (textArea.value.length > maxLength) {
+                      textArea.value = textArea.value.slice(0, maxLength);
+                    }
+                  });
+                });
+              </script>
+              <p>コメント件数：<%= @illustration.comments.count %></p>
+                <!-- コメント内容表示 -->
+              <p>
+                <% @illustration.comments.each do |comment| %>
+                    <!-- アイコン -->
+                  <%= image_tag comment.customer.get_profile_image(60,60) %>
+                    <!-- 投稿者名 -->
+                  <%= comment.customer.name %>
+                    <!-- コメント投稿時間 -->
+                  <%= comment.created_at.strftime('%Y/%m/%d') %><br>
+                    <!-- コメント内容 -->
+                  <% content = comment.content %>
+                    <!-- コメント最大文字数120 -->
+                  <% max_length = 120 %>
+                    <!-- コメント改行数 -->
+                  <% lines = content.scan(/.{1,30}/) %>
+                    <!-- 改行コード -->
+                  <%= lines.map { |line| line.gsub(/</, '&lt;').gsub(/>/, '&gt;') }.join("<br>").html_safe %><br>
+                    <!-- 削除コメント_コメントした人が同じだった場合表示する記述,もしくはadmin -->
+                  <% if (comment.customer == current_customer) || admin_signed_in? %>
+                    <%= link_to "削除", illustration_comment_path(comment.illustration, comment), method: :delete %>
+                  <% end %>
+                  <br />
+                  <br />
+                <% end %>
+              </p>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <% if @illustration.customer == current_customer %>
+        <!-- 編集する -->
+      <div class="col-8">
+        <%= link_to "編集する", edit_illustration_path(@illustration), class:"btn btn-success" %>
+      </div>
+        <!-- 削除ボタン -->
+      <div class="col-4">
+        <%= link_to "削除", illustration_path(@illustration), class:"btn btn-danger", method: :delete, data: { confirm: "本当に削除しますか？" } %>
+      </div>
+    <% end %>
   </div>
-  
-  
+</div>
+
