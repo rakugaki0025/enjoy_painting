@@ -1,65 +1,65 @@
 <!-- enjoy_view_admin_customers_index_top -->
 
 
-  <div class="row">
-    <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-9">
+<div class="row">
+  <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-9">
+    
+      <!-- 色指定のスタイル -->
+    <style>
+     .example {
+      background-color: #F0F0F0;
+      width:130px;
+      height:30px;
+     }
+    </style>
+    
+    <table border="1" width="800"  height="300">
       
-        <!-- 色指定のスタイル -->
-      <style>
-       .example {
-        background-color: #F0F0F0;
-        width:130px;
-        height:30px;
-       }
-      </style>
+      <h4 class="example" align="center">会員一覧</h4>
       
-      <table border="1" width="800"  height="300">
-        
-        <h4 class="example" align="center">会員一覧</h4>
-        
-          <!-- 会員ID,ニックネーム,メールアドレス,ステータス -->
-        <thead class="example">
-          <tr align=”center”>
-            <th>会員ID</th>
-            <th>ニックネーム</th>
-            <th>メールアドレス</th>
-            <th>ステータス</th>
+        <!-- 会員ID,ニックネーム,メールアドレス,ステータス -->
+      <thead class="example">
+        <tr align=”center”>
+          <th>会員ID</th>
+          <th>ニックネーム</th>
+          <th>メールアドレス</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+      
+      <% @customers.each do |customer| %>
+          <!-- 商品一覧表示 -->
+        <tbody>
+            <!-- 商品ID,商品名,価格_投稿内容 -->
+          <tr align="left">
+              <!-- 顧客ナンバー〇 -->
+            <td>
+              <%= customer.id %>
+            </td>
+              <!-- ニックネーム〇 -->
+            <td>
+              <%= link_to admin_customers_show_path(customer.id) do %>
+                <%= customer.nickname %>
+              <% end %>
+            </td>
+              <!-- メールアドレス〇 -->
+            <td>
+              <%= customer.email %>
+            </td>
+              <!-- 会員ステータス着色〇 -->
+            <td>
+              <% if customer.is_active %>
+                <span style="color: green;">有効</span>
+              <% else %>
+                <span style="color: lightgray;">退会</span>
+              <% end %>
+            </td>
           </tr>
-        </thead>
-        
-        <% @customers.each do |customer| %>
-            <!-- 商品一覧表示 -->
-          <tbody>
-              <!-- 商品ID,商品名,価格_投稿内容 -->
-            <tr align="left">
-                <!-- 顧客ナンバー〇 -->
-              <td>
-                <%= customer.id %>
-              </td>
-                <!-- ニックネーム〇 -->
-              <td>
-                <%= link_to admin_customers_show_path(customer.id) do %>
-                  <%= customer.nickname %>
-                <% end %>
-              </td>
-                <!-- メールアドレス〇 -->
-              <td>
-                <%= customer.email %>
-              </td>
-                <!-- 会員ステータス着色〇 -->
-              <td>
-                <% if customer.is_active %>
-                  <span style="color: green;">有効</span>
-                <% else %>
-                  <span style="color: lightgray;">退会</span>
-                <% end %>
-              </td>
-            </tr>
-          </tbody>
-        
-        <% end %>
+        </tbody>
       
-      </table>
-       
-    </div>
+      <% end %>
+    
+    </table>
+     
   </div>
+</div>
