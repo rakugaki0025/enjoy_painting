@@ -1,113 +1,104 @@
 <!-- nagano_view_admin_customers_edit_top -->
-  
-  
-  <div class="row justify-content-center">
-    <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-6">
-      
-         <!-- エラーメッセージ -->
+
+<div class="row justify-content-center">
+  <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-6">
+       <!-- エラーメッセージ -->
+    <div>
+      <% if @customer.errors.any? %>
+        <!-- エラーカウント -->
       <div>
-        <% if @customer.errors.any? %>
-          <!-- エラーカウント -->
-        <div>
-          <%= @customer.errors.count %>件のエラーが発生しました。
-        </div>
-          <ul>
-            <% @customer.errors.full_messages.each do |message| %>
-              <li><%= message %></li>
-            <% end %>
-          </ul>
-        <% end %>
+        <%= @customer.errors.count %>件のエラーが発生しました。
       </div>
-      
-        <!-- 色指定のスタイル -->
-      <style>
-       .example {
-        background-color: #F0F0F0;
-        width:390px;
-        height:30px;
-       }
-      </style>
-        <!-- 会員情報編集 -->
-      <th>
-        <h4 class="example" align="center">
-          <%= @customer.last_name %>
-          <%= @customer.first_name %>
-          さんの会員情報編集
-        </h4>
-      </th>
-        
-      <%= form_with model: @customer, url: admin_customers_update_path, method: :patch do |f| %>
-          
-          <!-- 会員情報編集 -->
-        <table width="550"  height="350">
-          <tbody>
-              <!-- 会員ID〇 -->
-            <tr>
-              <th>会員ID</th>
-                <td>
-                  <%= @customer.id %>
-                </td>
-            </tr>
-              <!-- ニックネーム〇 -->
-            <tr>
-              <th>ニックネーム</th>
-                <td>
-                  <%= f.text_field :nickname %>
-                </td>
-            </tr>
-              <!-- メールアドレス〇 -->
-            <tr>
-              <th>メールアドレス</th>
-                <td>
-                  <%= f.text_field :email %>
-                </td>
-            </tr>
-              <!-- 氏名〇 -->
-            <tr>
-              <th>氏名</th>
-                <td>
-                  <%= f.text_field :last_name %>
-                  <%= f.text_field :first_name %>
-                </td>
-            </tr>
-              <!-- フリガナ〇 -->
-            <tr>
-              <th>フリガナ</th>
-                <td>
-                  <%= f.text_field :last_name_kana %>
-                  <%= f.text_field :first_name_kana %>
-                </td>
-            </tr>
-              <!-- 誕生日〇 -->
-            <tr>
-              <th>誕生日</th>
-                <td>
-                  <%= f.text_field :birth_day %>
-                </td>
-            </tr>
-              <!-- 会員ステータス〇 -->
-            <tr>
-              <th>会員ステータス</th>
-                <td>
-                  <%= f.radio_button :is_active, true %>
-                    <%= f.label :is_active, "有効" %>
-                  <%= f.radio_button :is_active, false %>
-                    <%= f.label :is_active, "無効" %>
-                </td>
-            </tr>
-              <!-- 新規登録〇 -->
-            <tr>
-              <td>
-                <%= f.submit '変更を保存', class:"btn btn-success" %>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-          
+        <ul>
+          <% @customer.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+          <% end %>
+        </ul>
       <% end %>
-        
     </div>
+      <!-- 色指定のスタイル -->
+    <style>
+     .example {
+      background-color: #F0F0F0;
+      width:390px;
+      height:30px;
+     }
+    </style>
+      <!-- 会員情報編集 -->
+    <th>
+      <h4 class="example" align="center">
+        <%= @customer.last_name %>
+        <%= @customer.first_name %>
+        さんの会員情報編集
+      </h4>
+    </th>
+    <%= form_with model: @customer, url: admin_customers_update_path, method: :patch do |f| %>
+        <!-- 会員情報編集 -->
+      <table width="550"  height="350">
+        <tbody>
+            <!-- 会員ID -->
+          <tr>
+            <th>会員ID</th>
+              <td>
+                <%= @customer.id %>
+              </td>
+          </tr>
+            <!-- ニックネーム -->
+          <tr>
+            <th>ニックネーム</th>
+              <td>
+                <%= f.text_field :nickname %>
+              </td>
+          </tr>
+            <!-- メールアドレス -->
+          <tr>
+            <th>メールアドレス</th>
+              <td>
+                <%= f.text_field :email %>
+              </td>
+          </tr>
+            <!-- 氏名 -->
+          <tr>
+            <th>氏名</th>
+              <td>
+                <%= f.text_field :last_name %>
+                <%= f.text_field :first_name %>
+              </td>
+          </tr>
+            <!-- フリガナ -->
+          <tr>
+            <th>フリガナ</th>
+              <td>
+                <%= f.text_field :last_name_kana %>
+                <%= f.text_field :first_name_kana %>
+              </td>
+          </tr>
+            <!-- 誕生日 -->
+          <tr>
+            <th>誕生日</th>
+              <td>
+                <%= f.text_field :birth_day %>
+              </td>
+          </tr>
+            <!-- 会員ステータス -->
+          <tr>
+            <th>会員ステータス</th>
+              <td>
+                <%= f.radio_button :is_active, true %>
+                  <%= f.label :is_active, "有効" %>
+                <%= f.radio_button :is_active, false %>
+                  <%= f.label :is_active, "無効" %>
+              </td>
+          </tr>
+            <!-- 新規登録 -->
+          <tr>
+            <td>
+              <%= f.submit '変更を保存', class:"btn btn-success" %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    <% end %>
   </div>
-  
-  
-  
+</div>
+
