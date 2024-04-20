@@ -31,29 +31,20 @@ class Public::SampleIllustrationsController < ApplicationController
 
   ## イラスト_投稿_情報更新する /illustration/:id
   def update
-    # #アクセス制限
-    ## is_matching_login_user
-
     ## インスタンス変数 = 商品_find 探す:単数でどれか一つ
     ## レコードを一つ取得？
     @sample_illustration = SampleIllustration.find(params[:id])
-
     ## サンプル情報 アップデート
     if  @sample_illustration.update(sample_illustration_params)
-
       ## flash[:notice] は 投稿が成功した時だけ表示
       ## エラーメッセージでは使わない
       flash[:notice] = "You have updated user successfully."
-
       ## インスタンス変数 = ユーザー_find 探す:単数でどれか一つ  user_path(@user.id)
       ## 遷移先 '/customer' customer_path(@user.id)
       redirect_to illustration_review_path(@sample_illustration.id)
-
     else
-
       ## アクションを実行しない
       render :edit
-
     end
   end
 
