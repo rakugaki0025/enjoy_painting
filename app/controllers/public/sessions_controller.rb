@@ -7,10 +7,6 @@ class Public::SessionsController < Devise::SessionsController
 
   ## これがないと倫理削除に引っかからない
   before_action :customer_state, only: [:create]
-
-  ## ゲストユーザーとしてログインした場合は閲覧を制限する?
-  # before_action :guest_sign_in
-
   ## sign_in と sign_up 注意
   ## ログイン後に遷移する場所
   ## ここでのresource はログイン,ログアウト時でしか使われない
@@ -51,7 +47,6 @@ class Public::SessionsController < Devise::SessionsController
     def customer_state
       # 【処理内容1】 入力されたemailからアカウントを1件取得
       @customer = Customer.find_by(email: params[:customer][:email])
-
       # 【処理内容2】 アカウントを取得できなかった場合、このメソッドを終了する
       return if !@customer
       # 【処理内容3】 取得したアカウントのパスワードと入力されたパスワードが一致していない場合、このメソッドを終了する

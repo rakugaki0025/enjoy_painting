@@ -11,21 +11,15 @@ class Public::SampleIllustrationsController < ApplicationController
   def create
     ## star 格納
     @sample_illustration = SampleIllustration.new(sample_illustration_params)
-
     ## reviewを呼び出す記述
     @sample_illustration.customer = current_customer
-
     ## 記録保存が成功すれば投稿詳細へ
     if @sample_illustration.save
-
       ## 遷移先 サンプル投稿_詳細画面
       redirect_to illustration_reviews_path(@review.id), notice: "You have created book successfully."
-
     else ## 保存できなかった場合, :画像投稿フォーム再表示
       @sample_illustration = SampleIllustration.all
-
       render :show
-
     end
   end
 
