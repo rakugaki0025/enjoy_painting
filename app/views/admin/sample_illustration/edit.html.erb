@@ -1,82 +1,70 @@
 <!-- Enjoy_view_admin_sample_illustration_edit -->
-  
-  
-  
-  <div class="row">
-    <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-5">
-      
-        <!-- エラーメッセージ -->
-      <div class="justify-content-center" style="padding: 10px 0;">
-        <% if @sample_illustration.errors.any? %>
-            <!-- エラーカウント -->
-          <h2>
-            <%= @sample_illustration.errors.count %>件のエラーが発生しました。
-          </h2>
-            <ul>
-              <% @sample_illustration.errors.full_messages.each do |message| %>
-                <li>
-                  <%= message %>
-                </li>
-              <% end %>
-            </ul>
-        <% end %>
-      </div>
-      
-      
-        <!-- 色指定のスタイル -->
-      <style>
-       .example {
-        background-color: #F0F0F0;
-        width:200px;
-        height:30px;
-       }
-      </style>
-      
-    <%= form_with model: @sample_illustration, url: admin_sample_illustration_path(@sample_illustration[:id]), method: :patch do |sample_illustration| %>
-      
-      <table width="400"  height="300">
-            
-        <h4 class="example" align="center">サンプル編集</h4>
-          <!-- サンプル画像 -->
-        <tr>
-          <th>サンプル画像</th>
-            <td>
-              <%= sample_illustration.file_field :image, accept: "image/*" %>
-            </td>
-        </tr>
-          <!-- サンプル名 -->
-        <tr>
-          <th>サンプル名</th>
-            <td>
-              <%= sample_illustration.text_field :name %>
-            </td>
-        </tr>
-          <!-- 説明文 -->
-        <tr>
-          <th>説明文</th>
-            <td>
-              <%= sample_illustration.text_field :introduction %>
-            </td>
-        </tr>
-          <!-- ジャンル -->
-        <tr>
-          <th>ジャンル</th>
-            <td>
-              <!--%= sample_illustration.text_field :genre_id, value: @sample_illustration.genre.name %-->
-              <%= sample_illustration.collection_select :genre_id, Genre.all, :id, :name %>
-            </td>
-        </tr>
-          <!-- 新規登録△ -->
-        <tr>
-          <td>
-            <%= sample_illustration.submit '変更を保存', class:"btn btn-success" %>
-          </td>
-        </tr>
-                  
-      </table>
-              
-    <% end %>
-            
+
+<div class="row">
+  <div class="mx-auto auto col-11 col-sm10 col-lg col-xl-5">
+      <!-- エラーメッセージ -->
+    <div class="justify-content-center" style="padding: 10px 0;">
+      <% if @sample_illustration.errors.any? %>
+          <!-- エラーカウント -->
+        <h2>
+          <%= @sample_illustration.errors.count %>件のエラーが発生しました。
+        </h2>
+          <ul>
+            <% @sample_illustration.errors.full_messages.each do |message| %>
+              <li>
+                <%= message %>
+              </li>
+            <% end %>
+          </ul>
+      <% end %>
     </div>
+      <!-- 色指定のスタイル -->
+    <style>
+     .example {
+      background-color: #F0F0F0;
+      width:200px;
+      height:30px;
+     }
+    </style>
+  <%= form_with model: @sample_illustration, url: admin_sample_illustration_path(@sample_illustration[:id]), method: :patch do |sample_illustration| %>
+    <table width="400"  height="300">
+      <h4 class="example" align="center">サンプル編集</h4>
+        <!-- サンプル画像 -->
+      <tr>
+        <th>サンプル画像</th>
+          <td>
+            <%= sample_illustration.file_field :image, accept: "image/*" %>
+          </td>
+      </tr>
+        <!-- サンプル名 -->
+      <tr>
+        <th>サンプル名</th>
+          <td>
+            <%= sample_illustration.text_field :name %>
+          </td>
+      </tr>
+        <!-- 説明文 -->
+      <tr>
+        <th>説明文</th>
+          <td>
+            <%= sample_illustration.text_field :introduction %>
+          </td>
+      </tr>
+        <!-- ジャンル -->
+      <tr>
+        <th>ジャンル</th>
+          <td>
+            <!--%= sample_illustration.text_field :genre_id, value: @sample_illustration.genre.name %-->
+            <%= sample_illustration.collection_select :genre_id, Genre.all, :id, :name %>
+          </td>
+      </tr>
+        <!-- 新規登録△ -->
+      <tr>
+        <td>
+          <%= sample_illustration.submit '変更を保存', class:"btn btn-success" %>
+        </td>
+      </tr>
+    </table>
+  <% end %>
   </div>
-  
+</div>
