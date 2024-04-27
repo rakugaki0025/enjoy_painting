@@ -1,96 +1,96 @@
 <!-- Enjoy_view_admin_sample_illustration_index -->
 
-  <div class="row">
-        <!-- 色指定のスタイル -->
-      <style>
-       .example {
-        background-color: #F0F0F0;
-        width:250px;
-        height:30px;
-       }
-      </style>
-        <!-- サンプル投稿画像一覧,アイコン -->
-      <table width="950"  height="50">
+<div class="row">
+      <!-- 色指定のスタイル -->
+    <style>
+     .example {
+      background-color: #F0F0F0;
+      width:250px;
+      height:30px;
+     }
+    </style>
+      <!-- サンプル投稿画像一覧,アイコン -->
+    <table width="950"  height="50">
+      <tr>
+          <!-- サンプル投稿画像一覧 -->
+        <td>
+          <h4 class="example" align="center">管理者投稿画像一覧</h4>
+        </td>
+          <!-- サンプル新規登録画面へ,アイコン済 -->
+        <td align="right">
+          <%= link_to new_admin_sample_illustration_path, class: 'nav-link text-black' do %>
+            <i class="fas fa-pen-nib" aria-hidden="true">サンプル投稿</i>
+          <% end %>
+        </td>
+          <!-- ジャンル新規登録画面へ,アイコン済 -->
+        <td align="right">
+          <%= link_to admin_genre_index_path, class: 'nav-link text-black' do %>
+            <i class="fas fa-plus-circle" aria-hidden="true">ジャンル登録</i>
+          <% end %>
+        </td>
+      </tr>
+    </table>
+  <div class="mx-auto auto col-11">
+      <!-- サンプルID,サンプル名,説明文,ジャンル -->
+    <table border="1" width="900"  height="280">
+            <!-- ID,画像,名前,説明文,ジャンル,削除 -->
+      <thead class="example" align="center">
         <tr>
-            <!-- サンプル投稿画像一覧 -->
+          <th style="padding: 10px 0;">ID</th>
+          <th style="padding: 10px 0;">サンプル画像</th>
+          <th style="padding: 10px 0;">サンプルタイトル</th>
+          <th style="padding: 10px 0;">説明文</th>
+          <th style="padding: 10px 0;">ジャンル</th>
+          <th style="padding: 10px 0;">総合評価</th>
+          <th style="padding: 10px 0;">削除</th>
+        </tr>
+      </thead>
+            <!-- サンプル一覧表示 -->
+      <% @sample_illustration.each do |sample_illustration| %>
+            <!-- ID,画像,名前,説明文,ジャンル,削除 -->
+      <tbody align="center">
+        <tr>
+            <!-- サンプルナンバー -->
           <td>
-            <h4 class="example" align="center">管理者投稿画像一覧</h4>
+            <%= sample_illustration.id %>
           </td>
-            <!-- サンプル新規登録画面へ,アイコン済 -->
-          <td align="right">
-            <%= link_to new_admin_sample_illustration_path, class: 'nav-link text-black' do %>
-              <i class="fas fa-pen-nib" aria-hidden="true">サンプル投稿</i>
+            <!-- サンプル画像 -->
+          <td>
+            <%= link_to admin_sample_illustration_path(sample_illustration.id) do %>
+              <%= image_tag sample_illustration.get_image, style: "max-width:130px;" %>
             <% end %>
           </td>
-            <!-- ジャンル新規登録画面へ,アイコン済 -->
-          <td align="right">
-            <%= link_to admin_genre_index_path, class: 'nav-link text-black' do %>
-              <i class="fas fa-plus-circle" aria-hidden="true">ジャンル登録</i>
+            <!-- サンプル名 -->
+          <td>
+            <%= link_to admin_sample_illustration_path(sample_illustration.id) do %>
+              <%= sample_illustration.name %>
             <% end %>
+          </td>
+            <!-- 説明文 -->
+          <td>
+            <%= sample_illustration.introduction %>
+          </td>
+            <!-- ジャンル -->
+          <td>
+            <%= sample_illustration.genre.name %>
+          </td>
+            <!-- 総合評価 -->
+          <td>
+            <% if sample_illustration.reviews.average(:star).present? %>
+              <%= sample_illustration.reviews.average(:star).round(2) %>
+            <% else %>
+                <!-- 非表示にするコンテンツ（例: "評価なし"など）-->
+              未評価
+            <% end %>
+          </td>
+            <!-- 削除ボタン -->
+          <td>
+            <%= link_to "削除", admin_sample_illustration_path(sample_illustration), class:"btn btn-danger", method: :delete, data: { confirm: "本当に削除しますか？" } %>
           </td>
         </tr>
-      </table>
-    <div class="mx-auto auto col-11">
-        <!-- サンプルID,サンプル名,説明文,ジャンル -->
-      <table border="1" width="900"  height="280">
-              <!-- ID,画像,名前,説明文,ジャンル,削除 -->
-        <thead class="example" align="center">
-          <tr>
-            <th style="padding: 10px 0;">ID</th>
-            <th style="padding: 10px 0;">サンプル画像</th>
-            <th style="padding: 10px 0;">サンプルタイトル</th>
-            <th style="padding: 10px 0;">説明文</th>
-            <th style="padding: 10px 0;">ジャンル</th>
-            <th style="padding: 10px 0;">総合評価</th>
-            <th style="padding: 10px 0;">削除</th>
-          </tr>
-        </thead>
-              <!-- サンプル一覧表示 -->
-        <% @sample_illustration.each do |sample_illustration| %>
-              <!-- ID,画像,名前,説明文,ジャンル,削除 -->
-        <tbody align="center">
-          <tr>
-              <!-- サンプルナンバー -->
-            <td>
-              <%= sample_illustration.id %>
-            </td>
-              <!-- サンプル画像 -->
-            <td>
-              <%= link_to admin_sample_illustration_path(sample_illustration.id) do %>
-                <%= image_tag sample_illustration.get_image, style: "max-width:130px;" %>
-              <% end %>
-            </td>
-              <!-- サンプル名 -->
-            <td>
-              <%= link_to admin_sample_illustration_path(sample_illustration.id) do %>
-                <%= sample_illustration.name %>
-              <% end %>
-            </td>
-              <!-- 説明文 -->
-            <td>
-              <%= sample_illustration.introduction %>
-            </td>
-              <!-- ジャンル -->
-            <td>
-              <%= sample_illustration.genre.name %>
-            </td>
-              <!-- 総合評価 -->
-            <td>
-              <% if sample_illustration.reviews.average(:star).present? %>
-                <%= sample_illustration.reviews.average(:star).round(2) %>
-              <% else %>
-                  <!-- 非表示にするコンテンツ（例: "評価なし"など）-->
-                未評価
-              <% end %>
-            </td>
-              <!-- 削除ボタン -->
-            <td>
-              <%= link_to "削除", admin_sample_illustration_path(sample_illustration), class:"btn btn-danger", method: :delete, data: { confirm: "本当に削除しますか？" } %>
-            </td>
-          </tr>
-        </tbody>
-        <% end %>
-      </table>
-        <%= paginate @sample_illustration %>
-    </div>
+      </tbody>
+      <% end %>
+    </table>
+      <%= paginate @sample_illustration %>
   </div>
+</div>
